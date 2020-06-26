@@ -1,0 +1,54 @@
+[
+  {
+    "birthday": 553082271,
+    "created": 584359071,
+    "gender": "male",
+    "breederRating": 4.5,
+    "id": "504E7CD2-2138-41FA-8115-D025A490759F",
+    "about": "Jack is a chill, fun-loving kinda dog. He's the kinda dog that likes piña coladas and dancin' in the rain.",
+    "breed": "German Shepherd",
+    "sellerID": "6C739AF2-34FC-41AA-B456-D6C2812E58D7",
+    "name": "Jack",
+    "imageURL": "https://live.staticflickr.com/65535/48259180871_271e9cae35_m.png",
+    "cost": 399.99
+  },
+  {
+    "birthday": 563591967,
+    "created": 584531871,
+    "gender": "male",
+    "breederRating": 4.5,
+    "id": "8059C8E2-981C-491B-BA41-4F0CF53CBCD9",
+    "about": "Snowball is a go-getter kind of dog. You'll be very happy with him if you like energetic dogs. He enjoys chasing sticks, balls, frisbees, really anything that you throw! If you get Snowball, and you manage to find my keys, please send those back.",
+    "breed": "Lab mix",
+    "sellerID": "6C739AF2-34FC-41AA-B456-D6C2812E58D7",
+    "name": "Snowball",
+    "imageURL": "https://live.staticflickr.com/65535/48259249007_0e59e44318_m.png",
+    "cost": 199.99
+  },
+  {
+    "birthday": 576733407,
+    "created": 584596671,
+    "gender": "male",
+    "breederRating": 4.5,
+    "id": "6D403D60-7EC1-4D6E-8495-BA8FF41A7BDE",
+    "about": "Joey is a pure-bred Doberman Pinscher. By which I mean, he was feed bread, and his father a Doberman! Be careful, his father is huge...! Joey is best for someone with a lot of outdoor space.",
+    "breed": "Doberman Mix",
+    "sellerID": "6C739AF2-34FC-41AA-B456-D6C2812E58D7",
+    "name": "Joey",
+    "imageURL": "https://live.staticflickr.com/65535/48259249117_2b761a6f6f_m.png",
+    "cost": 399.99
+  },
+  {
+    "birthday": 568848543,
+    "created": 584603871,
+    "gender": "female",
+    "breederRating": 5,
+    "id": "A6634CB5-3E3A-4706-A3F4-4896CD7FA6CF",
+    "about": "Lulu’s parents are pure-bred Poodles, and her mother is the 2018 best-in-show Poodle-Doodle winner. Her father is a good-for-nothing, lazy dog. Fortunately, Lulu takes after her mother, most of the time.",
+    "breed": "Poodle",
+    "sellerID": "3E590D1B-73B5-45A6-9806-4D52A70DEC22",
+    "name": "Lulu",
+    "imageURL": "https://live.staticflickr.com/65535/48259180361_e385cbaa94_m.png",
+    "cost": 225.99
+  }
+]

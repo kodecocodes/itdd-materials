@@ -1,0 +1,13 @@
+{
+  "server" : "http://localhost:8080/",
+  "debug" : true,
+  "ui" : {
+    "button" : {
+      "cornerRadius": 4.0,
+      "borderWidth": 1.0
+    }
+  },
+  "rules": {
+    "maxPOExpense": 1000000
+  }
+}

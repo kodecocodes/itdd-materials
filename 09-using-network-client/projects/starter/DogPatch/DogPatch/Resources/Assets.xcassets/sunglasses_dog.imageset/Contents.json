@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "sunglasses_dog.png"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

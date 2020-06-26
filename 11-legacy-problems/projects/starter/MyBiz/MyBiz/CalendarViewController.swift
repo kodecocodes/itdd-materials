@@ -1,0 +1,142 @@
+/// Copyright (c) 2019 Razeware LLC
+///
+/// Permission is hereby granted, free of charge, to any person obtaining a copy
+/// of this software and associated documentation files (the "Software"), to deal
+/// in the Software without restriction, including without limitation the rights
+/// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+/// copies of the Software, and to permit persons to whom the Software is
+/// furnished to do so, subject to the following conditions:
+///
+/// The above copyright notice and this permission notice shall be included in
+/// all copies or substantial portions of the Software.
+///
+/// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+/// distribute, sublicense, create a derivative work, and/or sell copies of the
+/// Software in any work that is designed, intended, or marketed for pedagogical or
+/// instructional purposes related to programming, coding, application development,
+/// or information technology.  Permission for such use, copying, modification,
+/// merger, publication, distribution, sublicensing, creation of derivative works,
+/// or sale is expressly withheld.
+///
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+/// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+/// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+/// THE SOFTWARE.
+
+import UIKit
+
+class CalendarViewController: UIViewController {
+  
+  @IBOutlet weak var calendarView: JTAppleCalendarView!
+  
+  var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
+  var events: [Event] = []
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    calendarView.scrollingMode = .stopAtEachCalendarFrame
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    api.delegate = self
+    api.getEvents()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard segue.identifier == "dayDetails",
+      let state = sender as? CellState,
+      let destination = segue.destination as? DayDetailTableViewController else {
+        return
+    }
+    
+    let daysEvents = events.filter { Calendar.current.isDate(state.date, equalTo: $0.date, toGranularity: .day) }
+    destination.events = daysEvents
+  }
+}
+
+extension CalendarViewController: APIDelegate {
+  func announcementsFailed(error: Error) {}
+  func announcementsLoaded(announcements: [Announcement]) {}
+  func productsLoaded(products: [Product]) {}
+  func productsFailed(error: Error) {}
+  func purchasesLoaded(purchases: [PurchaseOrder]) {}
+  func purchasesFailed(error: Error) {}
+  func orgLoaded(org: [Employee]) {}
+  func orgFailed(error: Error) {}
+  func loginFailed(error: Error) {}
+  func loginSucceeded(userId: String) {}
+  func userLoaded(user: UserInfo) {}
+  func userFailed(error: Error) {}
+
+  func eventsLoaded(events: [Event]) {
+    self.events = events
+    calendarView.reloadData()
+  }
+  
+  func eventsFailed(error: Error) {
+    showAlert(title: "Could not load events", subtitle: error.localizedDescription)
+  }
+}
+
+extension CalendarViewController: JTAppleCalendarViewDataSource {
+  func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+    let startDate = Date(timeIntervalSinceNow: -.days(60))
+    let endDate = Date(timeIntervalSinceNow: .days(90))
+    return ConfigurationParameters(startDate: startDate, endDate: endDate)
+  }
+}
+
+extension CalendarViewController: JTAppleCalendarViewDelegate {
+  
+  func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+    let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as! CalendarCell
+    configureCell(view: cell, cellState: cellState)
+    return cell
+  }
+  
+  func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+    configureCell(view: cell, cellState: cellState)
+  }
+  
+  func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+    let hasEvent = events.reduce(false, { res, event in
+      Calendar.current.isDate(cellState.date, equalTo: event.date, toGranularity: .day) || res
+    })
+    guard hasEvent else { return }
+    performSegue(withIdentifier: "dayDetails", sender: cellState)
+  }
+  
+  func configureCell(view: JTAppleCell?, cellState: CellState) {
+    guard let cell = view as? CalendarCell  else { return }
+    cell.dateLabel.text = cellState.text
+    let components = Calendar.current.dateComponents([.month, .day], from: cellState.date)
+    if components.day == 1 && cellState.dateBelongsTo == .thisMonth {
+      let formatter = DateFormatter()
+      formatter.dateFormat = "MMMM"
+      cell.monthName = formatter.string(from: cellState.date)
+    } else {
+      cell.monthName = nil
+    }
+    handleCellTextColor(cell: cell, cellState: cellState)
+    handleCellEvents(cell: cell, cellState: cellState)
+  }
+  
+  func handleCellTextColor(cell: CalendarCell, cellState: CellState) {
+    if cellState.dateBelongsTo == .thisMonth {
+      cell.dateLabel.textColor = UIColor.black
+    } else {
+      cell.dateLabel.textColor = UIColor.gray
+    }
+  }
+  
+  func handleCellEvents(cell: CalendarCell, cellState: CellState) {
+    let hasEvent = events.reduce(false, { res, event in
+      Calendar.current.isDate(cellState.date, equalTo: event.date, toGranularity: .day) || res
+    })
+    cell.hasEvent = hasEvent
+  }
+}

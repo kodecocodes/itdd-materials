@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="n0b-Xs-OoE" customClass="ErrorTableViewCell" customModule="DogPatch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="182"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n0b-Xs-OoE" id="1RL-qJ-pZe">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="182"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kE6-PQ-HKc">
+                        <rect key="frame" x="16" y="16" width="382" height="150"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunglasses_dog" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-2d-3LV">
+                                <rect key="frame" x="8" y="8" width="140" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="fGY-xU-vi5"/>
+                                    <constraint firstAttribute="height" constant="134" id="ncS-fQ-HQM"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bfJ-2P-kIc">
+                                <rect key="frame" x="156" y="28" width="218" height="94.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gosh dog, there was an error" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7kn-uh-c8d">
+                                        <rect key="frame" x="0.0" y="0.0" width="218" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" name="errorText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Q3z-k8-PhN">
+                                        <rect key="frame" x="0.0" y="56" width="218" height="38.5"/>
+                                        <string key="text">Please check your network 
+connection and try again</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bfJ-2P-kIc" firstAttribute="leading" secondItem="cCO-2d-3LV" secondAttribute="trailing" constant="8" id="0sv-t7-3OR"/>
+                            <constraint firstAttribute="trailing" secondItem="bfJ-2P-kIc" secondAttribute="trailing" constant="8" id="I5R-Og-kO8"/>
+                            <constraint firstItem="bfJ-2P-kIc" firstAttribute="centerY" secondItem="cCO-2d-3LV" secondAttribute="centerY" id="NCZ-h9-tY2"/>
+                            <constraint firstItem="cCO-2d-3LV" firstAttribute="top" secondItem="kE6-PQ-HKc" secondAttribute="top" constant="8" id="fbA-yu-l4K"/>
+                            <constraint firstAttribute="bottom" secondItem="cCO-2d-3LV" secondAttribute="bottom" constant="8" id="l1b-gX-vlc"/>
+                            <constraint firstItem="cCO-2d-3LV" firstAttribute="leading" secondItem="kE6-PQ-HKc" secondAttribute="leading" constant="8" id="nxK-o3-EUG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="kE6-PQ-HKc" secondAttribute="bottom" constant="16" id="9nx-Ig-zwG"/>
+                    <constraint firstItem="kE6-PQ-HKc" firstAttribute="top" secondItem="1RL-qJ-pZe" secondAttribute="top" constant="16" id="TKy-c9-Cvw"/>
+                    <constraint firstAttribute="trailing" secondItem="kE6-PQ-HKc" secondAttribute="trailing" constant="16" id="VzR-HB-ro8"/>
+                    <constraint firstItem="kE6-PQ-HKc" firstAttribute="leading" secondItem="1RL-qJ-pZe" secondAttribute="leading" constant="16" id="ueU-Xf-Som"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" name="background"/>
+            <connections>
+                <outlet property="containerView" destination="kE6-PQ-HKc" id="i15-zX-3IQ"/>
+                <outlet property="subtitleLabel" destination="Q3z-k8-PhN" id="sqE-Nc-RKm"/>
+                <outlet property="titleLabel" destination="7kn-uh-c8d" id="X0J-AS-F8j"/>
+            </connections>
+            <point key="canvasLocation" x="-83" y="-91"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sunglasses_dog" width="666" height="902"/>
+        <namedColor name="background">
+            <color red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="errorText">
+            <color red="0.91764705882352937" green="0.16078431372549021" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
