@@ -32,51 +32,55 @@
 
 import SwiftUI
 
-struct ChaseView: View {
-  @State var state: AppState = .notStarted
+extension AppState {
+  var nextStateButtonLabel: String {
+    switch self {
+    case .notStarted:
+      return "Start"
+    case .inProgress:
+      return "Pause"
+    case .paused:
+      return "Resume"
+    case .caught:
+      return "Try Again"
+    case .completed:
+      return "Start Over"
+    }
+  }
+}
+
+struct StepCountView: View {
+  @State var stepCountLabel = "Press Start"
+  @State var steps = "Steps"
+  @EnvironmentObject var model: AppModel
 
   var body: some View {
-    ZStack {
-      Image(state.nessieImage)
-      Image(state.runnerImage)
+    VStack {
+      Spacer()
+        .frame(height: 120)
+      Text(stepCountLabel)
+        .font(Font.system(size: 37))
+      Text(steps)
+        .font(Font.system(size: 17))
+      Spacer()
+      ChaseView()
+        .frame(height: 128)
+      Spacer()
+        .frame(height: 77)
+      Button("Start", action: startStopPause)
+      Spacer()
+        .frame(height: 50)
     }
+    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+    .background(Color("backgroundColor"))
+  }
+
+  func startStopPause() {
   }
 }
 
-struct ChaseView_Previews: PreviewProvider {
+struct StepCountView_Previews: PreviewProvider {
   static var previews: some View {
-    ChaseView()
-  }
-}
-
-extension AppState {
-  var nessieImage: String {
-    switch self {
-    case .notStarted:
-      return "NessieSleeping"
-    case .inProgress:
-      return "Nessie"
-    case .paused:
-      return "NessieSleeping"
-    case .completed:
-      return "NessieLost"
-    case .caught:
-      return "NessieWon"
-    }
-  }
-
-  var runnerImage: String {
-    switch self {
-    case .notStarted:
-      return "RunnerPaused"
-    case .inProgress:
-      return "Runner"
-    case .paused:
-      return "RunnerPaused"
-    case .completed:
-      return "RunnerWon"
-    case .caught:
-      return "RunnerEaten"
-    }
+    StepCountView()
   }
 }

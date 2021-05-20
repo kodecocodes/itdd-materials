@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/michael/Dropbox/itdd2/itdd-materials/03-tdd-app-setup/projects/starter/FitNess/FitNess.xcodeproj">
    </FileRef>
 </Workspace>
