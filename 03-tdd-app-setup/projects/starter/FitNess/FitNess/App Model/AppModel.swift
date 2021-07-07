@@ -29,5 +29,7 @@
 import SwiftUI
 
 public class AppModel: ObservableObject {
+  public static let instance = AppModel()
+
   public init() {}
 }

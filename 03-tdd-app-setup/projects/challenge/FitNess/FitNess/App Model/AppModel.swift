@@ -26,13 +26,14 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import SwiftUI
 
-class AppModel {
-
+class AppModel: ObservableObject {
   static let instance = AppModel()
 
-  private(set) var appState: AppState = .notStarted
+  @Published var appState: AppState = .notStarted
+
+  init() {}
 
   func start() {
     appState = .inProgress

@@ -33,13 +33,13 @@
 import XCTest
 @testable import FitNess
 
-class AppModelTests: XCTestCase {
+class StepCountViewTests: XCTestCase {
   // swiftlint:disable implicitly_unwrapped_optional
-  var sut: AppModel!
+  var sut: StepCountView!
 
   override func setUpWithError() throws {
     try super.setUpWithError()
-    sut = AppModel()
+    sut = StepCountView()
   }
 
   override func tearDownWithError() throws {
@@ -47,17 +47,36 @@ class AppModelTests: XCTestCase {
     try super.tearDownWithError()
   }
 
-  func testAppModel_whenInitialized_isInNotStartedState() {
-    let initialState = sut.appState
-    XCTAssertEqual(initialState, AppState.notStarted)
+  // MARK: - When
+
+  func whenStartPressed() {
+    sut.startStopPause()
   }
 
-  func testAppModel_whenStarted_isInInProgressState() {
-    // 2 when started
-    sut.start()
+  // MARK: - Initial State
 
-    // 3 then it is in inProgress
-    let observedState = sut.appState
-    XCTAssertEqual(observedState, AppState.inProgress)
+  func testView_whenCreated_buttonLabelIsStart() {
+    let text = sut.buttonTitle()
+    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
+  }
+
+  // MARK: - In Progress
+
+  func testView_whenStartTapped_appIsInProgress() {
+    // when
+    whenStartPressed()
+
+    // then
+    let state = AppModel.instance.appState
+    XCTAssertEqual(state, AppState.inProgress)
+  }
+
+  func testView_whenStartTapped_buttonLabelIsPause() {
+    // when
+    whenStartPressed()
+
+    // then
+    let text = sut.buttonTitle()
+    XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
   }
 }

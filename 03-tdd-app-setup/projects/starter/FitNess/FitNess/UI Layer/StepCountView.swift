@@ -52,7 +52,6 @@ extension AppState {
 struct StepCountView: View {
   @State var stepCountLabel = "Press Start"
   @State var steps = "Steps"
-  @EnvironmentObject var model: AppModel
 
   var body: some View {
     VStack {

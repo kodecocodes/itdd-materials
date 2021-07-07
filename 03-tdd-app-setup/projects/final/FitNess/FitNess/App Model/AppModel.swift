@@ -29,5 +29,13 @@
 import SwiftUI
 
 public class AppModel: ObservableObject {
+  public static let instance = AppModel()
+
+  @Published public var appState: AppState = .notStarted
+
   public init() {}
+
+  public func start() {
+    appState = .inProgress
+  }
 }

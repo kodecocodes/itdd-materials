@@ -16,7 +16,19 @@
 		4C2DED982655EC590094B3E7 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DED962655EC590094B3E7 /* AppModel.swift */; };
 		4C2DED9B2655ED620094B3E7 /* ChaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DED9A2655ED620094B3E7 /* ChaseView.swift */; };
 		4C2DED9D2655EF260094B3E7 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DED9C2655EF260094B3E7 /* StepCountView.swift */; };
+		4C2DEDAD2656DAF90094B3E7 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DEDAC2656DAF90094B3E7 /* AppModelTests.swift */; };
+		4C2DEDAF2656E58E0094B3E7 /* StepCountViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4C2DEDA72656D9490094B3E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18D775B522AD944300AE281E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18D775BC22AD944300AE281E;
+			remoteInfo = FitNess;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1839F4AF25190F2A00BB00F1 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
@@ -30,10 +42,21 @@
 		4C2DED962655EC590094B3E7 /* AppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		4C2DED9A2655ED620094B3E7 /* ChaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaseView.swift; sourceTree = "<group>"; };
 		4C2DED9C2655EF260094B3E7 /* StepCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
+		4C2DEDA22656D9480094B3E7 /* FitNessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C2DEDA62656D9490094B3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C2DEDAC2656DAF90094B3E7 /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
+		4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		18D775BA22AD944300AE281E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2DED9F2656D9480094B3E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				18D775BF22AD944300AE281E /* FitNess */,
+				4C2DEDA32656D9480094B3E7 /* FitNessTests */,
 				18D775BE22AD944300AE281E /* Products */,
 			);
 			indentWidth = 2;
@@ -57,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				18D775BD22AD944300AE281E /* FitNess.app */,
+				4C2DEDA22656D9480094B3E7 /* FitNessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +143,40 @@
 			path = "UI Layer";
 			sourceTree = "<group>";
 		};
+		4C2DEDA32656D9480094B3E7 /* FitNessTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DEDB02656E5A00094B3E7 /* Cases */,
+				4C2DEDA62656D9490094B3E7 /* Info.plist */,
+			);
+			path = FitNessTests;
+			sourceTree = "<group>";
+		};
+		4C2DEDB02656E5A00094B3E7 /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DEDB12656E5B40094B3E7 /* App Model */,
+				4C2DEDB22656E5BD0094B3E7 /* UI Layer */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		4C2DEDB12656E5B40094B3E7 /* App Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DEDAC2656DAF90094B3E7 /* AppModelTests.swift */,
+			);
+			path = "App Model";
+			sourceTree = "<group>";
+		};
+		4C2DEDB22656E5BD0094B3E7 /* UI Layer */ = {
+			isa = PBXGroup;
+			children = (
+				4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */,
+			);
+			path = "UI Layer";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,18 +198,41 @@
 			productReference = 18D775BD22AD944300AE281E /* FitNess.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4C2DEDA12656D9480094B3E7 /* FitNessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C2DEDAB2656D9490094B3E7 /* Build configuration list for PBXNativeTarget "FitNessTests" */;
+			buildPhases = (
+				4C2DED9E2656D9480094B3E7 /* Sources */,
+				4C2DED9F2656D9480094B3E7 /* Frameworks */,
+				4C2DEDA02656D9480094B3E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C2DEDA82656D9490094B3E7 /* PBXTargetDependency */,
+			);
+			name = FitNessTests;
+			productName = FitNessTests;
+			productReference = 4C2DEDA22656D9480094B3E7 /* FitNessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		18D775B522AD944300AE281E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Ray Wenderlich";
 				TargetAttributes = {
 					18D775BC22AD944300AE281E = {
 						CreatedOnToolsVersion = 11.0;
+					};
+					4C2DEDA12656D9480094B3E7 = {
+						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
+						TestTargetID = 18D775BC22AD944300AE281E;
 					};
 				};
 			};
@@ -168,6 +250,7 @@
 			projectRoot = "";
 			targets = (
 				18D775BC22AD944300AE281E /* FitNess */,
+				4C2DEDA12656D9480094B3E7 /* FitNessTests */,
 			);
 		};
 /* End PBXProject section */
@@ -180,6 +263,13 @@
 				18D775D822AD963800AE281E /* LaunchScreen.storyboard in Resources */,
 				18D775CA22AD944400AE281E /* Preview Assets.xcassets in Resources */,
 				18D775C722AD944400AE281E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2DEDA02656D9480094B3E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +310,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4C2DED9E2656D9480094B3E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C2DEDAF2656E58E0094B3E7 /* StepCountViewTests.swift in Sources */,
+				4C2DEDAD2656DAF90094B3E7 /* AppModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C2DEDA82656D9490094B3E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18D775BC22AD944300AE281E /* FitNess */;
+			targetProxy = 4C2DEDA72656D9490094B3E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		18D775DA22AD963800AE281E /* LaunchScreen.storyboard */ = {
@@ -390,6 +497,49 @@
 			};
 			name = Release;
 		};
+		4C2DEDA92656D9490094B3E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FitNessTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.FitNessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNess.app/FitNess";
+			};
+			name = Debug;
+		};
+		4C2DEDAA2656D9490094B3E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FitNessTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.FitNessTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitNess.app/FitNess";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -407,6 +557,15 @@
 			buildConfigurations = (
 				18D775D222AD944400AE281E /* Debug */,
 				18D775D322AD944400AE281E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C2DEDAB2656D9490094B3E7 /* Build configuration list for PBXNativeTarget "FitNessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C2DEDA92656D9490094B3E7 /* Debug */,
+				4C2DEDAA2656D9490094B3E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
