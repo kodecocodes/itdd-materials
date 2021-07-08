@@ -53,10 +53,10 @@ class AppModelTests: XCTestCase {
   }
 
   func testAppModel_whenStarted_isInInProgressState() {
-    // 2 when started
+    // when started
     sut.start()
 
-    // 3 then it is in inProgress
+    // then it is in inProgress
     let observedState = sut.appState
     XCTAssertEqual(observedState, AppState.inProgress)
   }
