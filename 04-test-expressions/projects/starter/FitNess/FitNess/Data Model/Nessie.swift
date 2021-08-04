@@ -30,17 +30,9 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import Foundation
 
-import SwiftUI
-
-class AppModel: ObservableObject {
-  static let instance = AppModel()
-
-  @Published var appState: AppState = .notStarted
-
-  init() {}
-
-  func start() {
-    appState = .inProgress
-  }
+/** The Fitness Monster */
+class Nessie {
+  var distance: Double = 0
 }

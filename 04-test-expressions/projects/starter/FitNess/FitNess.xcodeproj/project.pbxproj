@@ -18,6 +18,8 @@
 		4C2DED9D2655EF260094B3E7 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DED9C2655EF260094B3E7 /* StepCountView.swift */; };
 		4C2DEDAD2656DAF90094B3E7 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DEDAC2656DAF90094B3E7 /* AppModelTests.swift */; };
 		4C2DEDAF2656E58E0094B3E7 /* StepCountViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */; };
+		4CDCF39F26BA262E005FB550 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF39E26BA262E005FB550 /* DataModel.swift */; };
+		4CDCF3A126BA263B005FB550 /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A026BA263B005FB550 /* Nessie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		4C2DEDA62656D9490094B3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C2DEDAC2656DAF90094B3E7 /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountViewTests.swift; sourceTree = "<group>"; };
+		4CDCF39E26BA262E005FB550 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		4CDCF3A026BA263B005FB550 /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 			children = (
 				4C2DED932655EC360094B3E7 /* App Layer */,
 				4C2DED942655EC590094B3E7 /* App Model */,
+				4CDCF39D26BA2622005FB550 /* Data Model */,
 				4C2DED992655ED400094B3E7 /* UI Layer */,
 				4C2DED922655EB470094B3E7 /* Assets & Info */,
 				18D775CE22AD944400AE281E /* Info.plist */,
@@ -156,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2DEDB12656E5B40094B3E7 /* App Model */,
+				4CDCF39C26BA2612005FB550 /* Data Model */,
 				4C2DEDB22656E5BD0094B3E7 /* UI Layer */,
 			);
 			path = Cases;
@@ -175,6 +181,22 @@
 				4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */,
 			);
 			path = "UI Layer";
+			sourceTree = "<group>";
+		};
+		4CDCF39C26BA2612005FB550 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		4CDCF39D26BA2622005FB550 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				4CDCF39E26BA262E005FB550 /* DataModel.swift */,
+				4CDCF3A026BA263B005FB550 /* Nessie.swift */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,11 +323,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDCF39F26BA262E005FB550 /* DataModel.swift in Sources */,
 				4C2DED972655EC590094B3E7 /* AppState.swift in Sources */,
 				18D775C522AD944300AE281E /* ContentView.swift in Sources */,
 				1839F4B025190F2A00BB00F1 /* AppMain.swift in Sources */,
 				4C2DED982655EC590094B3E7 /* AppModel.swift in Sources */,
 				4C2DED9D2655EF260094B3E7 /* StepCountView.swift in Sources */,
+				4CDCF3A126BA263B005FB550 /* Nessie.swift in Sources */,
 				4C2DED9B2655ED620094B3E7 /* ChaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
