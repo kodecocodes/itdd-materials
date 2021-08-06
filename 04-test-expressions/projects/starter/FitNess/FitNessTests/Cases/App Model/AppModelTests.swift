@@ -47,10 +47,16 @@ class AppModelTests: XCTestCase {
     try super.tearDownWithError()
   }
 
+  // MARK: - Given
+
+  // MARK: - Lifecycle
+
   func testAppModel_whenInitialized_isInNotStartedState() {
     let initialState = sut.appState
     XCTAssertEqual(initialState, AppState.notStarted)
   }
+
+  // MARK: - Start
 
   func testAppModel_whenStarted_isInInProgressState() {
     // when started

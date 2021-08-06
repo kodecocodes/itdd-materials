@@ -47,6 +47,8 @@ class StepCountViewTests: XCTestCase {
     try super.tearDownWithError()
   }
 
+  // MARK: - Given
+
   // MARK: - When
 
   func whenStartPressed() {
