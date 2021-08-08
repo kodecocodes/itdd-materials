@@ -32,51 +32,94 @@
 
 import SwiftUI
 
-struct ChaseView: View {
+extension AppState {
+  var nextStateButtonLabel: String {
+    switch self {
+    case .notStarted:
+      return "Start"
+    case .inProgress:
+      return "Pause"
+    case .paused:
+      return "Resume"
+    case .caught:
+      return "Try Again"
+    case .completed:
+      return "Start Over"
+    }
+  }
+}
+
+struct StepCountView: View {
+  var chaseView = ChaseView()
+
+  @State var stepCountLabel = "Press Start"
+  @State var steps = "Steps"
+  @State var showNeedGoalAlert = false
+  @State var showGetGoalAlert = false
+
   @ObservedObject var appModel = AppModel.instance
 
   var body: some View {
-    ZStack {
-      Image(appModel.appState.nessieImage)
-      Image(appModel.appState.runnerImage)
+    VStack {
+      Spacer()
+        .frame(height: 120)
+      Text(stepCountLabel)
+        .font(Font.system(size: 37))
+      Text(steps)
+        .font(Font.system(size: 17))
+      Spacer()
+      chaseView
+        .environmentObject(appModel)
+        .frame(height: 128)
+      Spacer()
+        .frame(height: 77)
+      Button(buttonTitle(), action: startStopPause)
+      Spacer()
+        .frame(height: 50)
     }
+    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+    .background(Color("backgroundColor"))
+    .alert("Set a goal to start", isPresented: $showNeedGoalAlert) {
+      Button("Enter Goal", action: getGoalFromUser)
+      Button("Cancel", role: .cancel) { }
+    }
+    .alert(
+      isPresented: $showGetGoalAlert,
+      TextAlert(
+        title: "What is your step goal?",
+        message: "Enter a goal",
+        keyboardType: .numberPad) { result in
+          if let result = result, let goal = Int(result) {
+            updateGoal(newGoal: goal)
+          } else {
+            updateGoal(newGoal: 0)
+          }
+      })
+  }
+
+  func startStopPause() {
+    do {
+      try appModel.start()
+    } catch {
+      showNeedGoalAlert = true
+    }
+  }
+
+  func buttonTitle() -> String {
+    appModel.appState.nextStateButtonLabel
+  }
+
+  private func getGoalFromUser() {
+    showGetGoalAlert = true
+  }
+
+  func updateGoal(newGoal: Int) {
+    appModel.dataModel.goal = newGoal
   }
 }
 
-struct ChaseView_Previews: PreviewProvider {
+struct StepCountView_Previews: PreviewProvider {
   static var previews: some View {
-    ChaseView()
-  }
-}
-
-extension AppState {
-  var nessieImage: String {
-    switch self {
-    case .notStarted:
-      return "NessieSleeping"
-    case .inProgress:
-      return "Nessie"
-    case .paused:
-      return "NessieSleeping"
-    case .completed:
-      return "NessieLost"
-    case .caught:
-      return "NessieWon"
-    }
-  }
-
-  var runnerImage: String {
-    switch self {
-    case .notStarted:
-      return "RunnerPaused"
-    case .inProgress:
-      return "Runner"
-    case .paused:
-      return "RunnerPaused"
-    case .completed:
-      return "RunnerWon"
-    case .caught:
-      return "RunnerEaten"
-    }
+    StepCountView()
   }
 }
