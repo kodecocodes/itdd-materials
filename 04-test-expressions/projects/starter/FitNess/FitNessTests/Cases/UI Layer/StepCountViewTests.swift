@@ -62,6 +62,8 @@ class StepCountViewTests: XCTestCase {
     XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
   }
 
+  // MARK: - Goal
+
   // MARK: - In Progress
 
   func testView_whenStartTapped_appIsInProgress() {
@@ -81,4 +83,6 @@ class StepCountViewTests: XCTestCase {
     let text = sut.buttonTitle()
     XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
   }
+
+  // MARK: - Chase View
 }

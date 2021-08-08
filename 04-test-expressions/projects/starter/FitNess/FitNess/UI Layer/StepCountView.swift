@@ -50,6 +50,8 @@ extension AppState {
 }
 
 struct StepCountView: View {
+  let chaseView = ChaseView()
+
   @State var stepCountLabel = "Press Start"
   @State var steps = "Steps"
   @State var showNeedGoalAlert = false
@@ -66,7 +68,7 @@ struct StepCountView: View {
       Text(steps)
         .font(Font.system(size: 17))
       Spacer()
-      ChaseView()
+      chaseView
         .frame(height: 128)
       Spacer()
         .frame(height: 77)
