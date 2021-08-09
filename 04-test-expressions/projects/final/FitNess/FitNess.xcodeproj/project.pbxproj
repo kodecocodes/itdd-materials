@@ -18,11 +18,11 @@
 		4C2DED9D2655EF260094B3E7 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DED9C2655EF260094B3E7 /* StepCountView.swift */; };
 		4C2DEDAD2656DAF90094B3E7 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DEDAC2656DAF90094B3E7 /* AppModelTests.swift */; };
 		4C2DEDAF2656E58E0094B3E7 /* StepCountViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */; };
-		4CDCF39826BA25A9005FB550 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF39726BA25A9005FB550 /* DataModel.swift */; };
-		4CDCF39A26BA25DA005FB550 /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF39926BA25DA005FB550 /* Nessie.swift */; };
-		4CDCF3A326BA26A7005FB550 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A226BA26A7005FB550 /* DataModelTests.swift */; };
-		4CDCF3A526BB5E9C005FB550 /* AlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A426BB5E9C005FB550 /* AlertWrapper.swift */; };
-		4CDCF3AB26BD4DB7005FB550 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3AA26BD4DB6005FB550 /* AppError.swift */; };
+		4CDCF39F26BA262E005FB550 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF39E26BA262E005FB550 /* DataModel.swift */; };
+		4CDCF3A126BA263B005FB550 /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A026BA263B005FB550 /* Nessie.swift */; };
+		4CDCF3A926BD4A11005FB550 /* AlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A826BD4A11005FB550 /* AlertWrapper.swift */; };
+		4CE26BFC26C0C1B4007B0972 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE26BFB26C0C1B4007B0972 /* DataModelTests.swift */; };
+		4CE26BFE26C0C50C007B0972 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE26BFD26C0C50C007B0972 /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,11 +51,11 @@
 		4C2DEDA62656D9490094B3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C2DEDAC2656DAF90094B3E7 /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		4C2DEDAE2656E58E0094B3E7 /* StepCountViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountViewTests.swift; sourceTree = "<group>"; };
-		4CDCF39726BA25A9005FB550 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		4CDCF39926BA25DA005FB550 /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
-		4CDCF3A226BA26A7005FB550 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
-		4CDCF3A426BB5E9C005FB550 /* AlertWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWrapper.swift; sourceTree = "<group>"; };
-		4CDCF3AA26BD4DB6005FB550 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		4CDCF39E26BA262E005FB550 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		4CDCF3A026BA263B005FB550 /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
+		4CDCF3A826BD4A11005FB550 /* AlertWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertWrapper.swift; sourceTree = "<group>"; };
+		4CE26BFB26C0C1B4007B0972 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
+		4CE26BFD26C0C50C007B0972 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,7 @@
 			children = (
 				4C2DED932655EC360094B3E7 /* App Layer */,
 				4C2DED942655EC590094B3E7 /* App Model */,
-				4CDCF39626BA2588005FB550 /* Data Model */,
+				4CDCF39D26BA2622005FB550 /* Data Model */,
 				4C2DED992655ED400094B3E7 /* UI Layer */,
 				4C2DED922655EB470094B3E7 /* Assets & Info */,
 				18D775CE22AD944400AE281E /* Info.plist */,
@@ -140,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2DED952655EC590094B3E7 /* AppState.swift */,
-				4CDCF3AA26BD4DB6005FB550 /* AppError.swift */,
+				4CE26BFD26C0C50C007B0972 /* AppError.swift */,
 				4C2DED962655EC590094B3E7 /* AppModel.swift */,
 			);
 			path = "App Model";
@@ -151,7 +151,7 @@
 			children = (
 				4C2DED9A2655ED620094B3E7 /* ChaseView.swift */,
 				4C2DED9C2655EF260094B3E7 /* StepCountView.swift */,
-				4CDCF3A426BB5E9C005FB550 /* AlertWrapper.swift */,
+				4CDCF3A826BD4A11005FB550 /* AlertWrapper.swift */,
 			);
 			path = "UI Layer";
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2DEDB12656E5B40094B3E7 /* App Model */,
-				4CDCF39B26BA2605005FB550 /* Data Model */,
+				4CDCF39C26BA2612005FB550 /* Data Model */,
 				4C2DEDB22656E5BD0094B3E7 /* UI Layer */,
 			);
 			path = Cases;
@@ -191,19 +191,19 @@
 			path = "UI Layer";
 			sourceTree = "<group>";
 		};
-		4CDCF39626BA2588005FB550 /* Data Model */ = {
+		4CDCF39C26BA2612005FB550 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				4CDCF39726BA25A9005FB550 /* DataModel.swift */,
-				4CDCF39926BA25DA005FB550 /* Nessie.swift */,
+				4CE26BFB26C0C1B4007B0972 /* DataModelTests.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
-		4CDCF39B26BA2605005FB550 /* Data Model */ = {
+		4CDCF39D26BA2622005FB550 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				4CDCF3A226BA26A7005FB550 /* DataModelTests.swift */,
+				4CDCF39E26BA262E005FB550 /* DataModel.swift */,
+				4CDCF3A026BA263B005FB550 /* Nessie.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -332,15 +332,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CDCF3A526BB5E9C005FB550 /* AlertWrapper.swift in Sources */,
-				4CDCF39826BA25A9005FB550 /* DataModel.swift in Sources */,
-				4CDCF3AB26BD4DB7005FB550 /* AppError.swift in Sources */,
+				4CDCF3A926BD4A11005FB550 /* AlertWrapper.swift in Sources */,
+				4CDCF39F26BA262E005FB550 /* DataModel.swift in Sources */,
+				4CE26BFE26C0C50C007B0972 /* AppError.swift in Sources */,
 				4C2DED972655EC590094B3E7 /* AppState.swift in Sources */,
 				18D775C522AD944300AE281E /* ContentView.swift in Sources */,
 				1839F4B025190F2A00BB00F1 /* AppMain.swift in Sources */,
 				4C2DED982655EC590094B3E7 /* AppModel.swift in Sources */,
 				4C2DED9D2655EF260094B3E7 /* StepCountView.swift in Sources */,
-				4CDCF39A26BA25DA005FB550 /* Nessie.swift in Sources */,
+				4CDCF3A126BA263B005FB550 /* Nessie.swift in Sources */,
 				4C2DED9B2655ED620094B3E7 /* ChaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CDCF3A326BA26A7005FB550 /* DataModelTests.swift in Sources */,
+				4CE26BFC26C0C1B4007B0972 /* DataModelTests.swift in Sources */,
 				4C2DEDAF2656E58E0094B3E7 /* StepCountViewTests.swift in Sources */,
 				4C2DEDAD2656DAF90094B3E7 /* AppModelTests.swift in Sources */,
 			);

@@ -35,7 +35,6 @@ import SwiftUI
 
 class AppModel: ObservableObject {
   static let instance = AppModel()
-
   let dataModel = DataModel()
 
   @Published var appState: AppState = .notStarted

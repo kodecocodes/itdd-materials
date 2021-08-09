@@ -50,7 +50,7 @@ extension AppState {
 }
 
 struct StepCountView: View {
-  var chaseView = ChaseView()
+  let chaseView = ChaseView()
 
   @State var stepCountLabel = "Press Start"
   @State var steps = "Steps"
