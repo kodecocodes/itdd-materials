@@ -21,6 +21,7 @@
 		4CDCF39F26BA262E005FB550 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF39E26BA262E005FB550 /* DataModel.swift */; };
 		4CDCF3A126BA263B005FB550 /* Nessie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A026BA263B005FB550 /* Nessie.swift */; };
 		4CDCF3A926BD4A11005FB550 /* AlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A826BD4A11005FB550 /* AlertWrapper.swift */; };
+		4CE26C0026C0C533007B0972 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE26BFF26C0C533007B0972 /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		4CDCF39E26BA262E005FB550 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4CDCF3A026BA263B005FB550 /* Nessie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nessie.swift; sourceTree = "<group>"; };
 		4CDCF3A826BD4A11005FB550 /* AlertWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertWrapper.swift; sourceTree = "<group>"; };
+		4CE26BFF26C0C533007B0972 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2DED952655EC590094B3E7 /* AppState.swift */,
+				4CE26BFF26C0C533007B0972 /* AppError.swift */,
 				4C2DED962655EC590094B3E7 /* AppModel.swift */,
 			);
 			path = "App Model";
@@ -328,6 +331,7 @@
 			files = (
 				4CDCF3A926BD4A11005FB550 /* AlertWrapper.swift in Sources */,
 				4CDCF39F26BA262E005FB550 /* DataModel.swift in Sources */,
+				4CE26C0026C0C533007B0972 /* AppError.swift in Sources */,
 				4C2DED972655EC590094B3E7 /* AppState.swift in Sources */,
 				18D775C522AD944300AE281E /* ContentView.swift in Sources */,
 				1839F4B025190F2A00BB00F1 /* AppMain.swift in Sources */,
