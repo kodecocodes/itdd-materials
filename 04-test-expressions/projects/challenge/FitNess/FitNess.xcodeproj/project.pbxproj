@@ -23,6 +23,8 @@
 		4CDCF3A326BA26A7005FB550 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A226BA26A7005FB550 /* DataModelTests.swift */; };
 		4CDCF3A526BB5E9C005FB550 /* AlertWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3A426BB5E9C005FB550 /* AlertWrapper.swift */; };
 		4CDCF3AB26BD4DB7005FB550 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDCF3AA26BD4DB6005FB550 /* AppError.swift */; };
+		4CE6C10C26C0A627004EDF76 /* DataModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6C10B26C0A627004EDF76 /* DataModel+Tests.swift */; };
+		4CE6C10E26C0A62C004EDF76 /* AppModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6C10D26C0A62C004EDF76 /* AppModel+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		4CDCF3A226BA26A7005FB550 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
 		4CDCF3A426BB5E9C005FB550 /* AlertWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWrapper.swift; sourceTree = "<group>"; };
 		4CDCF3AA26BD4DB6005FB550 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		4CE6C10B26C0A627004EDF76 /* DataModel+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataModel+Tests.swift"; sourceTree = "<group>"; };
+		4CE6C10D26C0A62C004EDF76 /* AppModel+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppModel+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2DEDB02656E5A00094B3E7 /* Cases */,
+				4CE6C10A26C0A5FD004EDF76 /* Test Extensions */,
 				4C2DEDA62656D9490094B3E7 /* Info.plist */,
 			);
 			path = FitNessTests;
@@ -206,6 +211,15 @@
 				4CDCF3A226BA26A7005FB550 /* DataModelTests.swift */,
 			);
 			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		4CE6C10A26C0A5FD004EDF76 /* Test Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4CE6C10B26C0A627004EDF76 /* DataModel+Tests.swift */,
+				4CE6C10D26C0A62C004EDF76 /* AppModel+Tests.swift */,
+			);
+			path = "Test Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,7 +364,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDCF3A326BA26A7005FB550 /* DataModelTests.swift in Sources */,
+				4CE6C10C26C0A627004EDF76 /* DataModel+Tests.swift in Sources */,
 				4C2DEDAF2656E58E0094B3E7 /* StepCountViewTests.swift in Sources */,
+				4CE6C10E26C0A62C004EDF76 /* AppModel+Tests.swift in Sources */,
 				4C2DEDAD2656DAF90094B3E7 /* AppModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

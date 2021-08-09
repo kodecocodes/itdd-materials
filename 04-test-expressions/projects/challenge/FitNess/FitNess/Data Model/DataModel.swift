@@ -44,6 +44,13 @@ class DataModel {
   var goal: Int?
   var steps: Int = 0
 
+  func restart() {
+    goal = nil
+    steps = 0
+    distance = 0
+    nessie.distance = 0
+  }
+
   // MARK: - Nessie
 
   let nessie = Nessie()

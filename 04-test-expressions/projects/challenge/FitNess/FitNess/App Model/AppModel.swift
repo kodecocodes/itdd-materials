@@ -50,7 +50,28 @@ class AppModel: ObservableObject {
     appState = .inProgress
   }
 
+  func pause() {
+    appState = .paused
+  }
+
   func restart() {
     appState = .notStarted
+    dataModel.goal = nil
+  }
+
+  func setCaught() throws {
+    guard dataModel.caught else {
+      throw AppError.invalidState
+    }
+
+    appState = .caught
+  }
+
+  func setCompleted() throws {
+    guard dataModel.goalReached else {
+      throw AppError.invalidState
+    }
+
+    appState = .completed
   }
 }

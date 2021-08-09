@@ -98,6 +98,19 @@ struct StepCountView: View {
   }
 
   func startStopPause() {
+    switch AppModel.instance.appState {
+    case .notStarted:
+      start()
+    case .inProgress:
+      appModel.pause()
+    case .paused:
+      start()
+    case .completed, .caught:
+      appModel.restart()
+    }
+  }
+
+  private func start() {
     do {
       try appModel.start()
     } catch {
