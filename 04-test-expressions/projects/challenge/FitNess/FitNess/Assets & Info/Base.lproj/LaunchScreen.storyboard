@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tqV-u7-rnu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSF-hY-i6I">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="sIL-PJ-tvv">
+                                        <rect key="frame" x="20" y="58.5" width="335" height="458"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="sIL-PJ-tvv" secondAttribute="height" multiplier="335:458" id="NHX-D3-cc5"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sIL-PJ-tvv" secondAttribute="bottom" constant="20" id="8uf-kS-eAK"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sIL-PJ-tvv" secondAttribute="trailing" constant="20" id="CWi-xG-fCO"/>
+                                    <constraint firstItem="sIL-PJ-tvv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aSF-hY-i6I" secondAttribute="leading" constant="20" id="Qe6-vB-4YS"/>
+                                    <constraint firstItem="sIL-PJ-tvv" firstAttribute="centerX" secondItem="aSF-hY-i6I" secondAttribute="centerX" id="agB-5S-cDO"/>
+                                    <constraint firstItem="sIL-PJ-tvv" firstAttribute="centerY" secondItem="aSF-hY-i6I" secondAttribute="centerY" id="czo-wT-6is"/>
+                                    <constraint firstItem="sIL-PJ-tvv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="aSF-hY-i6I" secondAttribute="top" constant="20" id="vKy-QV-u3C"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="FitNess" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ng-O4-Rhh">
+                                <rect key="frame" x="20" y="575" width="335" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="04M-7G-o0w"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="04M-7G-o0w" firstAttribute="trailing" secondItem="5ng-O4-Rhh" secondAttribute="trailing" constant="20" id="NX6-e7-QsF"/>
+                            <constraint firstItem="04M-7G-o0w" firstAttribute="bottom" secondItem="5ng-O4-Rhh" secondAttribute="bottom" constant="20" id="lxE-ua-6Pn"/>
+                            <constraint firstItem="5ng-O4-Rhh" firstAttribute="top" secondItem="aSF-hY-i6I" secondAttribute="bottom" id="mOb-kg-idU"/>
+                            <constraint firstItem="aSF-hY-i6I" firstAttribute="trailing" secondItem="04M-7G-o0w" secondAttribute="trailing" id="rr9-XP-6BW"/>
+                            <constraint firstItem="5ng-O4-Rhh" firstAttribute="leading" secondItem="04M-7G-o0w" secondAttribute="leading" constant="20" id="tpG-hC-oP0"/>
+                            <constraint firstItem="aSF-hY-i6I" firstAttribute="leading" secondItem="04M-7G-o0w" secondAttribute="leading" id="wnr-xy-x98"/>
+                            <constraint firstItem="aSF-hY-i6I" firstAttribute="top" secondItem="tqV-u7-rnu" secondAttribute="top" id="yEa-uS-Aes"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchBackground" width="698" height="955"/>
+    </resources>
+</document>
