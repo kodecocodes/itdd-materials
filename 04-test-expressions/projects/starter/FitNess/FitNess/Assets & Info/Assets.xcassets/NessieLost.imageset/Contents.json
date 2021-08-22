@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "nessie-lose.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "nessie-lose.png"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

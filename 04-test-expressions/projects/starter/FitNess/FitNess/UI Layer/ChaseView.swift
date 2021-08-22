@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2019 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,10 +18,6 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
-/// This project and source code may use libraries or frameworks that are
-/// released under various Open-Source licenses. Use of those libraries and
-/// frameworks are governed by their own individual licenses.
-///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,53 +26,76 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import UIKit
 
-struct ChaseView: View {
-  @ObservedObject var appModel = AppModel.instance
+@IBDesignable class ChaseView: UIView {
 
-  var body: some View {
-    ZStack {
-      Image(appModel.appState.nessieImage)
-      Image(appModel.appState.runnerImage)
+  let nessieView = UIImageView()
+  let runnerView = UIImageView()
+
+  var state: AppState = .notStarted {
+    didSet {
+      nessieView.image = state.nessieImage
+      runnerView.image = state.runnerImage
     }
   }
-}
 
-struct ChaseView_Previews: PreviewProvider {
-  static var previews: some View {
-    ChaseView()
+  private func commonSetup() {
+    addSubview(nessieView)
+    addSubview(runnerView)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    commonSetup()
+  }
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    commonSetup()
+  }
+
+  override func prepareForInterfaceBuilder() {
+    super.prepareForInterfaceBuilder()
+
+    let bundle = Bundle(for: ChaseView.self)
+    nessieView.image = UIImage(named: "Nessie", in: bundle, compatibleWith: nil)
+    runnerView.image = UIImage(named: "Runner", in: bundle, compatibleWith: nil)
   }
 }
 
 extension AppState {
-  var nessieImage: String {
+  var nessieImage: UIImage {
+    let imageName: String
     switch self {
     case .notStarted:
-      return "NessieSleeping"
+      imageName = "NessieSleeping"
     case .inProgress:
-      return "Nessie"
+      imageName = "Nessie"
     case .paused:
-      return "NessieSleeping"
+      imageName = "NessieSleeping"
     case .completed:
-      return "NessieLost"
+      imageName = "NessieLost"
     case .caught:
-      return "NessieWon"
+      imageName = "NessieWon"
     }
+    return UIImage(named: imageName)!
   }
 
-  var runnerImage: String {
+  var runnerImage: UIImage {
+    let imageName: String
     switch self {
     case .notStarted:
-      return "RunnerPaused"
+      imageName = "RunnerPaused"
     case .inProgress:
-      return "Runner"
+      imageName = "Runner"
     case .paused:
-      return "RunnerPaused"
+      imageName = "RunnerPaused"
     case .completed:
-      return "RunnerWon"
+      imageName = "RunnerWon"
     case .caught:
-      return "RunnerEaten"
+      imageName = "RunnerEaten"
     }
+    return UIImage(named: imageName)!
   }
 }

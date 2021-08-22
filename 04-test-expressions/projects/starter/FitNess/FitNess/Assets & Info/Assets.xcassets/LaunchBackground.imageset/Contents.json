@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "LaunchBackground.pdf",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "LaunchBackground.pdf"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
