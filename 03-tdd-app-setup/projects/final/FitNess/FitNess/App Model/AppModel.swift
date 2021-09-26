@@ -25,13 +25,13 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-import Foundation
 
-public class AppModel {
+import SwiftUI
 
-  static let instance = AppModel()
+public class AppModel: ObservableObject {
+  public static let instance = AppModel()
 
-  public var appState: AppState = .notStarted
+  @Published public var appState: AppState = .notStarted
 
   public init() {}
 
