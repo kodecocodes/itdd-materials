@@ -52,6 +52,14 @@ extension AppState {
 struct StepCountView: View {
   @State var stepCountLabel = "Press Start"
   @State var steps = "Steps"
+<<<<<<< HEAD
+<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
+=======
+
+  @ObservedObject var appModel = AppModel.instance
+>>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountView.swift
+=======
+>>>>>>> d968637... reset for not swiftui
 
   var body: some View {
     VStack {
@@ -66,7 +74,15 @@ struct StepCountView: View {
         .frame(height: 128)
       Spacer()
         .frame(height: 77)
+<<<<<<< HEAD
+<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
       Button("Start", action: startStopPause)
+=======
+      Button(buttonTitle(), action: startStopPause)
+>>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountView.swift
+=======
+      Button("Start", action: startStopPause)
+>>>>>>> d968637... reset for not swiftui
       Spacer()
         .frame(height: 50)
     }
@@ -75,9 +91,26 @@ struct StepCountView: View {
   }
 
   func startStopPause() {
+<<<<<<< HEAD
+<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
   }
 }
 
+=======
+    appModel.start()
+  }
+
+  func buttonTitle() -> String {
+    appModel.appState.nextStateButtonLabel
+  }
+}
+
+>>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountView.swift
+=======
+  }
+}
+
+>>>>>>> d968637... reset for not swiftui
 struct StepCountView_Previews: PreviewProvider {
   static var previews: some View {
     StepCountView()

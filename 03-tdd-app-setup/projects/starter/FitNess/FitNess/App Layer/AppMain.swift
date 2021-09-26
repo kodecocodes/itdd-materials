@@ -32,6 +32,13 @@
 
 import SwiftUI
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:05-test-expectations/projects/final/FitNess/FitNess/App Layer/SceneDelegate.swift
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  var window: UIWindow?
+=======
+>>>>>>> d968637... reset for not swiftui
 @main
 struct AppMain: App {
   var body: some Scene {
@@ -39,4 +46,8 @@ struct AppMain: App {
       ContentView()
     }
   }
+<<<<<<< HEAD
+=======
+>>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/starter/FitNess/FitNess/App Layer/AppMain.swift
+>>>>>>> d968637... reset for not swiftui
 }
