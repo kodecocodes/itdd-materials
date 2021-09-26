@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "runner-win.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "runner-win.png"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

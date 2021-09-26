@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "close-icon.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "close-icon.png"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
