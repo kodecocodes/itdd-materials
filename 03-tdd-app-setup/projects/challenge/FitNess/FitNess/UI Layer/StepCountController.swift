@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2019 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,10 +18,6 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 /// 
-/// This project and source code may use libraries or frameworks that are
-/// released under various Open-Source licenses. Use of those libraries and
-/// frameworks are governed by their own individual licenses.
-///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,7 +26,8 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import Foundation
+import UIKit
 
 extension AppState {
   var nextStateButtonLabel: String {
@@ -49,6 +46,7 @@ extension AppState {
   }
 }
 
+<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
 struct StepCountView: View {
   @State var stepCountLabel = "Press Start"
   @State var steps = "Steps"
@@ -85,11 +83,25 @@ struct StepCountView: View {
 >>>>>>> d968637... reset for not swiftui
       Spacer()
         .frame(height: 50)
+=======
+class StepCountController: UIViewController {
+
+  @IBOutlet weak var stepCountLabel: UILabel!
+  @IBOutlet var startButton: UIButton!
+  @IBOutlet weak var chaseView: ChaseView!
+
+  init() {
+    // this is a cheat to simplify chapter 3, a proper way of getting an instance will be handled in chapter 4
+    super.init(nibName: nil, bundle: nil)
+    startButton = UIButton()
+>>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
     }
-    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-    .background(Color("backgroundColor"))
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
   }
 
+<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
   func startStopPause() {
 <<<<<<< HEAD
 <<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
@@ -107,12 +119,29 @@ struct StepCountView: View {
 
 >>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountView.swift
 =======
+=======
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    updateButton()
+>>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
   }
+
+  private func updateButton() {
+    let title = AppModel.instance.appState.nextStateButtonLabel
+    startButton.setTitle(title, for: .normal)
 }
 
+<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
 >>>>>>> d968637... reset for not swiftui
 struct StepCountView_Previews: PreviewProvider {
   static var previews: some View {
     StepCountView()
+=======
+  @IBAction func startStopPause(_ sender: Any?) {
+    AppModel.instance.start()
+    
+    updateButton()
+>>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
   }
 }

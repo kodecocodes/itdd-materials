@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2019 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,10 +18,6 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 /// 
-/// This project and source code may use libraries or frameworks that are
-/// released under various Open-Source licenses. Use of those libraries and
-/// frameworks are governed by their own individual licenses.
-///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,11 +26,12 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import UIKit
 
+<<<<<<< HEAD:03-tdd-app-setup/projects/final/FitNess/FitNess/App Layer/AppMain.swift
 <<<<<<< HEAD
 =======
-<<<<<<< HEAD:06-dependency-injection-and-mocks/projects/challenge/FitNess/FitNess/App Layer/SceneDelegate.swift
+<<<<<<< HEAD:05-test-expectations/projects/challenge/FitNess/FitNess/App Layer/SceneDelegate.swift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 =======
@@ -48,6 +45,12 @@ struct AppMain: App {
   }
 <<<<<<< HEAD
 =======
->>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/App Layer/AppMain.swift
+>>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/final/FitNess/FitNess/App Layer/AppMain.swift
 >>>>>>> d968637... reset for not swiftui
+=======
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+>>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/final/FitNess/FitNess/AppDelegate.swift
 }
+

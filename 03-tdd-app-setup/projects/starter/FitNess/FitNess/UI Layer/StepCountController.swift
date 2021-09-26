@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2019 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,10 +18,6 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
-/// This project and source code may use libraries or frameworks that are
-/// released under various Open-Source licenses. Use of those libraries and
-/// frameworks are governed by their own individual licenses.
-///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,24 +26,47 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import Foundation
+import UIKit
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:05-test-expectations/projects/final/FitNess/FitNess/App Layer/SceneDelegate.swift
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  var window: UIWindow?
-=======
->>>>>>> d968637... reset for not swiftui
-@main
-struct AppMain: App {
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
+extension AppState {
+  var nextStateButtonLabel: String {
+    switch self {
+    case .notStarted:
+      return "Start"
+    case .inProgress:
+      return "Pause"
+    case .paused:
+      return "Resume"
+    case .caught:
+      return "Try Again"
+    case .completed:
+      return "Start Over"
     }
   }
-<<<<<<< HEAD
-=======
->>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/starter/FitNess/FitNess/App Layer/AppMain.swift
->>>>>>> d968637... reset for not swiftui
+}
+
+class StepCountController: UIViewController {
+
+  @IBOutlet weak var stepCountLabel: UILabel!
+  @IBOutlet var startButton: UIButton!
+  @IBOutlet weak var chaseView: ChaseView!
+
+  init() {
+    // this is a cheat to simplify chapter 3, a proper way of getting an instance will be handled in chapter 4
+    super.init(nibName: nil, bundle: nil)
+    startButton = UIButton()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  @IBAction func startStopPause(_ sender: Any?) {
+    
+  }
 }
