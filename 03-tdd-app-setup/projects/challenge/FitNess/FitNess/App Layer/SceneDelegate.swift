@@ -30,14 +30,34 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import UIKit
 
-class AppModel {
-  static let instance = AppModel()
-
-  var appState: AppState = .notStarted
-
-  func start() {
-    appState = .inProgress
+<<<<<<< HEAD:03-tdd-app-setup/projects/challenge/FitNess/FitNess/AppDelegate.swift
+<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/App Layer/AppMain.swift
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:05-test-expectations/projects/final/FitNess/FitNess/App Layer/SceneDelegate.swift
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  var window: UIWindow?
+=======
+>>>>>>> d968637... reset for not swiftui
+@main
+struct AppMain: App {
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+    }
   }
+<<<<<<< HEAD
+=======
+>>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/starter/FitNess/FitNess/App Layer/AppMain.swift
+>>>>>>> d968637... reset for not swiftui
+=======
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+=======
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+>>>>>>> a782646... update challenge:03-tdd-app-setup/projects/challenge/FitNess/FitNess/App Layer/SceneDelegate.swift
+  var window: UIWindow?
+>>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/AppDelegate.swift
 }

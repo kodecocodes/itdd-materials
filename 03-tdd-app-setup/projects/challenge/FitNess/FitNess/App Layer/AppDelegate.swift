@@ -30,14 +30,7 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+import UIKit
 
-class AppModel {
-  static let instance = AppModel()
-
-  var appState: AppState = .notStarted
-
-  func start() {
-    appState = .inProgress
-  }
-}
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate { }

@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -19,10 +19,14 @@
 /// or sale is expressly withheld.
 /// 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a782646... update challenge
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
 ///
+<<<<<<< HEAD
 <<<<<<< HEAD
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
@@ -32,6 +36,8 @@
 >>>>>>> d968637... reset for not swiftui
 =======
 >>>>>>> 68f17d3... Revert "reset for not swiftui"
+=======
+>>>>>>> a782646... update challenge
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,17 +50,17 @@ import XCTest
 @testable import FitNess
 
 class AppModelTests: XCTestCase {
-
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AppModel!
 
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     sut = AppModel()
   }
 
-  override func tearDown() {
+  override func tearDownWithError() throws {
     sut = nil
-    super.tearDown()
+    try super.tearDownWithError()
   }
 
   func testAppModel_whenInitialized_isInNotStartedState() {
@@ -67,7 +73,7 @@ class AppModelTests: XCTestCase {
     sut.start()
 
     // then it is in inProgress
-    let newState = sut.appState
-    XCTAssertEqual(newState, AppState.inProgress)
+    let observedState = sut.appState
+    XCTAssertEqual(observedState, .inProgress)
   }
 }

@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 /// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +30,6 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
 import UIKit
 
 extension AppState {
@@ -85,7 +88,6 @@ struct StepCountView: View {
         .frame(height: 50)
 =======
 class StepCountController: UIViewController {
-
   @IBOutlet weak var stepCountLabel: UILabel!
   @IBOutlet var startButton: UIButton!
   @IBOutlet weak var chaseView: ChaseView!
@@ -122,7 +124,11 @@ class StepCountController: UIViewController {
 =======
   override func viewDidLoad() {
     super.viewDidLoad()
+    updateButton()
+  }
 
+  @IBAction func startStopPause(_ sender: Any?) {
+    AppModel.instance.start()
     updateButton()
 >>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
   }
@@ -131,6 +137,7 @@ class StepCountController: UIViewController {
     let title = AppModel.instance.appState.nextStateButtonLabel
     startButton.setTitle(title, for: .normal)
 }
+<<<<<<< HEAD
 
 <<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
 >>>>>>> d968637... reset for not swiftui
@@ -144,4 +151,6 @@ struct StepCountView_Previews: PreviewProvider {
     updateButton()
 >>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
   }
+=======
+>>>>>>> a782646... update challenge
 }
