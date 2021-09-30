@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1300"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18D775BC22AD944300AE281E"
+               BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
                BuildableName = "FitNess.app"
                BlueprintName = "FitNess"
                ReferencedContainer = "container:FitNess.xcodeproj">
@@ -26,21 +26,32 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C2DEDA12656D9480094B3E7"
+               BlueprintIdentifier = "0A21C7D421C6BF8B00169D8B"
                BuildableName = "FitNessTests.xctest"
                BlueprintName = "FitNessTests"
                ReferencedContainer = "container:FitNess.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
+            BuildableName = "FitNess.app"
+            BlueprintName = "FitNess"
+            ReferencedContainer = "container:FitNess.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -56,12 +67,14 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18D775BC22AD944300AE281E"
+            BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
             BuildableName = "FitNess.app"
             BlueprintName = "FitNess"
             ReferencedContainer = "container:FitNess.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -73,7 +86,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18D775BC22AD944300AE281E"
+            BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
             BuildableName = "FitNess.app"
             BlueprintName = "FitNess"
             ReferencedContainer = "container:FitNess.xcodeproj">

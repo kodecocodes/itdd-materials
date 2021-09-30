@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "settings-icon.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "settings-icon.png"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }
