@@ -30,34 +30,34 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import XCTest
-import FitNess
+import UIKit
 
-class AppModelTests: XCTestCase {
-  //swiftlint:disable implicitly_unwrapped_optional
-  var sut: AppModel!
-
-  override func setUpWithError() throws {
-    try super.setUpWithError()
-    sut = AppModel()
+<<<<<<< HEAD:03-tdd-app-setup/projects/final/FitNess/FitNess/AppDelegate.swift
+<<<<<<< HEAD:03-tdd-app-setup/projects/final/FitNess/FitNess/App Layer/AppMain.swift
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:05-test-expectations/projects/challenge/FitNess/FitNess/App Layer/SceneDelegate.swift
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  var window: UIWindow?
+=======
+>>>>>>> d968637... reset for not swiftui
+@main
+struct AppMain: App {
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+    }
   }
-
-  override func tearDownWithError() throws {
-    sut = nil
-    try super.tearDownWithError()
-  }
-
-  func testAppModel_whenInitialized_isInNotStartedState() {
-    let initialState = sut.appState
-    XCTAssertEqual(initialState, AppState.notStarted)
-  }
-
-  func testAppModel_whenStarted_isInInProgressState() {
-    // when started
-    sut.start()
-
-    // then it is in inProgress
-    let observedState = sut.appState
-    XCTAssertEqual(observedState, .inProgress)
-  }
+<<<<<<< HEAD
+=======
+>>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/final/FitNess/FitNess/App Layer/AppMain.swift
+>>>>>>> d968637... reset for not swiftui
+=======
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+=======
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+>>>>>>> 7ebea66... through final:03-tdd-app-setup/projects/final/FitNess/FitNess/App Layer/SceneDelegate.swift
+  var window: UIWindow?
+>>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/final/FitNess/FitNess/AppDelegate.swift
 }
