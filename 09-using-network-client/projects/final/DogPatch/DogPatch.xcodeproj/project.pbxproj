@@ -26,6 +26,8 @@
 		423377CF270C177200852BD3 /* LogoNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423377CE270C177200852BD3 /* LogoNavigationItem.swift */; };
 		423377D7270C17A700852BD3 /* LogoNavigationItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423377D6270C17A700852BD3 /* LogoNavigationItemTests.swift */; };
 		423377DD270C17C100852BD3 /* TestLogoNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 423377DC270C17C100852BD3 /* TestLogoNavigationBar.xib */; };
+		4233783F270C67D400852BD3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233783D270C67D400852BD3 /* TestView.swift */; };
+		42337840270C67D400852BD3 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4233783E270C67D400852BD3 /* TestView.xib */; };
 		424D33BD2311161800053129 /* MockDogPatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424D33BC2311161800053129 /* MockDogPatchService.swift */; };
 		424E576922E0B1C600C96D45 /* DogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E576822E0B1C600C96D45 /* DogTests.swift */; };
 		424E576B22E0C22A00C96D45 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 424E576A22E0C22A00C96D45 /* User.json */; };
@@ -39,8 +41,6 @@
 		4270357122B6F3F9001080B1 /* DogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4270357022B6F3F9001080B1 /* DogViewModel.swift */; };
 		4270357322B6FA98001080B1 /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4270357222B6FA98001080B1 /* ListingCell.swift */; };
 		427CCADA22BC64D700F92FF7 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCAD922BC64D700F92FF7 /* ErrorTableViewCell.swift */; };
-		427CCAE922BC687000F92FF7 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCAE822BC687000F92FF7 /* TestView.swift */; };
-		427CCAEB22BC6A7F00F92FF7 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427CCAEA22BC6A7F00F92FF7 /* TestView.xib */; };
 		427CCAFD22BC705600F92FF7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCAFC22BC705600F92FF7 /* TestViewController.swift */; };
 		427CCB0622BC72C900F92FF7 /* UIView+NibCreatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCB0522BC72C900F92FF7 /* UIView+NibCreatableTests.swift */; };
 		427CCB0822BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCB0722BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift */; };
@@ -90,6 +90,8 @@
 		423377CE270C177200852BD3 /* LogoNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoNavigationItem.swift; sourceTree = "<group>"; };
 		423377D6270C17A700852BD3 /* LogoNavigationItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoNavigationItemTests.swift; sourceTree = "<group>"; };
 		423377DC270C17C100852BD3 /* TestLogoNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestLogoNavigationBar.xib; sourceTree = "<group>"; };
+		4233783D270C67D400852BD3 /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		4233783E270C67D400852BD3 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		424D33BC2311161800053129 /* MockDogPatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogPatchService.swift; sourceTree = "<group>"; };
 		424E576822E0B1C600C96D45 /* DogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogTests.swift; sourceTree = "<group>"; };
 		424E576A22E0C22A00C96D45 /* User.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
@@ -104,8 +106,6 @@
 		4270357022B6F3F9001080B1 /* DogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogViewModel.swift; sourceTree = "<group>"; };
 		4270357222B6FA98001080B1 /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		427CCAD922BC64D700F92FF7 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
-		427CCAE822BC687000F92FF7 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestView.swift; path = ../../Cases/Extensions/TestView.swift; sourceTree = "<group>"; };
-		427CCAEA22BC6A7F00F92FF7 /* TestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TestView.xib; path = ../../Cases/Extensions/TestView.xib; sourceTree = "<group>"; };
 		427CCAFC22BC705600F92FF7 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		427CCB0522BC72C900F92FF7 /* UIView+NibCreatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibCreatableTests.swift"; sourceTree = "<group>"; };
 		427CCB0722BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NibCreatableTests.swift"; sourceTree = "<group>"; };
@@ -415,8 +415,8 @@
 				42A255A622BD0EE200C744D9 /* Main.storyboard */,
 				423377DC270C17C100852BD3 /* TestLogoNavigationBar.xib */,
 				4261B59B22D74D1700E5824D /* TestTableViewCell.swift */,
-				427CCAE822BC687000F92FF7 /* TestView.swift */,
-				427CCAEA22BC6A7F00F92FF7 /* TestView.xib */,
+				4233783D270C67D400852BD3 /* TestView.swift */,
+				4233783E270C67D400852BD3 /* TestView.xib */,
 				427CCAFC22BC705600F92FF7 /* TestViewController.swift */,
 				42A255A222BD098A00C744D9 /* TestViewController.xib */,
 			);
@@ -591,8 +591,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42337840270C67D400852BD3 /* TestView.xib in Resources */,
 				423377DD270C17C100852BD3 /* TestLogoNavigationBar.xib in Resources */,
-				427CCAEB22BC6A7F00F92FF7 /* TestView.xib in Resources */,
 				42A255A322BD098A00C744D9 /* TestViewController.xib in Resources */,
 				42A255A722BD0EE200C744D9 /* Main.storyboard in Resources */,
 				424E576B22E0C22A00C96D45 /* User.json in Resources */,
@@ -632,7 +632,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				427CCAE922BC687000F92FF7 /* TestView.swift in Sources */,
 				42A1ECB522D742FE001404C8 /* ListingsViewControllerTests.swift in Sources */,
 				424E576922E0B1C600C96D45 /* DogTests.swift in Sources */,
 				42335BF222BD179600E21A72 /* UIView+ApplyShaddowTests.swift in Sources */,
@@ -648,6 +647,7 @@
 				427CCAFD22BC705600F92FF7 /* TestViewController.swift in Sources */,
 				4233756C270C116B00852BD3 /* DecodableTestCase.swift in Sources */,
 				42C2FFB222EB26200094F78E /* DogPatchClientTests.swift in Sources */,
+				4233783F270C67D400852BD3 /* TestView.swift in Sources */,
 				420A276522E485C000ECCA13 /* Data+JSONFile.swift in Sources */,
 				4261B59C22D74D1700E5824D /* TestTableViewCell.swift in Sources */,
 				424E576D22E0C23700C96D45 /* UserTests.swift in Sources */,
