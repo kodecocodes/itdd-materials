@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,22 +30,37 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
-import XCTest
+import UIKit
 
-protocol DecodableTestCase: class {
-  associatedtype T: Decodable
-  var dictionary: NSDictionary! { get set }
-  var sut: T! { get set }
-}
-extension DecodableTestCase {
+extension UIViewController: StoryboardCreatable {
   
-  func givenSUTFromJSON(fileName: String = "\(T.self)",
-    file: StaticString = #file,
-    line: UInt = #line) throws {
-    let decoder = JSONDecoder()
-    let data = try Data.fromJSON(fileName: fileName, file: file, line: line)
-    dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary
-    sut = try decoder.decode(T.self, from: data)
+  @objc class var storyboard: UIStoryboard {
+    let name = Self.storyboardName
+    let bundle = Self.storyboardBundle
+    return UIStoryboard(name: name, bundle: bundle)
+  }
+  
+  @objc class var storyboardBundle: Bundle? {
+    return Bundle(for: self)
+  }
+  
+  @objc class var storyboardName: String {
+    return "Main"
+  }
+  
+  @objc class var storyboardIdentifier: String {
+    return "\(self)"
+  }
+  
+  @objc final class func instanceFromStoryboard() -> Self {
+    let storyboardViewController = storyboard.instantiateViewController(withIdentifier: storyboardIdentifier)
+    guard let viewController = storyboardViewController as? Self else {
+      fatalError(
+        "View controller on storyboard named \(storyboardName) " +
+          "was expected to be an instance of type \(type(of: self)), " +
+          "but it's actually an instance of \(type(of: storyboardViewController)). " +
+        "Fix the type in the storyboard and/or overrride `storyboardIdentifier` with the right value")
+    }
+    return viewController
   }
 }
