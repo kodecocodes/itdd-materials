@@ -66,16 +66,74 @@ class StepCountController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    updateButton()
+
+    updateUI()
   }
 
-  @IBAction func startStopPause(_ sender: Any?) {
-    AppModel.instance.start()
+  func updateUI() {
     updateButton()
+    updateChaseView()
   }
 
   private func updateButton() {
     let title = AppModel.instance.appState.nextStateButtonLabel
     startButton.setTitle(title, for: .normal)
+  }
+
+  // MARK: - UI Actions
+
+  @IBAction func startStopPause(_ sender: Any?) {
+    AppModel.instance.start()
+
+    updateUI()
+  }
+
+  @IBAction func showSettings(_ sender: Any) {
+    getGoalFromUser()
+  }
+}
+
+// MARK: - Goal
+extension StepCountController {
+  func updateGoal(newGoal: Int) {
+    // update this function
+  }
+
+  private func showNeedGoalAlert() {
+    let alertController = UIAlertController(title: "Set a goal to start", message: nil, preferredStyle: .alert)
+    let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+    let enterGoal = UIAlertAction(title: "Enter Goal", style: .default) { [weak self] _ in
+      self?.getGoalFromUser()
+    }
+
+    alertController.addAction(cancel)
+    alertController.addAction(enterGoal)
+    present(alertController, animated: true)
+  }
+
+  private func getGoalFromUser() {
+    let alertController = UIAlertController(title: "What is your step goal?", message: nil, preferredStyle: .alert)
+    alertController.addTextField { textField in
+      textField.placeholder = "1000"
+      textField.keyboardType = .numberPad
+    }
+    let action = UIAlertAction(title: "Done", style: .default) { [weak self] _ in
+      guard let textField = alertController.textFields?.first else { return }
+      if let numberString = textField.text,
+      let goal = Int(numberString) {
+        self?.updateGoal(newGoal: goal)
+      } else {
+        self?.updateGoal(newGoal: 0)
+      }
+    }
+    alertController.addAction(action)
+    present(alertController, animated: true)
+  }
+}
+
+// MARK: - Chase View
+extension StepCountController {
+  private func updateChaseView() {
+    // update this function
   }
 }

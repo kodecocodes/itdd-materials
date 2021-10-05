@@ -157,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				4CCF441027052FA500DD29AB /* App Model */,
+				4CCF441A2706879400DD29AB /* Data Model */,
 				4CCF441127052FAC00DD29AB /* UI Layer */,
 			);
 			path = Cases;
@@ -183,6 +184,13 @@
 			children = (
 				4CCF44132706844A00DD29AB /* DataModel.swift */,
 				4CCF44152706846400DD29AB /* Nessie.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		4CCF441A2706879400DD29AB /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = "Data Model";
 			sourceTree = "<group>";

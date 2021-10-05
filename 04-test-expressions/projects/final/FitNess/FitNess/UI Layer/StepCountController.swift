@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+/// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -50,8 +54,27 @@ class StepCountController: UIViewController {
   @IBOutlet var startButton: UIButton!
   @IBOutlet weak var chaseView: ChaseView!
 
+  init() {
+    // this is a cheat to simplify chapter 3, a proper way of getting an instance will be handled in chapter 4
+    super.init(nibName: nil, bundle: nil)
+    startButton = UIButton()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    updateButton()
+  }
+
+  @IBAction func startStopPause(_ sender: Any?) {
+    do {
+      try AppModel.instance.start()
+    } catch {
+      showNeedGoalAlert()
+    }
 
     updateUI()
   }
@@ -65,26 +88,9 @@ class StepCountController: UIViewController {
     let title = AppModel.instance.appState.nextStateButtonLabel
     startButton.setTitle(title, for: .normal)
   }
-
-  // MARK: - UI Actions
-  
-  @IBAction func startStopPause(_ sender: Any?) {
-    do {
-      try AppModel.instance.start()
-    } catch {
-      showNeedGoalAlert()
-    }
-    
-    updateUI()
-  }
-  
-  @IBAction func showSettings(_ sender: Any) {
-    getGoalFromUser()
-  }
 }
 
 // MARK: - Goal
-
 extension StepCountController {
   func updateGoal(newGoal: Int) {
     AppModel.instance.dataModel.goal = newGoal
@@ -93,7 +99,7 @@ extension StepCountController {
   private func showNeedGoalAlert() {
     let alertController = UIAlertController(title: "Set a goal to start", message: nil, preferredStyle: .alert)
     let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-    let enterGoal = UIAlertAction(title: "Enter Goal", style: .default) { [weak self] action in
+    let enterGoal = UIAlertAction(title: "Enter Goal", style: .default) { [weak self] _ in
       self?.getGoalFromUser()
     }
 
@@ -108,11 +114,11 @@ extension StepCountController {
       textField.placeholder = "1000"
       textField.keyboardType = .numberPad
     }
-    let action = UIAlertAction(title: "Done", style: .default) { [weak self] action in
+    let action = UIAlertAction(title: "Done", style: .default) { [weak self] _ in
       guard let textField = alertController.textFields?.first else { return }
       if let numberString = textField.text,
-        let goal = Int(numberString) {
-          self?.updateGoal(newGoal: goal)
+      let goal = Int(numberString) {
+        self?.updateGoal(newGoal: goal)
       } else {
         self?.updateGoal(newGoal: 0)
       }
@@ -124,7 +130,6 @@ extension StepCountController {
 
 // MARK: - Chase View
 extension StepCountController {
-
   private func updateChaseView() {
     chaseView.state = AppModel.instance.appState
   }
