@@ -161,7 +161,7 @@
 				4213CCC2221738E90047BA3D /* Controllers */,
 				427CCADB22BC653F00F92FF7 /* Extensions */,
 				4213CCC522173B3D0047BA3D /* Models */,
-				42D837B122B6CE040036C5DD /* Networking */,
+				42463A6A270AC20F0057BA5E /* Networking */,
 				4213CCC4221738EF0047BA3D /* Resources */,
 				4270356F22B6F3E0001080B1 /* ViewModels */,
 				4213CCC3221738ED0047BA3D /* Views */,
@@ -247,6 +247,20 @@
 				42335BF722BD1D7A00E21A72 /* UITableViewCell+Identifier.swift */,
 			);
 			path = Identifiers;
+			sourceTree = "<group>";
+		};
+		42463A6A270AC20F0057BA5E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		42463A6D270AC2700057BA5E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		424E577222E0C2D500C96D45 /* Protocols */ = {
@@ -435,20 +449,13 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		42D837B122B6CE040036C5DD /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		42D837B422B6CF5B0036C5DD /* Cases */ = {
 			isa = PBXGroup;
 			children = (
 				42A1ECB322D742F1001404C8 /* Controllers */,
 				427CCADC22BC654A00F92FF7 /* Extensions */,
 				42D837BA22B6DA450036C5DD /* Models */,
-				42F8CDA822D8A585000D7027 /* Networking */,
+				42463A6D270AC2700057BA5E /* Networking */,
 				424E577B22E0D0F600C96D45 /* ViewModels */,
 				42D837C522B6E4460036C5DD /* Views */,
 			);
@@ -470,13 +477,6 @@
 				427CCAD822BC64BF00F92FF7 /* Navigation */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		42F8CDA822D8A585000D7027 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,7 +524,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Razeware, LLC";
 				TargetAttributes = {
 					4213CC9B221738DF0047BA3D = {
@@ -690,6 +690,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -751,6 +752,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
