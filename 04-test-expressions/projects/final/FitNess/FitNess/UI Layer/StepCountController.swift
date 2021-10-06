@@ -54,12 +54,6 @@ class StepCountController: UIViewController {
   @IBOutlet var startButton: UIButton!
   @IBOutlet weak var chaseView: ChaseView!
 
-  init() {
-    // this is a cheat to simplify chapter 3, a proper way of getting an instance will be handled in chapter 4
-    super.init(nibName: nil, bundle: nil)
-    startButton = UIButton()
-  }
-
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }

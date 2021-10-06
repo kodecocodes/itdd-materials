@@ -47,7 +47,6 @@ class ChaseView: UIView {
   private func commonSetup() {
     addSubview(nessieView)
     addSubview(runnerView)
-    nessieView.backgroundColor = .purple
   }
 
   required init?(coder aDecoder: NSCoder) {
