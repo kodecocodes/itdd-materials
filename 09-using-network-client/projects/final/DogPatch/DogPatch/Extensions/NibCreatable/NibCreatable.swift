@@ -32,7 +32,7 @@
 
 import UIKit
 
-protocol NibCreatable: class {
+protocol NibCreatable: AnyObject {
   
   static var nib: UINib { get }
   static var nibBundle: Bundle? { get }
