@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
+               BlueprintIdentifier = "185CB1F723C78CE6009F7571"
                BuildableName = "FitNess.app"
                BlueprintName = "FitNess"
                ReferencedContainer = "container:FitNess.xcodeproj">
@@ -28,22 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
-            BuildableName = "FitNess.app"
-            BlueprintName = "FitNess"
-            ReferencedContainer = "container:FitNess.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO"
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A21C7D421C6BF8B00169D8B"
+               BlueprintIdentifier = "4CCF44012705277700DD29AB"
                BuildableName = "FitNessTests.xctest"
                BlueprintName = "FitNessTests"
                ReferencedContainer = "container:FitNess.xcodeproj">
@@ -65,7 +56,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
+            BlueprintIdentifier = "185CB1F723C78CE6009F7571"
             BuildableName = "FitNess.app"
             BlueprintName = "FitNess"
             ReferencedContainer = "container:FitNess.xcodeproj">
@@ -82,7 +73,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
+            BlueprintIdentifier = "185CB1F723C78CE6009F7571"
             BuildableName = "FitNess.app"
             BlueprintName = "FitNess"
             ReferencedContainer = "container:FitNess.xcodeproj">
