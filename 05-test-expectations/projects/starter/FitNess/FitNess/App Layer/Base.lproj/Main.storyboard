@@ -9,66 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Step Count Controller-->
-        <scene sceneID="3Lh-z3-wnR">
-            <objects>
-                <viewController storyboardIdentifier="stepcontroller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ztn-zJ-2kz" customClass="StepCountController" customModule="FitNess" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HMB-Q5-ejU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbf-CD-eev">
-                                <rect key="frame" x="102" y="164" width="171" height="45"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pry-q7-Vs4">
-                                <rect key="frame" x="165.66666666666666" y="215" width="44" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-Dw-bg6">
-                                <rect key="frame" x="170.66666666666666" y="698" width="34" height="30"/>
-                                <state key="normal" title="Start"/>
-                                <connections>
-                                    <action selector="startStopPause:" destination="ztn-zJ-2kz" eventType="touchUpInside" id="5bn-un-fsj"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ax4-Or-VrL" customClass="ChaseView" customModule="FitNess" customModuleProvider="target">
-                                <rect key="frame" x="20" y="493" width="335" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="QAO-nk-ePg"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="H3i-tB-u0J"/>
-                        <color key="backgroundColor" red="0.52766031030000005" green="0.88262051340000003" blue="0.92994982000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ax4-Or-VrL" firstAttribute="centerX" secondItem="H3i-tB-u0J" secondAttribute="centerX" id="BhL-Yf-SDX"/>
-                            <constraint firstItem="Vbf-CD-eev" firstAttribute="top" secondItem="H3i-tB-u0J" secondAttribute="top" constant="120" id="EXd-19-fOv"/>
-                            <constraint firstItem="Vbf-CD-eev" firstAttribute="centerX" secondItem="H3i-tB-u0J" secondAttribute="centerX" id="FeP-PY-bgZ"/>
-                            <constraint firstItem="ax4-Or-VrL" firstAttribute="leading" secondItem="H3i-tB-u0J" secondAttribute="leading" constant="20" id="GMT-EB-n9r"/>
-                            <constraint firstItem="H3i-tB-u0J" firstAttribute="trailing" secondItem="ax4-Or-VrL" secondAttribute="trailing" constant="20" id="XKa-Ds-ABi"/>
-                            <constraint firstItem="H3i-tB-u0J" firstAttribute="bottom" secondItem="ch7-Dw-bg6" secondAttribute="bottom" constant="50" id="Ybm-9d-bMf"/>
-                            <constraint firstItem="Pry-q7-Vs4" firstAttribute="top" secondItem="Vbf-CD-eev" secondAttribute="bottom" constant="6" id="cOq-es-MYh"/>
-                            <constraint firstItem="ch7-Dw-bg6" firstAttribute="top" secondItem="ax4-Or-VrL" secondAttribute="bottom" constant="77" id="emY-5R-I9o"/>
-                            <constraint firstItem="ch7-Dw-bg6" firstAttribute="centerX" secondItem="H3i-tB-u0J" secondAttribute="centerX" id="jYw-bx-svT"/>
-                            <constraint firstItem="Pry-q7-Vs4" firstAttribute="centerX" secondItem="Vbf-CD-eev" secondAttribute="centerX" id="qEv-Pm-nsg"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="chaseView" destination="ax4-Or-VrL" id="8h5-wN-Ufv"/>
-                        <outlet property="startButton" destination="ch7-Dw-bg6" id="MMH-rF-6P1"/>
-                        <outlet property="stepCountLabel" destination="Vbf-CD-eev" id="aHd-Wr-5ng"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e3e-jW-dea" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="976.79999999999995" y="124.58770614692655"/>
-        </scene>
         <!--Root View Controller-->
         <scene sceneID="TSK-J3-I9Y">
             <objects>
@@ -80,7 +20,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHz-Q2-ezY" userLabel="Main Area">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <connections>
-                                    <segue destination="ztn-zJ-2kz" kind="embed" id="5fM-jq-Aza"/>
+                                    <segue destination="rEG-Lk-9EX" kind="embed" id="fge-KI-9nZ"/>
                                 </connections>
                             </containerView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPZ-ob-0fz" userLabel="Toast Area">
@@ -184,9 +124,83 @@
             </objects>
             <point key="canvasLocation" x="1052" y="-423"/>
         </scene>
+        <!--Step Count Controller-->
+        <scene sceneID="K1j-yL-wBH">
+            <objects>
+                <viewController storyboardIdentifier="stepcontroller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rEG-Lk-9EX" customClass="StepCountController" customModule="FitNess" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Udb-8X-9N5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4d-7n-eI8">
+                                <rect key="frame" x="102" y="164" width="171" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYw-CE-T5o">
+                                <rect key="frame" x="165.66666666666666" y="215" width="44" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ke-Mj-0p5">
+                                <rect key="frame" x="170.66666666666666" y="698" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startStopPause:" destination="rEG-Lk-9EX" eventType="touchUpInside" id="Jj3-F8-Uf9"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nhQ-Zw-YdZ" customClass="ChaseView" customModule="FitNess" customModuleProvider="target">
+                                <rect key="frame" x="20" y="493" width="335" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="PpF-1u-6lG"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbv-5r-yPV" userLabel="SettingsButton">
+                                <rect key="frame" x="343" y="746" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xbv-5r-yPV" secondAttribute="height" multiplier="1:1" id="L1Z-F5-fkO"/>
+                                    <constraint firstAttribute="width" constant="32" id="sr4-39-kau"/>
+                                </constraints>
+                                <state key="normal" image="gear"/>
+                                <connections>
+                                    <action selector="showSettings:" destination="rEG-Lk-9EX" eventType="touchUpInside" id="zcr-a9-Hhu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Ai-qS-yUR"/>
+                        <color key="backgroundColor" red="0.52766031030000005" green="0.88262051340000003" blue="0.92994982000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nhQ-Zw-YdZ" firstAttribute="centerX" secondItem="2Ai-qS-yUR" secondAttribute="centerX" id="4pD-OF-G1v"/>
+                            <constraint firstItem="2Ke-Mj-0p5" firstAttribute="centerX" secondItem="2Ai-qS-yUR" secondAttribute="centerX" id="8Sv-8z-dKP"/>
+                            <constraint firstItem="xbv-5r-yPV" firstAttribute="bottom" secondItem="2Ai-qS-yUR" secondAttribute="bottom" id="FOr-0R-Xng"/>
+                            <constraint firstItem="2Ai-qS-yUR" firstAttribute="bottom" secondItem="2Ke-Mj-0p5" secondAttribute="bottom" constant="50" id="Gea-gQ-A6B"/>
+                            <constraint firstItem="oYw-CE-T5o" firstAttribute="top" secondItem="g4d-7n-eI8" secondAttribute="bottom" constant="6" id="SA4-bs-Ycs"/>
+                            <constraint firstItem="2Ai-qS-yUR" firstAttribute="trailing" secondItem="nhQ-Zw-YdZ" secondAttribute="trailing" constant="20" id="W5K-6J-Gkq"/>
+                            <constraint firstItem="g4d-7n-eI8" firstAttribute="top" secondItem="2Ai-qS-yUR" secondAttribute="top" constant="120" id="X6e-sn-0B0"/>
+                            <constraint firstItem="oYw-CE-T5o" firstAttribute="centerX" secondItem="g4d-7n-eI8" secondAttribute="centerX" id="btU-mc-t0Q"/>
+                            <constraint firstItem="nhQ-Zw-YdZ" firstAttribute="leading" secondItem="2Ai-qS-yUR" secondAttribute="leading" constant="20" id="cfB-Hc-275"/>
+                            <constraint firstItem="xbv-5r-yPV" firstAttribute="trailing" secondItem="2Ai-qS-yUR" secondAttribute="trailing" id="dpT-rf-pXL"/>
+                            <constraint firstItem="g4d-7n-eI8" firstAttribute="centerX" secondItem="2Ai-qS-yUR" secondAttribute="centerX" id="mqG-gh-TXD"/>
+                            <constraint firstItem="2Ke-Mj-0p5" firstAttribute="top" secondItem="nhQ-Zw-YdZ" secondAttribute="bottom" constant="77" id="oI9-6Q-2qu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chaseView" destination="nhQ-Zw-YdZ" id="mRf-Fs-nxX"/>
+                        <outlet property="startButton" destination="2Ke-Mj-0p5" id="BYa-pZ-wwJ"/>
+                        <outlet property="stepCountLabel" destination="g4d-7n-eI8" id="Vpv-vB-cyQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M8F-l6-1uZ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="976.79999999999995" y="124.58770614692655"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CloseButton" width="100" height="100"/>
+        <image name="gear" width="100" height="100"/>
         <namedColor name="DefaultAlertColor">
             <color red="1" green="1" blue="0.20600000023841858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

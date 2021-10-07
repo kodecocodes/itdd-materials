@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KCK-p9-TlZ">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KCK-p9-TlZ">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,6 +52,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="aIW-wJ-C9Z"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8Yd-4F-ytk" firstAttribute="top" secondItem="aIW-wJ-C9Z" secondAttribute="top" priority="750" constant="4" id="PiN-Eg-2ht"/>
@@ -65,7 +65,6 @@
                             <constraint firstAttribute="trailing" secondItem="ujz-3W-XQx" secondAttribute="trailing" id="qo5-uD-e36"/>
                             <constraint firstItem="aIW-wJ-C9Z" firstAttribute="trailing" secondItem="WjL-uB-qwE" secondAttribute="trailing" id="ske-rn-fmf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="aIW-wJ-C9Z"/>
                     </view>
                     <connections>
                         <outlet property="alertLabel" destination="YR8-C6-UGj" id="zpt-et-kA1"/>
@@ -88,18 +87,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhy-vW-Ga2">
-                                <rect key="frame" x="102" y="140" width="171" height="45"/>
+                                <rect key="frame" x="102" y="120" width="171" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgK-xI-lnb">
-                                <rect key="frame" x="165.5" y="191" width="44" height="21"/>
+                                <rect key="frame" x="165.5" y="171" width="44" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOr-z6-zhT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOr-z6-zhT">
                                 <rect key="frame" x="170.5" y="587" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
@@ -125,6 +124,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.52766031030000005" green="0.88262051340000003" blue="0.92994982000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="L42-YW-DhX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="4TP-Bh-kR7"/>
@@ -140,7 +140,6 @@
                             <constraint firstItem="lgK-xI-lnb" firstAttribute="centerX" secondItem="Zhy-vW-Ga2" secondAttribute="centerX" id="gzI-jZ-oOW"/>
                             <constraint firstItem="eOr-z6-zhT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xbo-5x-bBg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="chaseView" destination="L42-YW-DhX" id="bqN-rE-JRf"/>
@@ -177,6 +176,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="h0Q-yU-GIy"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pPy-L5-4dr" firstAttribute="leading" secondItem="muR-1r-5c6" secondAttribute="leading" id="5eX-7S-3Rg"/>
@@ -187,7 +187,6 @@
                             <constraint firstItem="miQ-Nr-1KL" firstAttribute="top" secondItem="muR-1r-5c6" secondAttribute="top" id="rHM-Nu-IP6"/>
                             <constraint firstAttribute="bottom" secondItem="miQ-Nr-1KL" secondAttribute="bottom" id="uDx-Cb-TEY"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="h0Q-yU-GIy"/>
                     </view>
                     <connections>
                         <outlet property="alertContainer" destination="pPy-L5-4dr" id="O4p-wU-5zJ"/>

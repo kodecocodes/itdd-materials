@@ -202,6 +202,13 @@
 			path = Alerts;
 			sourceTree = "<group>";
 		};
+		4CBEFCA9270E6E4100EB190B /* App Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "App Layer";
+			sourceTree = "<group>";
+		};
 		4CCF44032705277700DD29AB /* FitNessTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,10 +222,11 @@
 		4CCF440F27052F9C00DD29AB /* Cases */ = {
 			isa = PBXGroup;
 			children = (
-				4CBEFC96270D24BC00EB190B /* Alerts */,
+				4CBEFCA9270E6E4100EB190B /* App Layer */,
 				4CCF441027052FA500DD29AB /* App Model */,
 				4CCF44192706878200DD29AB /* Data Model */,
 				4CCF441127052FAC00DD29AB /* UI Layer */,
+				4CBEFC96270D24BC00EB190B /* Alerts */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
