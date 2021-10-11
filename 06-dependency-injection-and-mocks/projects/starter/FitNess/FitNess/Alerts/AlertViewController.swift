@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+/// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,7 +33,6 @@
 import UIKit
 
 class AlertViewController: UIViewController {
-
   struct ViewValues {
     let alertText: String?
     let justOneAlert: Bool
@@ -51,7 +54,7 @@ class AlertViewController: UIViewController {
     mainAlertView.layer.borderWidth = 1
     secondaryAlertView.layer.borderWidth = 1
 
-    AlertCenter.listenForAlerts { center in
+    AlertCenter.listenForAlerts { _ in
       self.updateForAlert()
     }
   }
@@ -68,14 +71,16 @@ class AlertViewController: UIViewController {
     let alertText = AlertCenter.instance.topAlert?.text
     let bottomColor = AlertCenter.instance.nextUp?.severity.color
 
-    return ViewValues(alertText: alertText, justOneAlert: justOneAlert, topAlertInset: mainInset, topColor: topColor, bottomColor: bottomColor)
+    return ViewValues(
+      alertText: alertText,
+      justOneAlert: justOneAlert,
+      topAlertInset: mainInset,
+      topColor: topColor,
+      bottomColor: bottomColor)
   }
 
   func updateForAlert() {
-    guard AlertCenter.instance.alertCount > 0 else {
-      (parent as? RootViewController)?.hideShowAlert()
-      return
-    }
+    guard AlertCenter.instance.alertCount > 0 else { return }
     let values = calculateViewValues()
     alertLabel.text = values.alertText
     mainAlertView.backgroundColor = values.topColor
@@ -89,7 +94,6 @@ class AlertViewController: UIViewController {
   @IBAction func closeAlert(_ sender: Any) {
     if let top = AlertCenter.instance.topAlert {
       AlertCenter.instance.clear(alert: top)
-      updateForAlert()
     }
   }
 }
@@ -98,8 +102,10 @@ extension Alert.Severity {
   var color: UIColor {
     switch self {
     case .bad:
+      //swiftlint:disable force_unwrapping
       return UIColor(named: "BadAlertColor")!
     case .good:
+      //swiftlint:disable force_unwrapping
       return UIColor(named: "GoodAlertColor")!
     }
   }
