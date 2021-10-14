@@ -20,6 +20,7 @@
 		4233782B270C662900852BD3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42337829270C662900852BD3 /* TestView.swift */; };
 		4233782C270C662900852BD3 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4233782A270C662900852BD3 /* TestView.xib */; };
 		42337834270C668000852BD3 /* TestLogoNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42337833270C668000852BD3 /* TestLogoNavigationBar.xib */; };
+		423CB53D2718239700375DE0 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CB53C2718239700375DE0 /* MockURLSession.swift */; };
 		424E576922E0B1C600C96D45 /* DogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E576822E0B1C600C96D45 /* DogTests.swift */; };
 		424E576B22E0C22A00C96D45 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 424E576A22E0C22A00C96D45 /* User.json */; };
 		424E576D22E0C23700C96D45 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E576C22E0C23700C96D45 /* UserTests.swift */; };
@@ -85,6 +86,7 @@
 		42337829270C662900852BD3 /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		4233782A270C662900852BD3 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		42337833270C668000852BD3 /* TestLogoNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestLogoNavigationBar.xib; sourceTree = "<group>"; };
+		423CB53C2718239700375DE0 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		424E576822E0B1C600C96D45 /* DogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogTests.swift; sourceTree = "<group>"; };
 		424E576A22E0C22A00C96D45 /* User.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
 		424E576C22E0C23700C96D45 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
@@ -257,6 +259,14 @@
 			path = Identifiers;
 			sourceTree = "<group>";
 		};
+		423CB53B2718238A00375DE0 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				423CB53C2718239700375DE0 /* MockURLSession.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		42463A6A270AC20F0057BA5E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				424E578422E0D83400C96D45 /* Extensions */,
+				423CB53B2718238A00375DE0 /* Mocks */,
 				424E577222E0C2D500C96D45 /* Protocols */,
 				427CCAFB22BC703900F92FF7 /* Views */,
 				424E577622E0C44900C96D45 /* XCTest Additions */,
@@ -636,6 +647,7 @@
 				42A255A522BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift in Sources */,
 				427CCB0822BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift in Sources */,
 				9581B4B92316F48E00A78286 /* DecodableTestCase.swift in Sources */,
+				423CB53D2718239700375DE0 /* MockURLSession.swift in Sources */,
 				428CB7682716C3010095DB92 /* URLSessionProtocolTests.swift in Sources */,
 				4233782B270C662900852BD3 /* TestView.swift in Sources */,
 				424E577E22E0D10C00C96D45 /* DogViewModelTests.swift in Sources */,

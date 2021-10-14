@@ -249,6 +249,13 @@
 			path = Identifiers;
 			sourceTree = "<group>";
 		};
+		423CB53A2718234F00375DE0 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		42463A6A270AC20F0057BA5E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				424E578422E0D83400C96D45 /* Extensions */,
+				423CB53A2718234F00375DE0 /* Mocks */,
 				424E577222E0C2D500C96D45 /* Protocols */,
 				427CCAFB22BC703900F92FF7 /* Views */,
 				424E577622E0C44900C96D45 /* XCTest Additions */,
