@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		420A276322E4859A00ECCA13 /* GET_Dogs_ValidResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 420A276222E4859A00ECCA13 /* GET_Dogs_ValidResponse.json */; };
+		420A276322E4859A00ECCA13 /* GET_Dogs_Response.json in Resources */ = {isa = PBXBuildFile; fileRef = 420A276222E4859A00ECCA13 /* GET_Dogs_Response.json */; };
 		420A276522E485C000ECCA13 /* Data+JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420A276422E485C000ECCA13 /* Data+JSONFile.swift */; };
 		4213CCA0221738DF0047BA3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213CC9F221738DF0047BA3D /* AppDelegate.swift */; };
 		4213CCA2221738DF0047BA3D /* ListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4213CCA1221738DF0047BA3D /* ListingsViewController.swift */; };
@@ -17,16 +17,16 @@
 		42335BEF22BD166800E21A72 /* UIView+ApplyShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42335BEE22BD166800E21A72 /* UIView+ApplyShadow.swift */; };
 		42335BF222BD179600E21A72 /* UIView+ApplyShaddowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42335BF122BD179600E21A72 /* UIView+ApplyShaddowTests.swift */; };
 		42335BF822BD1D7A00E21A72 /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42335BF722BD1D7A00E21A72 /* UITableViewCell+Identifier.swift */; };
-		42337818270C64A200852BD3 /* TestLogoNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42337817270C64A200852BD3 /* TestLogoNavigationBar.xib */; };
-		4233781F270C64D400852BD3 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4233781D270C64D400852BD3 /* TestView.xib */; };
-		42337820270C64D400852BD3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233781E270C64D400852BD3 /* TestView.swift */; };
+		4233782B270C662900852BD3 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42337829270C662900852BD3 /* TestView.swift */; };
+		4233782C270C662900852BD3 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4233782A270C662900852BD3 /* TestView.xib */; };
+		42337834270C668000852BD3 /* TestLogoNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42337833270C668000852BD3 /* TestLogoNavigationBar.xib */; };
 		424E576922E0B1C600C96D45 /* DogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E576822E0B1C600C96D45 /* DogTests.swift */; };
 		424E576B22E0C22A00C96D45 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 424E576A22E0C22A00C96D45 /* User.json */; };
 		424E576D22E0C23700C96D45 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E576C22E0C23700C96D45 /* UserTests.swift */; };
 		424E577A22E0C47A00C96D45 /* XCTAssertEqualToAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E577922E0C47A00C96D45 /* XCTAssertEqualToAny.swift */; };
 		424E577E22E0D10C00C96D45 /* DogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E577D22E0D10C00C96D45 /* DogViewModelTests.swift */; };
 		424E578822E0D87200C96D45 /* TimeInterval+Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424E578722E0D87200C96D45 /* TimeInterval+Calendar.swift */; };
-		425D6FAC22EB52140011BB45 /* GET_Dogs_MissingValuesResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 425D6FAB22EB52140011BB45 /* GET_Dogs_MissingValuesResponse.json */; };
+		425D6FAE22EB522F0011BB45 /* GET_Dogs_MissingValuesResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 425D6FAD22EB522F0011BB45 /* GET_Dogs_MissingValuesResponse.json */; };
 		4261B59A22D74CF500E5824D /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261B59922D74CF500E5824D /* UITableViewCell+Identifier.swift */; };
 		4261B59C22D74D1700E5824D /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261B59B22D74D1700E5824D /* TestTableViewCell.swift */; };
 		4270357122B6F3F9001080B1 /* DogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4270357022B6F3F9001080B1 /* DogViewModel.swift */; };
@@ -35,25 +35,27 @@
 		427CCAFD22BC705600F92FF7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCAFC22BC705600F92FF7 /* TestViewController.swift */; };
 		427CCB0622BC72C900F92FF7 /* UIView+NibCreatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCB0522BC72C900F92FF7 /* UIView+NibCreatableTests.swift */; };
 		427CCB0822BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427CCB0722BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift */; };
+		428CB7662716C0A60095DB92 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428CB7652716C0A60095DB92 /* URLSessionProtocol.swift */; };
+		428CB7682716C3010095DB92 /* URLSessionProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428CB7672716C3010095DB92 /* URLSessionProtocolTests.swift */; };
+		428CB76A2716C8F80095DB92 /* DogPatchClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428CB7692716C8F80095DB92 /* DogPatchClientTests.swift */; };
+		428CB76C2716C90D0095DB92 /* DogPatchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428CB76B2716C90D0095DB92 /* DogPatchClient.swift */; };
 		42A1ECB522D742FE001404C8 /* ListingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A1ECB422D742FE001404C8 /* ListingsViewControllerTests.swift */; };
 		42A255A322BD098A00C744D9 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42A255A222BD098A00C744D9 /* TestViewController.xib */; };
 		42A255A522BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A255A422BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift */; };
 		42A255A722BD0EE200C744D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A255A622BD0EE200C744D9 /* Main.storyboard */; };
 		42A255A922BD116900C744D9 /* ErrorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42A255A822BD116900C744D9 /* ErrorTableViewCell.xib */; };
-		42C2FFB222EB26200094F78E /* DogPatchClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C2FFB122EB26200094F78E /* DogPatchClientTests.swift */; };
-		42C2FFB422EB26630094F78E /* DogPatchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C2FFB322EB26630094F78E /* DogPatchClient.swift */; };
 		42C3D3AD22E0AB97001A9BD9 /* Dog.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C3D3AC22E0AB97001A9BD9 /* Dog.json */; };
 		42D837B022B6C0830036C5DD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D837AF22B6C0830036C5DD /* Colors.xcassets */; };
 		42D837B322B6CE2D0036C5DD /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837B222B6CE2D0036C5DD /* Dog.swift */; };
 		42D837BE22B6DAD50036C5DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D837BD22B6DAD50036C5DD /* User.swift */; };
-		9581B4BD2316F50400A78286 /* UIViewController+NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4BA2316F50400A78286 /* UIViewController+NibCreatable.swift */; };
-		9581B4BE2316F50400A78286 /* UIView+NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4BB2316F50400A78286 /* UIView+NibCreatable.swift */; };
-		9581B4BF2316F50400A78286 /* NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4BC2316F50400A78286 /* NibCreatable.swift */; };
-		9581B4C22316F53000A78286 /* StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4C02316F53000A78286 /* StoryboardCreatable.swift */; };
-		9581B4C32316F53000A78286 /* UIViewController+StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4C12316F53000A78286 /* UIViewController+StoryboardCreatable.swift */; };
-		9581B4C52316F56400A78286 /* LogoNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4C42316F56400A78286 /* LogoNavigationItem.swift */; };
-		9581B4CA2316F5B300A78286 /* LogoNavigationItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4C92316F5B300A78286 /* LogoNavigationItemTests.swift */; };
-		9581B4CC2316F5DD00A78286 /* DecodableTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4CB2316F5DD00A78286 /* DecodableTestCase.swift */; };
+		9581B4AC2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */; };
+		9581B4AD2316F32D00A78286 /* StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */; };
+		9581B4B12316F35D00A78286 /* UIView+NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */; };
+		9581B4B22316F35D00A78286 /* NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4AF2316F35D00A78286 /* NibCreatable.swift */; };
+		9581B4B32316F35D00A78286 /* UIViewController+NibCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4B02316F35D00A78286 /* UIViewController+NibCreatable.swift */; };
+		9581B4B52316F3D200A78286 /* LogoNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4B42316F3D200A78286 /* LogoNavigationItem.swift */; };
+		9581B4B72316F44400A78286 /* LogoNavigationItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4B62316F44300A78286 /* LogoNavigationItemTests.swift */; };
+		9581B4B92316F48E00A78286 /* DecodableTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B4B82316F48E00A78286 /* DecodableTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		420A276222E4859A00ECCA13 /* GET_Dogs_ValidResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GET_Dogs_ValidResponse.json; sourceTree = "<group>"; };
+		420A276222E4859A00ECCA13 /* GET_Dogs_Response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GET_Dogs_Response.json; sourceTree = "<group>"; };
 		420A276422E485C000ECCA13 /* Data+JSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+JSONFile.swift"; sourceTree = "<group>"; };
 		4213CC9C221738DF0047BA3D /* DogPatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogPatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4213CC9F221738DF0047BA3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,9 +82,9 @@
 		42335BEE22BD166800E21A72 /* UIView+ApplyShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ApplyShadow.swift"; sourceTree = "<group>"; };
 		42335BF122BD179600E21A72 /* UIView+ApplyShaddowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ApplyShaddowTests.swift"; sourceTree = "<group>"; };
 		42335BF722BD1D7A00E21A72 /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
-		42337817270C64A200852BD3 /* TestLogoNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestLogoNavigationBar.xib; sourceTree = "<group>"; };
-		4233781D270C64D400852BD3 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
-		4233781E270C64D400852BD3 /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		42337829270C662900852BD3 /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		4233782A270C662900852BD3 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
+		42337833270C668000852BD3 /* TestLogoNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestLogoNavigationBar.xib; sourceTree = "<group>"; };
 		424E576822E0B1C600C96D45 /* DogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogTests.swift; sourceTree = "<group>"; };
 		424E576A22E0C22A00C96D45 /* User.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
 		424E576C22E0C23700C96D45 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 		424E577922E0C47A00C96D45 /* XCTAssertEqualToAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTAssertEqualToAny.swift; sourceTree = "<group>"; };
 		424E577D22E0D10C00C96D45 /* DogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogViewModelTests.swift; sourceTree = "<group>"; };
 		424E578722E0D87200C96D45 /* TimeInterval+Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Calendar.swift"; sourceTree = "<group>"; };
-		425D6FAB22EB52140011BB45 /* GET_Dogs_MissingValuesResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GET_Dogs_MissingValuesResponse.json; sourceTree = "<group>"; };
+		425D6FAD22EB522F0011BB45 /* GET_Dogs_MissingValuesResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GET_Dogs_MissingValuesResponse.json; sourceTree = "<group>"; };
 		4261B59922D74CF500E5824D /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
 		4261B59B22D74D1700E5824D /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 		4270357022B6F3F9001080B1 /* DogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogViewModel.swift; sourceTree = "<group>"; };
@@ -99,25 +101,27 @@
 		427CCAFC22BC705600F92FF7 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		427CCB0522BC72C900F92FF7 /* UIView+NibCreatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibCreatableTests.swift"; sourceTree = "<group>"; };
 		427CCB0722BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NibCreatableTests.swift"; sourceTree = "<group>"; };
+		428CB7652716C0A60095DB92 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		428CB7672716C3010095DB92 /* URLSessionProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocolTests.swift; sourceTree = "<group>"; };
+		428CB7692716C8F80095DB92 /* DogPatchClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogPatchClientTests.swift; sourceTree = "<group>"; };
+		428CB76B2716C90D0095DB92 /* DogPatchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogPatchClient.swift; sourceTree = "<group>"; };
 		42A1ECB422D742FE001404C8 /* ListingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsViewControllerTests.swift; sourceTree = "<group>"; };
 		42A255A222BD098A00C744D9 /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		42A255A422BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryboardCreatableTests.swift"; sourceTree = "<group>"; };
 		42A255A622BD0EE200C744D9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		42A255A822BD116900C744D9 /* ErrorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorTableViewCell.xib; sourceTree = "<group>"; };
-		42C2FFB122EB26200094F78E /* DogPatchClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogPatchClientTests.swift; sourceTree = "<group>"; };
-		42C2FFB322EB26630094F78E /* DogPatchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogPatchClient.swift; sourceTree = "<group>"; };
 		42C3D3AC22E0AB97001A9BD9 /* Dog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Dog.json; sourceTree = "<group>"; };
 		42D837AF22B6C0830036C5DD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		42D837B222B6CE2D0036C5DD /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		42D837BD22B6DAD50036C5DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9581B4BA2316F50400A78286 /* UIViewController+NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NibCreatable.swift"; sourceTree = "<group>"; };
-		9581B4BB2316F50400A78286 /* UIView+NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibCreatable.swift"; sourceTree = "<group>"; };
-		9581B4BC2316F50400A78286 /* NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibCreatable.swift; sourceTree = "<group>"; };
-		9581B4C02316F53000A78286 /* StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardCreatable.swift; sourceTree = "<group>"; };
-		9581B4C12316F53000A78286 /* UIViewController+StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryboardCreatable.swift"; sourceTree = "<group>"; };
-		9581B4C42316F56400A78286 /* LogoNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoNavigationItem.swift; sourceTree = "<group>"; };
-		9581B4C92316F5B300A78286 /* LogoNavigationItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoNavigationItemTests.swift; sourceTree = "<group>"; };
-		9581B4CB2316F5DD00A78286 /* DecodableTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodableTestCase.swift; sourceTree = "<group>"; };
+		9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryboardCreatable.swift"; sourceTree = "<group>"; };
+		9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardCreatable.swift; sourceTree = "<group>"; };
+		9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+NibCreatable.swift"; sourceTree = "<group>"; };
+		9581B4AF2316F35D00A78286 /* NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibCreatable.swift; sourceTree = "<group>"; };
+		9581B4B02316F35D00A78286 /* UIViewController+NibCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NibCreatable.swift"; sourceTree = "<group>"; };
+		9581B4B42316F3D200A78286 /* LogoNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoNavigationItem.swift; sourceTree = "<group>"; };
+		9581B4B62316F44300A78286 /* LogoNavigationItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoNavigationItemTests.swift; sourceTree = "<group>"; };
+		9581B4B82316F48E00A78286 /* DecodableTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodableTestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +169,7 @@
 				4213CCC2221738E90047BA3D /* Controllers */,
 				427CCADB22BC653F00F92FF7 /* Extensions */,
 				4213CCC522173B3D0047BA3D /* Models */,
-				42D837B122B6CE040036C5DD /* Networking */,
+				42463A6A270AC20F0057BA5E /* Networking */,
 				4213CCC4221738EF0047BA3D /* Resources */,
 				4270356F22B6F3E0001080B1 /* ViewModels */,
 				4213CCC3221738ED0047BA3D /* Views */,
@@ -253,10 +257,28 @@
 			path = Identifiers;
 			sourceTree = "<group>";
 		};
+		42463A6A270AC20F0057BA5E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				428CB76B2716C90D0095DB92 /* DogPatchClient.swift */,
+				428CB7652716C0A60095DB92 /* URLSessionProtocol.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		42463A6D270AC2700057BA5E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				428CB7692716C8F80095DB92 /* DogPatchClientTests.swift */,
+				428CB7672716C3010095DB92 /* URLSessionProtocolTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		424E577222E0C2D500C96D45 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				9581B4CB2316F5DD00A78286 /* DecodableTestCase.swift */,
+				9581B4B82316F48E00A78286 /* DecodableTestCase.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -316,7 +338,7 @@
 		4270356E22B6F1F5001080B1 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				9581B4C42316F56400A78286 /* LogoNavigationItem.swift */,
+				9581B4B42316F3D200A78286 /* LogoNavigationItem.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -332,7 +354,7 @@
 		427CCAD822BC64BF00F92FF7 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				9581B4C92316F5B300A78286 /* LogoNavigationItemTests.swift */,
+				9581B4B62316F44300A78286 /* LogoNavigationItemTests.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -362,9 +384,9 @@
 		427CCAF722BC6F4100F92FF7 /* NibCreatable */ = {
 			isa = PBXGroup;
 			children = (
-				9581B4BC2316F50400A78286 /* NibCreatable.swift */,
-				9581B4BB2316F50400A78286 /* UIView+NibCreatable.swift */,
-				9581B4BA2316F50400A78286 /* UIViewController+NibCreatable.swift */,
+				9581B4AF2316F35D00A78286 /* NibCreatable.swift */,
+				9581B4AE2316F35D00A78286 /* UIView+NibCreatable.swift */,
+				9581B4B02316F35D00A78286 /* UIViewController+NibCreatable.swift */,
 			);
 			path = NibCreatable;
 			sourceTree = "<group>";
@@ -372,8 +394,8 @@
 		427CCAF822BC6F4F00F92FF7 /* StoryboardCreatable */ = {
 			isa = PBXGroup;
 			children = (
-				9581B4C02316F53000A78286 /* StoryboardCreatable.swift */,
-				9581B4C12316F53000A78286 /* UIViewController+StoryboardCreatable.swift */,
+				9581B4AB2316F32D00A78286 /* StoryboardCreatable.swift */,
+				9581B4AA2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift */,
 			);
 			path = StoryboardCreatable;
 			sourceTree = "<group>";
@@ -402,10 +424,10 @@
 			isa = PBXGroup;
 			children = (
 				42A255A622BD0EE200C744D9 /* Main.storyboard */,
-				42337817270C64A200852BD3 /* TestLogoNavigationBar.xib */,
+				42337833270C668000852BD3 /* TestLogoNavigationBar.xib */,
 				4261B59B22D74D1700E5824D /* TestTableViewCell.swift */,
-				4233781E270C64D400852BD3 /* TestView.swift */,
-				4233781D270C64D400852BD3 /* TestView.xib */,
+				42337829270C662900852BD3 /* TestView.swift */,
+				4233782A270C662900852BD3 /* TestView.xib */,
 				427CCAFC22BC705600F92FF7 /* TestViewController.swift */,
 				42A255A222BD098A00C744D9 /* TestViewController.xib */,
 			);
@@ -432,19 +454,11 @@
 			isa = PBXGroup;
 			children = (
 				42C3D3AC22E0AB97001A9BD9 /* Dog.json */,
-				425D6FAB22EB52140011BB45 /* GET_Dogs_MissingValuesResponse.json */,
-				420A276222E4859A00ECCA13 /* GET_Dogs_ValidResponse.json */,
+				425D6FAD22EB522F0011BB45 /* GET_Dogs_MissingValuesResponse.json */,
+				420A276222E4859A00ECCA13 /* GET_Dogs_Response.json */,
 				424E576A22E0C22A00C96D45 /* User.json */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		42D837B122B6CE040036C5DD /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				42C2FFB322EB26630094F78E /* DogPatchClient.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		42D837B422B6CF5B0036C5DD /* Cases */ = {
@@ -453,7 +467,7 @@
 				42A1ECB322D742F1001404C8 /* Controllers */,
 				427CCADC22BC654A00F92FF7 /* Extensions */,
 				42D837BA22B6DA450036C5DD /* Models */,
-				42F8CDA822D8A585000D7027 /* Networking */,
+				42463A6D270AC2700057BA5E /* Networking */,
 				424E577B22E0D0F600C96D45 /* ViewModels */,
 				42D837C522B6E4460036C5DD /* Views */,
 			);
@@ -475,14 +489,6 @@
 				427CCAD822BC64BF00F92FF7 /* Navigation */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		42F8CDA822D8A585000D7027 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				42C2FFB122EB26200094F78E /* DogPatchClientTests.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -580,14 +586,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4233781F270C64D400852BD3 /* TestView.xib in Resources */,
-				42337818270C64A200852BD3 /* TestLogoNavigationBar.xib in Resources */,
+				42337834270C668000852BD3 /* TestLogoNavigationBar.xib in Resources */,
+				4233782C270C662900852BD3 /* TestView.xib in Resources */,
 				42A255A322BD098A00C744D9 /* TestViewController.xib in Resources */,
 				42A255A722BD0EE200C744D9 /* Main.storyboard in Resources */,
 				424E576B22E0C22A00C96D45 /* User.json in Resources */,
-				420A276322E4859A00ECCA13 /* GET_Dogs_ValidResponse.json in Resources */,
+				420A276322E4859A00ECCA13 /* GET_Dogs_Response.json in Resources */,
 				42C3D3AD22E0AB97001A9BD9 /* Dog.json in Resources */,
-				425D6FAC22EB52140011BB45 /* GET_Dogs_MissingValuesResponse.json in Resources */,
+				425D6FAE22EB522F0011BB45 /* GET_Dogs_MissingValuesResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,22 +604,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9581B4C22316F53000A78286 /* StoryboardCreatable.swift in Sources */,
+				9581B4AD2316F32D00A78286 /* StoryboardCreatable.swift in Sources */,
+				9581B4B32316F35D00A78286 /* UIViewController+NibCreatable.swift in Sources */,
+				428CB76C2716C90D0095DB92 /* DogPatchClient.swift in Sources */,
+				9581B4B52316F3D200A78286 /* LogoNavigationItem.swift in Sources */,
+				9581B4AC2316F32D00A78286 /* UIViewController+StoryboardCreatable.swift in Sources */,
 				4270357322B6FA98001080B1 /* ListingCell.swift in Sources */,
 				42D837BE22B6DAD50036C5DD /* User.swift in Sources */,
-				9581B4BE2316F50400A78286 /* UIView+NibCreatable.swift in Sources */,
 				42335BEF22BD166800E21A72 /* UIView+ApplyShadow.swift in Sources */,
-				9581B4BF2316F50400A78286 /* NibCreatable.swift in Sources */,
+				9581B4B12316F35D00A78286 /* UIView+NibCreatable.swift in Sources */,
 				42335BF822BD1D7A00E21A72 /* UITableViewCell+Identifier.swift in Sources */,
+				9581B4B22316F35D00A78286 /* NibCreatable.swift in Sources */,
 				4213CCA0221738DF0047BA3D /* AppDelegate.swift in Sources */,
-				9581B4BD2316F50400A78286 /* UIViewController+NibCreatable.swift in Sources */,
 				427CCADA22BC64D700F92FF7 /* ErrorTableViewCell.swift in Sources */,
+				428CB7662716C0A60095DB92 /* URLSessionProtocol.swift in Sources */,
 				4270357122B6F3F9001080B1 /* DogViewModel.swift in Sources */,
 				42D837B322B6CE2D0036C5DD /* Dog.swift in Sources */,
 				4213CCA2221738DF0047BA3D /* ListingsViewController.swift in Sources */,
-				9581B4C32316F53000A78286 /* UIViewController+StoryboardCreatable.swift in Sources */,
-				9581B4C52316F56400A78286 /* LogoNavigationItem.swift in Sources */,
-				42C2FFB422EB26630094F78E /* DogPatchClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,18 +631,19 @@
 				42A1ECB522D742FE001404C8 /* ListingsViewControllerTests.swift in Sources */,
 				424E576922E0B1C600C96D45 /* DogTests.swift in Sources */,
 				42335BF222BD179600E21A72 /* UIView+ApplyShaddowTests.swift in Sources */,
+				9581B4B72316F44400A78286 /* LogoNavigationItemTests.swift in Sources */,
 				424E577A22E0C47A00C96D45 /* XCTAssertEqualToAny.swift in Sources */,
-				9581B4CA2316F5B300A78286 /* LogoNavigationItemTests.swift in Sources */,
 				42A255A522BD0E7600C744D9 /* UIViewController+StoryboardCreatableTests.swift in Sources */,
-				42337820270C64D400852BD3 /* TestView.swift in Sources */,
 				427CCB0822BC73AC00F92FF7 /* UIViewController+NibCreatableTests.swift in Sources */,
+				9581B4B92316F48E00A78286 /* DecodableTestCase.swift in Sources */,
+				428CB7682716C3010095DB92 /* URLSessionProtocolTests.swift in Sources */,
+				4233782B270C662900852BD3 /* TestView.swift in Sources */,
 				424E577E22E0D10C00C96D45 /* DogViewModelTests.swift in Sources */,
+				428CB76A2716C8F80095DB92 /* DogPatchClientTests.swift in Sources */,
 				4261B59A22D74CF500E5824D /* UITableViewCell+Identifier.swift in Sources */,
 				424E578822E0D87200C96D45 /* TimeInterval+Calendar.swift in Sources */,
 				427CCB0622BC72C900F92FF7 /* UIView+NibCreatableTests.swift in Sources */,
 				427CCAFD22BC705600F92FF7 /* TestViewController.swift in Sources */,
-				9581B4CC2316F5DD00A78286 /* DecodableTestCase.swift in Sources */,
-				42C2FFB222EB26200094F78E /* DogPatchClientTests.swift in Sources */,
 				420A276522E485C000ECCA13 /* Data+JSONFile.swift in Sources */,
 				4261B59C22D74D1700E5824D /* TestTableViewCell.swift in Sources */,
 				424E576D22E0C23700C96D45 /* UserTests.swift in Sources */,
@@ -796,7 +804,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/DogPatch/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -814,7 +821,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/DogPatch/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

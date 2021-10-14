@@ -48,7 +48,7 @@ class ListingsViewController: UIViewController {
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupRefreshControl()    
+    setupRefreshControl()
   }
   
   private func setupRefreshControl() {
