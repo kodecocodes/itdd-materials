@@ -44,9 +44,8 @@ class ListingsViewController: UIViewController {
   
   // MARK: - Instance Properties
   var networkClient: DogPatchService = DogPatchClient.shared
-  
   var viewModels: [DogViewModel] = []
-  var dataTask: URLSessionDataTask?
+  var dataTask: URLSessionTaskProtocol?
   
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -66,14 +65,14 @@ class ListingsViewController: UIViewController {
     super.viewWillAppear(animated)
     refreshData()
   }
-    
+  
   // MARK: - Refresh
   @objc func refreshData() {
     guard dataTask == nil else { return }
-    self.tableView.refreshControl?.beginRefreshing()
+    tableView.refreshControl?.beginRefreshing()
     dataTask = networkClient.getDogs() { dogs, error in
       self.dataTask = nil
-      self.viewModels = dogs?.map { DogViewModel(dog: $0)} ?? []
+      self.viewModels = dogs?.map { DogViewModel(dog: $0) } ?? []
       self.tableView.refreshControl?.endRefreshing()
       self.tableView.reloadData()
     }

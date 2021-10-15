@@ -37,6 +37,7 @@ class ListingsViewControllerTests: XCTestCase {
   
   // MARK: - Instance Properties
   var sut: ListingsViewController!
+  
   var mockNetworkClient: MockDogPatchService!
   var partialMock: PartialMockListingsViewController {
     return sut as! PartialMockListingsViewController
@@ -119,7 +120,8 @@ class ListingsViewControllerTests: XCTestCase {
   
   // MARK: - Instance Properties - Tests
   func test_networkClient_setToDogPatchClient() {
-    XCTAssertTrue((sut.networkClient as? DogPatchClient) === DogPatchClient.shared)
+    XCTAssertTrue((sut.networkClient as? DogPatchClient)
+      === DogPatchClient.shared)
   }
   
   func test_viewModels_setToEmptyArray() {
@@ -184,7 +186,8 @@ class ListingsViewControllerTests: XCTestCase {
     sut.refreshData()
 
     // then
-    XCTAssertEqual(sut.dataTask, mockNetworkClient.getDogsDataTask)
+    XCTAssertTrue(sut.dataTask ===
+                  mockNetworkClient.getDogsDataTask)
   }
   
   func test_refreshData_ifAlreadyRefreshing_doesntCallAgain() {
@@ -231,12 +234,14 @@ class ListingsViewControllerTests: XCTestCase {
     givenMockNetworkClient()
     let dogs = givenDogs()
     
+    // 1
     class MockTableView: UITableView {
       var calledReloadData = false
       override func reloadData() {
         calledReloadData = true
       }
     }
+    // 2
     let mockTableView = MockTableView()
     sut.tableView = mockTableView
     
@@ -245,7 +250,22 @@ class ListingsViewControllerTests: XCTestCase {
     mockNetworkClient.getDogsCompletion(dogs, nil)
     
     // then
+    
+    // 3
     XCTAssertTrue(mockTableView.calledReloadData)
+  }
+  
+  // MARK: - UITableViewDataSource Tests
+  func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
+    // given
+    let expected = 0
+    sut.tableView.refreshControl!.beginRefreshing()
+    
+    // when
+    let actual = sut.tableView(sut.tableView, numberOfRowsInSection: 0)
+    
+    // then
+    XCTAssertEqual(actual, expected)
   }
   
   func test_refreshData_beginsRefreshing() {
@@ -271,20 +291,7 @@ class ListingsViewControllerTests: XCTestCase {
     // then
     XCTAssertFalse(sut.tableView.refreshControl!.isRefreshing)
   }
-  
-  // MARK: - UITableViewDataSource Tests
-  func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
-    // given
-    let expected = 0
-    sut.tableView.refreshControl!.beginRefreshing()
-    
-    // when
-    let actual = sut.tableView(sut.tableView, numberOfRowsInSection: 0)
-    
-    // then
-    XCTAssertEqual(actual, expected)
-  }
-  
+
   func test_tableView_numberOfRowsInSection_givenHasViewModels_returnsViewModelsCount() {
     // given
     let expected = 3
@@ -296,7 +303,7 @@ class ListingsViewControllerTests: XCTestCase {
     // then
     XCTAssertEqual(actual, expected)
   }
-  
+
   func test_tableView_numberOfRowsInSection_givenNoViewModels_returns1() {
     // given
     let expected = 1

@@ -100,7 +100,7 @@ class ListingsViewControllerTests: XCTestCase {
     }
   }
   
-  // MARK: - Instance Properties - Tests
+  // MARK: - Outlets - Tests
   func test_tableView_onSet_registersErrorTableViewCell() {
     // when
     let cell = sut.tableView.dequeueReusableCell(
@@ -110,6 +110,7 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertTrue(cell is ErrorTableViewCell)
   }
   
+  // MARK: - Instance Properties - Tests
   func test_viewModels_setToEmptyArray() {
     XCTAssertEqual(sut.viewModels.count, 0)
   }
@@ -165,7 +166,31 @@ class ListingsViewControllerTests: XCTestCase {
   }
   
   // MARK: - UITableViewDataSource Tests
-  func test_tableView_numberOfRowsInSection_returns1() {
+  func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
+    // given
+    let expected = 0
+    sut.tableView.refreshControl!.beginRefreshing()
+    
+    // when
+    let actual = sut.tableView(sut.tableView, numberOfRowsInSection: 0)
+    
+    // then
+    XCTAssertEqual(actual, expected)
+  }
+
+  func test_tableView_numberOfRowsInSection_givenHasViewModels_returnsViewModelsCount() {
+    // given
+    let expected = 3
+    givenViewModels(count: expected)
+    
+    // when
+    let actual = sut.tableView(sut.tableView, numberOfRowsInSection: 0)
+    
+    // then
+    XCTAssertEqual(actual, expected)
+  }
+
+  func test_tableView_numberOfRowsInSection_givenNoViewModels_returns1() {
     // given
     let expected = 1
     

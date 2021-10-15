@@ -33,7 +33,7 @@
 import Foundation
 import XCTest
 
-protocol DecodableTestCase: class {
+protocol DecodableTestCase: AnyObject {
   associatedtype T: Decodable
   var dictionary: NSDictionary! { get set }
   var sut: T! { get set }
