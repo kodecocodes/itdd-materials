@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+/// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -30,21 +34,22 @@ import XCTest
 @testable import FitNess
 
 class DataModelTests: XCTestCase {
-
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: DataModel!
 
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     sut = DataModel()
   }
 
-  override func tearDown() {
-    sut = nil
+  override func tearDownWithError() throws {
     AlertCenter.instance.clearAlerts()
-    super.tearDown()
+    sut = nil
+    try super.tearDownWithError()
   }
 
   // MARK: - Given
+
   func givenSomeProgress() {
     sut.goal = 1000
     sut.distance = 10
@@ -52,17 +57,23 @@ class DataModelTests: XCTestCase {
     sut.nessie.distance = 50
   }
 
-  func givenExpectationForNotification(alert: Alert) -> XCTestExpectation {
-    let exp = XCTNSNotificationExpectation(name: AlertNotification.name,
-                                           object: AlertCenter.instance,
-                                           notificationCenter: AlertCenter.instance.notificationCenter)
-    exp.handler = alertHandler(alert)
+  func givenExpectationForNotification(
+    alert: Alert
+  ) -> XCTestExpectation {
+    let exp = XCTNSNotificationExpectation(
+      name: AlertNotification.name,
+      object: AlertCenter.instance,
+      notificationCenter: AlertCenter.instance.notificationCenter)
+    exp.handler = { notification -> Bool in
+      return notification.alert == alert
+    }
     exp.expectedFulfillmentCount = 1
     exp.assertForOverFulfill = true
     return exp
   }
 
   // MARK: - Lifecycle
+
   func testModel_whenRestarted_goalIsUnset() {
     // given
     givenSomeProgress()
@@ -109,8 +120,9 @@ class DataModelTests: XCTestCase {
 
   // MARK: - Goal
   func testModel_whenStarted_goalIsNotReached() {
-    XCTAssertFalse(sut.goalReached,
-                   "goalReached should be false when the model is created")
+    XCTAssertFalse(
+      sut.goalReached,
+      "goalReached should be false when the model is created")
   }
 
   func testModel_whenStepsReachGoal_goalIsReached() {
@@ -159,12 +171,12 @@ class DataModelTests: XCTestCase {
     // then
     XCTAssertTrue(sut.caught)
   }
-  
+
   func testModel_whenNessieDistanceIsLessThanHeadstart_isNotCaught() {
     //given
     sut.distance = 100
     sut.nessie.distance = 100
-    
+
     // then
     XCTAssertFalse(sut.caught)
   }
@@ -174,8 +186,10 @@ class DataModelTests: XCTestCase {
     // given
     sut.goal = 400
     let exp = givenExpectationForNotification(alert: .milestone25Percent)
+
     // when
     sut.steps = 100
+
     // then
     wait(for: [exp], timeout: 1)
   }
@@ -245,12 +259,14 @@ class DataModelTests: XCTestCase {
 
     // clear out the alerts to simulate user interaction
     let alertObserver = AlertCenter.instance.notificationCenter
-      .addObserver(forName: AlertNotification.name,
-                   object: nil, queue: .main) { notification in
-                    if let alert = notification.alert {
-                      AlertCenter.instance.clear(alert: alert)
-                    }
-    }
+      .addObserver(
+        forName: AlertNotification.name,
+        object: nil,
+        queue: .main) { notification in
+          if let alert = notification.alert {
+            AlertCenter.instance.clear(alert: alert)
+          }
+      }
 
     // when
     for step in 1...10 {
@@ -260,7 +276,8 @@ class DataModelTests: XCTestCase {
 
     // then
     wait(for: expectations, timeout: 20, enforceOrder: true)
-    AlertCenter.instance.notificationCenter.removeObserver(alertObserver)
+    AlertCenter.instance.notificationCenter
+      .removeObserver(alertObserver)
   }
 
   func testWhenNessieHalfway_warningNotificationGenerated() {
@@ -303,5 +320,3 @@ class DataModelTests: XCTestCase {
     wait(for: expectations, timeout: 1, enforceOrder: true)
   }
 }
-
-
