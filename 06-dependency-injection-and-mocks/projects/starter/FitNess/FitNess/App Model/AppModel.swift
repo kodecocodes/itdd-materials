@@ -31,6 +31,7 @@
 /// THE SOFTWARE.
 
 import Foundation
+import CoreMotion
 
 class AppModel {
   static let instance = AppModel()
