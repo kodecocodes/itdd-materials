@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,21 +32,12 @@
 
 import UIKit
 
-class LogoNavigationItem: UINavigationItem {
-
-  override init(title: String) {
-    super.init(title: title)
-    setupTitleView()
-  }
+protocol StoryboardCreatable: AnyObject {
+  static var storyboard: UIStoryboard { get }
+  static var storyboardBundle: Bundle? { get }
+  static var storyboardIdentifier: String { get }
+  static var storyboardName: String { get }
   
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    setupTitleView()
-  }
-  
-  private func setupTitleView() {
-    let image = UIImage(named: "logo_dog_patch")
-    let imageView = UIImageView(image: image)
-    titleView = imageView
-  }
+  static func instanceFromStoryboard() -> Self
 }
+

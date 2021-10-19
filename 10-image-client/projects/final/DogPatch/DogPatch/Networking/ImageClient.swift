@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -30,9 +30,9 @@ import UIKit
 
 protocol ImageService {
   func downloadImage(
-  fromURL url: URL,
-  completion: @escaping (UIImage?, Error?) -> Void)
-  -> URLSessionDataTask?
+    fromURL url: URL,
+    completion: @escaping (UIImage?, Error?) -> Void)
+    -> URLSessionTaskProtocol?
   
   func setImage(on imageView: UIImageView,
                 fromURL url: URL,
@@ -43,18 +43,18 @@ class ImageClient {
   
   // MARK: - Static Properties
   static let shared = ImageClient(responseQueue: .main,
-                                  session: .shared)
+                                  session: URLSession.shared)
   
   // MARK: - Instance Properties
   var cachedImageForURL: [URL: UIImage]
-  var cachedTaskForImageView: [UIImageView: URLSessionDataTask]
+  var cachedTaskForImageView: [UIImageView: URLSessionTaskProtocol]
   
   let responseQueue: DispatchQueue?
-  let session: URLSession
+  let session: URLSessionProtocol
 
   // MARK: - Object Lifecycle
   init(responseQueue: DispatchQueue?,
-       session: URLSession) {
+       session: URLSessionProtocol) {
   
     self.cachedImageForURL = [:]
     self.cachedTaskForImageView = [:]
@@ -64,27 +64,31 @@ class ImageClient {
   }
 }
 
-// MARK: - ImageService
 extension ImageClient: ImageService {
+  
   func downloadImage(
     fromURL url: URL,
     completion: @escaping (UIImage?, Error?) -> Void)
-      -> URLSessionDataTask? {
-        if let image = cachedImageForURL[url] {
-          completion(image, nil)
-          return nil
-        }
-        let dataTask =
-          session.dataTask(with: url) { data, response, error in
-            if let data = data, let image = UIImage(data: data) {
-              self.cachedImageForURL[url] = image
-              self.dispatch(image: image, completion: completion)
-            } else {
-              self.dispatch(error: error, completion: completion)
-            }
-        }
-        dataTask.resume()
-        return dataTask
+  -> URLSessionTaskProtocol? {
+    
+    if let image = cachedImageForURL[url] {
+      completion(image, nil)
+      return nil
+    }
+    
+    let task =
+      session.makeDataTask(with: url) {
+        [weak self] data, response, error in
+        guard let self = self else { return }
+        if let data = data, let image = UIImage(data: data) {
+          self.cachedImageForURL[url] = image
+          self.dispatch(image: image, completion: completion)
+        } else {          
+          self.dispatch(error: error, completion: completion)
+      }
+    }
+    task.resume()
+    return task
   }
   
   private func dispatch(
@@ -101,14 +105,12 @@ extension ImageClient: ImageService {
   
   func setImage(on imageView: UIImageView,
                 fromURL url: URL,
-                withPlaceholder placeholder: UIImage?) {    
-    
+                withPlaceholder placeholder: UIImage?) {
     cachedTaskForImageView[imageView]?.cancel()
     imageView.image = placeholder
     
     cachedTaskForImageView[imageView] =
-      downloadImage(fromURL: url) {
-        [weak self] image, error in
+      downloadImage(fromURL: url) { [weak self] image, error in
         guard let self = self else { return }
         self.cachedTaskForImageView[imageView] = nil
         guard let image = image else {

@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -40,9 +44,8 @@ class ListingsViewController: UIViewController {
   
   // MARK: - Instance Properties
   var networkClient: DogPatchService = DogPatchClient.shared
-  
   var viewModels: [DogViewModel] = []
-  var dataTask: URLSessionDataTask?
+  var dataTask: URLSessionTaskProtocol?
   
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -62,14 +65,14 @@ class ListingsViewController: UIViewController {
     super.viewWillAppear(animated)
     refreshData()
   }
-    
+  
   // MARK: - Refresh
   @objc func refreshData() {
     guard dataTask == nil else { return }
-    self.tableView.refreshControl?.beginRefreshing()
+    tableView.refreshControl?.beginRefreshing()
     dataTask = networkClient.getDogs() { dogs, error in
       self.dataTask = nil
-      self.viewModels = dogs?.map { DogViewModel(dog: $0)} ?? []
+      self.viewModels = dogs?.map { DogViewModel(dog: $0) } ?? []
       self.tableView.refreshControl?.endRefreshing()
       self.tableView.reloadData()
     }
