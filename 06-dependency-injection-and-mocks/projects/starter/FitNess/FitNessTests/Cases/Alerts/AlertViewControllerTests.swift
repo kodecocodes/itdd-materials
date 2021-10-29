@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,21 +34,21 @@ import XCTest
 @testable import FitNess
 
 class AlertViewControllerTests: XCTestCase {
-
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AlertViewController!
 
   // MARK: - Test Lifecycle
-  override func setUp() {
-    super.setUp()
-    let rvc = loadRootViewController()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    let rvc = getRootViewController()
     sut = rvc.alertController
     AlertCenter.instance.clearAlerts()
   }
 
-  override func tearDown() {
+  override func tearDownWithError() throws {
     sut = nil
     AlertCenter.instance.clearAlerts()
-    super.tearDown()
+    try super.tearDownWithError()
   }
 
   // MARK: - Given
@@ -144,7 +148,8 @@ class AlertViewControllerTests: XCTestCase {
   func testClose_clearsAnAlert() {
     // given
     let alert = Alert("Achtung!")
-    AlertCenter.instance.postAlert(alert: alert) //guaranteed to have 1 alert by AlertCenterTests.testPostOne_generatesANotification
+    //guaranteed to have 1 alert by AlertCenterTests.testPostOne_generatesANotification
+    AlertCenter.instance.postAlert(alert: alert)
 
     // when
     sut.closeAlert(sut as Any)
