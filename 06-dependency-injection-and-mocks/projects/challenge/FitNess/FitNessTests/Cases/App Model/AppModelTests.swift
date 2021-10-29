@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+/// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -30,22 +34,21 @@ import XCTest
 @testable import FitNess
 
 class AppModelTests: XCTestCase {
-
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AppModel!
   var mockPedometer: MockPedometer!
 
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     mockPedometer = MockPedometer()
     sut = AppModel(pedometer: mockPedometer)
   }
 
-  override func tearDown() {
-    sut.stateChangedCallback = nil
-    mockPedometer = nil
-    sut = nil
+  override func tearDownWithError() throws {
     AlertCenter.instance.clearAlerts()
-    super.tearDown()
+    sut.stateChangedCallback = nil
+    sut = nil
+    try super.tearDownWithError()
   }
 
   // MARK: - Given
@@ -55,6 +58,7 @@ class AppModelTests: XCTestCase {
 
   func givenInProgress() {
     givenGoalSet()
+    //swiftlint:disable force_try
     try! sut.start()
   }
 
@@ -78,18 +82,6 @@ class AppModelTests: XCTestCase {
   }
 
   // MARK: - Start
-  func testAppModel_whenStarted_isInInProgressState() {
-    // given
-    givenGoalSet()
-    
-    // when started
-    try? sut.start()
-
-    // then it is in inProgress
-    let newState = sut.appState
-    XCTAssertEqual(newState, AppState.inProgress)
-  }
-
   func testModelWithNoGoal_whenStarted_throwsError() {
     XCTAssertThrowsError(try sut.start())
   }
@@ -100,6 +92,18 @@ class AppModelTests: XCTestCase {
 
     // then
     XCTAssertNoThrow(try sut.start())
+  }
+
+  func testAppModel_whenStarted_isInInProgressState() {
+    // given
+    givenGoalSet()
+
+    // when started
+    try? sut.start()
+
+    // then it is in inProgress
+    let observedState = sut.appState
+    XCTAssertEqual(observedState, .inProgress)
   }
 
   // MARK: - Pause
@@ -203,7 +207,7 @@ class AppModelTests: XCTestCase {
     wait(for: [expected], timeout: 1)
     XCTAssertEqual(observedState, .paused)
   }
-  
+
   // MARK: - Pedometer
   func testAppModel_whenStarted_startsPedometer() {
     //given
@@ -232,7 +236,10 @@ class AppModelTests: XCTestCase {
     // given
     givenGoalSet()
     mockPedometer.pedometerAvailable = false
-    let exp = expectation(forNotification: AlertNotification.name, object: nil, handler: alertHandler(.noPedometer))
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: nil,
+      handler: alertHandler(.noPedometer))
 
     // when
     try! sut.start()
@@ -257,7 +264,10 @@ class AppModelTests: XCTestCase {
     // given
     givenGoalSet()
     mockPedometer.permissionDeclined = true
-    let exp = expectation(forNotification: AlertNotification.name, object: nil, handler: alertHandler(.notAuthorized))
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: nil,
+      handler: alertHandler(.notAuthorized))
 
     // when
     try! sut.start()
@@ -270,9 +280,10 @@ class AppModelTests: XCTestCase {
     // given
     givenGoalSet()
     mockPedometer.error = MockPedometer.notAuthorizedError
-    let exp = expectation(forNotification: AlertNotification.name,
-                          object: nil,
-                          handler: alertHandler(.notAuthorized))
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: nil,
+      handler: alertHandler(.notAuthorized))
 
     // when
     try! sut.start()
@@ -280,7 +291,7 @@ class AppModelTests: XCTestCase {
     // then
     wait(for: [exp], timeout: 1)
   }
-  
+
   func testModel_whenPedometerUpdates_errorGeneratesAlert() {
     // given
     givenInProgress()
@@ -367,5 +378,4 @@ class AppModelTests: XCTestCase {
     // then
     XCTAssertTrue(sut.dataModel.nessie.isSleeping)
   }
-
 }

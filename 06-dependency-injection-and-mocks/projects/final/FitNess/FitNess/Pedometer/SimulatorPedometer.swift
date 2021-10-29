@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+/// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,7 +33,6 @@
 import Foundation
 
 class SimulatorPedometer: Pedometer {
-
   struct Data: PedometerData {
     let steps: Int
     let distanceTravelled: Double
@@ -46,19 +49,23 @@ class SimulatorPedometer: Pedometer {
 
   func start(
     dataUpdates: @escaping (PedometerData?, Error?) -> Void,
-    eventUpdates: @escaping (Error?) -> Void) {
-
+    eventUpdates: @escaping (Error?) -> Void
+  ) {
     updateBlock = eventUpdates
     dataBlock = dataUpdates
-    
-    timer = Timer(timeInterval: 1, repeats: true,
-                  block: { timer in
-                    self.distance = self.distance + 1
-                    print("updated distance: \(self.distance)")
-                    let data = Data(steps: 10,
-                                    distanceTravelled: self.distance)
-                    self.dataBlock?(data, nil)
-    })
+
+    timer = Timer(
+      timeInterval: 1,
+      repeats: true
+    ) { _ in
+      self.distance += 1
+      print("updated distance: \(self.distance)")
+      let data = Data(
+        steps: 10,
+        distanceTravelled: self.distance)
+      self.dataBlock?(data, nil)
+    }
+    //swiftlint:disable force_unwrapping
     RunLoop.main.add(timer!, forMode: RunLoop.Mode.default)
     updateBlock?(nil)
   }

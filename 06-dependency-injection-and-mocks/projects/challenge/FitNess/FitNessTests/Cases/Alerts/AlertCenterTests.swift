@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+/// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -30,18 +34,18 @@ import XCTest
 @testable import FitNess
 
 class AlertCenterTests: XCTestCase {
-
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AlertCenter!
 
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     sut = AlertCenter()
   }
 
-  override func tearDown() {
+  override func tearDownWithError() throws {
     AlertCenter.instance.clearAlerts()
     sut = nil
-    super.tearDown()
+    try super.tearDownWithError()
   }
 
   // MARK: - Given
@@ -94,6 +98,7 @@ class AlertCenterTests: XCTestCase {
     givenAlreadyHasAlerts(count: 3)
 
     // when
+    //swiftlint:disable force_unwrapping
     sut.clear(alert: sut.topAlert!)
 
     //then
@@ -103,9 +108,10 @@ class AlertCenterTests: XCTestCase {
   // MARK: - Posting Notifications
   func testPostOne_generatesANotification() {
     // given
-    let exp = expectation(forNotification: AlertNotification.name,
-                          object: sut,
-                          handler: nil)
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: sut,
+      handler: nil)
     let alert = Alert("this is an alert")
 
     // when
@@ -117,9 +123,10 @@ class AlertCenterTests: XCTestCase {
 
   func testPostingTwoAlerts_generatesTwoNotifications() {
     //given
-    let exp = expectation(forNotification: AlertNotification.name,
-                           object: sut,
-                           handler: nil)
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: sut,
+      handler: nil)
     exp.expectedFulfillmentCount = 2
     let alert1 = Alert("this is the first alert")
     let alert2 = Alert("this is the second alert")
@@ -134,9 +141,10 @@ class AlertCenterTests: XCTestCase {
 
   func testPostDouble_generatesOnlyOneNotification() {
     //given
-    let exp = expectation(forNotification: AlertNotification.name,
-                          object: sut,
-                          handler: nil)
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: sut,
+      handler: nil)
     exp.expectedFulfillmentCount = 2
     exp.isInverted = true
     let alert = Alert("this is an alert")
@@ -181,14 +189,17 @@ class AlertCenterTests: XCTestCase {
   func testNotification_whenPosted_containsAlertObject() {
     // given
     let alert = Alert("test contents")
-    let exp = expectation(forNotification: AlertNotification.name,
-                          object: sut, handler: nil)
+    let exp = expectation(
+      forNotification: AlertNotification.name,
+      object: sut,
+      handler: nil)
 
     var postedAlert: Alert?
-    sut.notificationCenter.addObserver(forName: AlertNotification.name,
-                                       object: sut, queue: nil)
-    { notification in
-      postedAlert = notification.alert
+    sut.notificationCenter.addObserver(
+      forName: AlertNotification.name,
+      object: sut,
+      queue: nil) { notification in
+        postedAlert = notification.alert
     }
 
     // when
@@ -196,8 +207,11 @@ class AlertCenterTests: XCTestCase {
 
     // then
     wait(for: [exp], timeout: 1)
-    XCTAssertNotNil(postedAlert, "should have an sent an alert")
-    XCTAssertEqual(alert, postedAlert, "should have sent the original alert")
+    XCTAssertNotNil(postedAlert, "should have sent an alert")
+    XCTAssertEqual(
+      alert,
+      postedAlert,
+      "should have sent the original alert")
   }
 
   // MARK: - Clearing Individual Alerts
