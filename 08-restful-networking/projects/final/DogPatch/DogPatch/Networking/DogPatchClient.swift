@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -29,23 +29,24 @@
 import Foundation
 
 class DogPatchClient {
-
+  
   let baseURL: URL
-  let session: URLSession
+  let session: URLSessionProtocol
   let responseQueue: DispatchQueue?
 
   init(baseURL: URL,
-       session: URLSession,
+       session: URLSessionProtocol,
        responseQueue: DispatchQueue?) {
     self.baseURL = baseURL
     self.session = session
     self.responseQueue = responseQueue
   }
-
-  func getDogs(completion:
-    @escaping ([Dog]?, Error?) -> Void) -> URLSessionDataTask {
+  
+  func getDogs(completion: @escaping
+    ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol {    
     let url = URL(string: "dogs", relativeTo: baseURL)!
-    let task = session.dataTask(with: url) { [weak self] data, response, error in
+    let task = session.makeDataTask(with: url) { [weak self]
+      data, response, error in
       guard let self = self else { return }
       guard let response = response as? HTTPURLResponse,
         response.statusCode == 200,
@@ -65,7 +66,7 @@ class DogPatchClient {
     task.resume()
     return task
   }
-
+  
   private func dispatchResult<Type>(
     models: Type? = nil,
     error: Error? = nil,
