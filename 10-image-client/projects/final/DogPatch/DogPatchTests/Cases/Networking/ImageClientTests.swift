@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -38,10 +38,9 @@ class ImageClientTests: XCTestCase {
   }
   var url: URL!
   
-  var receivedDataTask: MockURLSessionDataTask!
-  var receivedError: Error!
-  var receivedImage: UIImage!
-  
+  var receivedTask: MockURLSessionTask?
+  var receivedError: Error?
+  var receivedImage: UIImage?
   var expectedImage: UIImage!
   var expectedError: NSError!
   
@@ -61,7 +60,7 @@ class ImageClientTests: XCTestCase {
     mockSession = nil
     url = nil
     sut = nil
-    receivedDataTask = nil
+    receivedTask = nil
     receivedError = nil
     receivedImage = nil
     expectedImage = nil
@@ -80,31 +79,34 @@ class ImageClientTests: XCTestCase {
     code: 42,
     userInfo: nil)
   }
-    
+  
   // MARK: - When
   func whenDownloadImage(
     image: UIImage? = nil, error: Error? = nil) {
-    receivedDataTask = sut.downloadImage(
-        fromURL: url) { image, error in
+          
+      receivedTask = sut.downloadImage(fromURL: url) { image, error in
           self.receivedImage = image
           self.receivedError = error
-      } as? MockURLSessionDataTask
-      if let receivedDataTask = receivedDataTask {
-        if let image = image {
-          receivedDataTask.completionHandler(image.pngData(), nil, nil)
-          
-        } else if let error = error {
-          receivedDataTask.completionHandler(nil, nil, error)
-        }
+      } as? MockURLSessionTask
+      
+      guard let receivedTask = receivedTask else {
+        return
+      }
+      if let image = image {
+        receivedTask.completionHandler(
+          image.pngData(), nil, nil)
+        
+      } else if let error = error {
+        receivedTask.completionHandler(nil, nil, error)
       }
   }
   
   func whenSetImage() {
     givenExpectedImage()
     sut.setImage(on: imageView, fromURL: url, withPlaceholder: nil)
-    receivedDataTask = sut.cachedTaskForImageView[imageView]
-      as? MockURLSessionDataTask
-    receivedDataTask.completionHandler(
+    receivedTask = sut.cachedTaskForImageView[imageView]
+      as? MockURLSessionTask
+    receivedTask?.completionHandler(
       expectedImage.pngData(), nil, nil)
   }
   
@@ -125,7 +127,7 @@ class ImageClientTests: XCTestCase {
       sut.downloadImage(fromURL: url) { _, _ in
         receivedThread = Thread.current
         expectation.fulfill()
-      } as! MockURLSessionDataTask
+      } as! MockURLSessionTask
     dataTask.completionHandler(image?.pngData(), nil, error)
     
     // then
@@ -139,24 +141,24 @@ class ImageClientTests: XCTestCase {
   }
   
   func test_shared_setsSession() {
-    XCTAssertEqual(ImageClient.shared.session, .shared)
+    XCTAssertTrue(ImageClient.shared.session === URLSession.shared)
   }
   
-  // MARK: - Object Lifecycle - Tests  
+  // MARK: - Object Lifecycle - Tests
   func test_init_setsCachedImageForURL() {
-    XCTAssertEqual(sut.cachedImageForURL, [:])
+    XCTAssertTrue(sut.cachedImageForURL.isEmpty)
   }
   
   func test_init_setsCachedTaskForImageView() {
-    XCTAssertEqual(sut.cachedTaskForImageView, [:])
+    XCTAssertTrue(sut.cachedTaskForImageView.isEmpty)
   }
-  
+    
   func test_init_setsResponseQueue() {
-    XCTAssertEqual(sut.responseQueue, nil)
+    XCTAssertTrue(sut.responseQueue === nil)
   }
   
   func test_init_setsSession() {
-    XCTAssertEqual(sut.session, mockSession)
+    XCTAssertTrue(sut.session === mockSession)
   }
   
   // MARK: - ImageService - Tests
@@ -179,20 +181,20 @@ class ImageClientTests: XCTestCase {
                      withPlaceholder: placeholder)
   }
   
-  func test_downloadImage_createsExpectedDataTask() {
+  func test_downloadImage_createsExpectedTask() {
     // when
     whenDownloadImage()
             
     // then
-    XCTAssertEqual(receivedDataTask.url, url)
+    XCTAssertEqual(receivedTask?.url, url)
   }
   
-  func test_downloadImage_callsResumeOnDataTask() {
+  func test_downloadImage_callsResumeOnTask() {
     // when
     whenDownloadImage()
 
     // then
-    XCTAssertTrue(receivedDataTask.calledResume)
+    XCTAssertTrue(receivedTask?.calledResume ?? false)
   }
   
   func test_downloadImage_givenImage_callsCompletionWithImage() {
@@ -203,18 +205,19 @@ class ImageClientTests: XCTestCase {
     whenDownloadImage(image: expectedImage)
 
     // then
-    XCTAssertEqual(expectedImage.pngData(), receivedImage.pngData())
+    XCTAssertEqual(expectedImage.pngData(),
+                   receivedImage?.pngData())
   }
   
   func test_downloadImage_givenError_callsCompletionWithError() {
     // given
     givenExpectedError()
-    
+
     // when
     whenDownloadImage(error: expectedError)
-    
+
     // then
-    XCTAssertEqual(receivedError as NSError, expectedError)
+    XCTAssertEqual(expectedError, receivedError as NSError?)
   }
   
   func test_downloadImage_givenImage_dispatchesToResponseQueue() {
@@ -232,7 +235,7 @@ class ImageClientTests: XCTestCase {
     // then
     verifyDownloadImageDispatched(error: expectedError)
   }
-    
+  
   func test_downloadImage_givenImage_cachesImage() {
     // given
     givenExpectedImage()
@@ -254,7 +257,7 @@ class ImageClientTests: XCTestCase {
     whenDownloadImage(image: expectedImage)
     
     // then
-    XCTAssertNil(receivedDataTask)
+    XCTAssertNil(receivedTask)
   }
   
   func test_downloadImage_givenCachedImage_callsCompletionWithImage() {
@@ -268,22 +271,22 @@ class ImageClientTests: XCTestCase {
     whenDownloadImage(image: expectedImage)
     
     // then
-    XCTAssertEqual(receivedImage.pngData(),
-                   expectedImage.pngData())
+    XCTAssertEqual(expectedImage.pngData(),
+                   receivedImage?.pngData())
   }
   
   func test_setImageOnImageView_cancelsExistingDataTask() {
     // given
-    let dataTask = MockURLSessionDataTask(completionHandler: { _, _, _ in },
-                                          url: url,
-                                          queue: nil)
-    sut.cachedTaskForImageView[imageView] = dataTask
+    let task = MockURLSessionTask(completionHandler: { _, _, _ in },
+                                  url: url,
+                                  queue: nil)
+    sut.cachedTaskForImageView[imageView] = task
     
     // when
     sut.setImage(on: imageView, fromURL: url, withPlaceholder: nil)
 
     // then
-    XCTAssertTrue(dataTask.calledCancel)
+    XCTAssertTrue(task.calledCancel)
   }
   
   func test_setImageOnImageView_setsPlaceholderOnImageView() {
@@ -300,16 +303,16 @@ class ImageClientTests: XCTestCase {
                    expectedImage.pngData())
   }
   
-  func test_setImageOnImageView_cachesDownloadTask() {
+  func test_setImageOnImageView_cachesTask() {
     // when
     sut.setImage(on: imageView,
                  fromURL: url,
                  withPlaceholder: nil)
     
     // then
-    receivedDataTask = sut.cachedTaskForImageView[imageView]
-      as? MockURLSessionDataTask
-    XCTAssertEqual(receivedDataTask?.url, url)
+    receivedTask = sut.cachedTaskForImageView[imageView]
+      as? MockURLSessionTask
+    XCTAssertEqual(receivedTask?.url, url)
   }
   
   func test_setImageOnImageView_onCompletionRemovesCachedTask() {
@@ -338,9 +341,9 @@ class ImageClientTests: XCTestCase {
     sut.setImage(on: imageView,
                  fromURL: url,
                  withPlaceholder: expectedImage)
-    receivedDataTask = sut.cachedTaskForImageView[imageView]
-      as? MockURLSessionDataTask
-    receivedDataTask.completionHandler(nil, nil, expectedError)
+    receivedTask = sut.cachedTaskForImageView[imageView]
+      as? MockURLSessionTask
+    receivedTask?.completionHandler(nil, nil, expectedError)
     
     // then
     XCTAssertEqual(imageView.image?.pngData(),
