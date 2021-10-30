@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -28,54 +28,29 @@
 
 import Foundation
 
-class DogPatchClient {
+protocol URLSessionProtocol: AnyObject {
   
-  let baseURL: URL
-  let session: URLSession
-  let responseQueue: DispatchQueue?
+  func makeDataTask(
+    with url: URL,
+    completionHandler:
+      @escaping (Data?, URLResponse?, Error?) -> Void)
+  -> URLSessionTaskProtocol
+}
+
+protocol URLSessionTaskProtocol: AnyObject {
+  func resume()
+}
+
+extension URLSessionTask: URLSessionTaskProtocol { }
+
+extension URLSession: URLSessionProtocol {
   
-  init(baseURL: URL,
-       session: URLSession,
-       responseQueue: DispatchQueue?) {
-    self.baseURL = baseURL
-    self.session = session
-    self.responseQueue = responseQueue
-  }
-  
-  func getDogs(completion:
-    @escaping ([Dog]?, Error?) -> Void) -> URLSessionDataTask {
-    let url = URL(string: "dogs", relativeTo: baseURL)!
-    let task = session.dataTask(with: url) { [weak self] data, response, error in
-      guard let self = self else { return }
-      guard let response = response as? HTTPURLResponse,
-        response.statusCode == 200,
-        error == nil,
-        let data = data else {
-          self.dispatchResult(error: error, completion: completion)
-          return
-      }
-      let decoder = JSONDecoder()
-      do {
-        let dogs = try decoder.decode([Dog].self, from: data)
-        self.dispatchResult(models: dogs, completion: completion)
-      } catch {
-        self.dispatchResult(error: error, completion: completion)
-      }
-    }
-    task.resume()
-    return task
-  }
-  
-  private func dispatchResult<Type>(
-    models: Type? = nil,
-    error: Error? = nil,
-    completion: @escaping (Type?, Error?) -> Void) {
-    guard let responseQueue = responseQueue else {
-      completion(models, error)
-      return
-    }
-    responseQueue.async {
-      completion(models, error)
-    }
+  func makeDataTask(
+    with url: URL,
+    completionHandler:
+      @escaping (Data?, URLResponse?, Error?) -> Void)
+  -> URLSessionTaskProtocol {    
+    return dataTask(with: url,
+                    completionHandler: completionHandler)
   }
 }

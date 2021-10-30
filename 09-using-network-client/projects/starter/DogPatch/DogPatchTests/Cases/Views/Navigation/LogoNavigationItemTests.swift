@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,22 +30,44 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
+// MARK: - Test Module
+@testable import DogPatch
+
+// MARK: - Collaborators
+
+// MARK: - Test Support
 import XCTest
 
-protocol DecodableTestCase: class {
-  associatedtype T: Decodable
-  var dictionary: NSDictionary! { get set }
-  var sut: T! { get set }
-}
-extension DecodableTestCase {
+class LogoNavigationItemTests: XCTestCase {
   
-  func givenSUTFromJSON(fileName: String = "\(T.self)",
-    file: StaticString = #file,
-    line: UInt = #line) throws {
-    let decoder = JSONDecoder()
-    let data = try Data.fromJSON(fileName: fileName, file: file, line: line)
-    dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary
-    sut = try decoder.decode(T.self, from: data)
+  // MARK: - Instance Variables
+  var sut: LogoNavigationItem!
+  
+  // MARK: - Then
+  func assertTitleViewSetToLogoImageView(line: UInt = #line) throws {
+    let imageView = try XCTUnwrap(sut.titleView as? UIImageView, line: line)
+    XCTAssertEqual(imageView.image, UIImage(named: "logo_dog_patch"), line: line)
+  }
+  
+  // MARK: - Init Tests
+  func test_initTitle_setsTitleView() throws {
+    // when
+    sut = LogoNavigationItem(title: "title")
+    
+    // then
+    try assertTitleViewSetToLogoImageView()
+  }
+  
+  func test_initCoder_setsTitleView() throws {
+    // given
+    let bundle = Bundle(for: LogoNavigationItemTests.self)
+    let nib = UINib(nibName: "TestLogoNavigationBar", bundle: bundle)
+    let navigationBar = try XCTUnwrap(nib.instantiate(withOwner: nil, options: nil).last as? UINavigationBar)
+    
+    // when
+    sut = try XCTUnwrap(navigationBar.topItem as? LogoNavigationItem)
+    
+    // then
+    try assertTitleViewSetToLogoImageView()
   }
 }

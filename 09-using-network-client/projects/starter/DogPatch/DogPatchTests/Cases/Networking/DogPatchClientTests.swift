@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ class DogPatchClientTests: XCTestCase {
   var getDogsURL: URL {
     return URL(string: "dogs", relativeTo: baseURL)!
   }
-  
+ 
   override func setUp() {
     super.setUp()
     baseURL = URL(string: "https://example.com/api/v1/")!
@@ -47,7 +47,7 @@ class DogPatchClientTests: XCTestCase {
                          session: mockSession,
                          responseQueue: nil)
   }
-  
+
   override func tearDown() {
     baseURL = nil
     mockSession = nil
@@ -74,7 +74,7 @@ class DogPatchClientTests: XCTestCase {
         calledCompletion = true
         receivedDogs = dogs
         receivedError = error as NSError?
-        } as! MockURLSessionDataTask
+        } as! MockURLSessionTask
       
       mockTask.completionHandler(data, response, error)
       return (calledCompletion, receivedDogs, receivedError)
@@ -98,7 +98,7 @@ class DogPatchClientTests: XCTestCase {
     let mockTask = sut.getDogs() { dogs, error in
       thread = Thread.current
       expectation.fulfill()
-      } as! MockURLSessionDataTask
+      } as! MockURLSessionTask
     
     let response = HTTPURLResponse(url: getDogsURL,
                                    statusCode: statusCode,
@@ -116,8 +116,8 @@ class DogPatchClientTests: XCTestCase {
     XCTAssertEqual(sut.baseURL, baseURL)
   }
   
-  func test_init_sets_session() {
-    XCTAssertEqual(sut.session, mockSession)
+  func test_init_sets_session() {    
+    XCTAssertTrue(sut.session === mockSession)
   }
   
   func test_init_sets_responseQueue() {
@@ -135,16 +135,26 @@ class DogPatchClientTests: XCTestCase {
   
   func test_getDogs_callsExpectedURL() {
     // when
-    let mockTask = sut.getDogs() { _, _ in } as! MockURLSessionDataTask
+    let mockTask = sut.getDogs() { _, _ in }
+      as! MockURLSessionTask
     
     // then
     XCTAssertEqual(mockTask.url, getDogsURL)
   }
   
+  func test_getDogs_callsResumeOnTask() {
+    // when
+    let mockTask = sut.getDogs() { _, _ in }
+      as! MockURLSessionTask
+    
+    // then
+    XCTAssertTrue(mockTask.calledResume)
+  }
+  
   func test_getDogs_givenResponseStatusCode500_callsCompletion() {
     // when
     let result = whenGetDogs(statusCode: 500)
-    
+
     // then
     XCTAssertTrue(result.calledCompletion)
     XCTAssertNil(result.dogs)
@@ -153,24 +163,24 @@ class DogPatchClientTests: XCTestCase {
   
   func test_getDogs_givenError_callsCompletionWithError() throws {
     // given
-    let expectedError = NSError(domain: "com.DogPatchTests", code: 42)
-    
+    let expectedError = NSError(domain: "com.DogPatchTests",
+                                code: 42)
+
     // when
     let result = whenGetDogs(error: expectedError)
-    
+
     // then
     XCTAssertTrue(result.calledCompletion)
     XCTAssertNil(result.dogs)
-    
+
     let actualError = try XCTUnwrap(result.error as NSError?)
     XCTAssertEqual(actualError, expectedError)
   }
   
-  func test_getDogs_givenValidJSON_callsCompletionWithDogs()
-    throws {
+  func test_getDogs_givenValidJSON_callsCompletionWithDogs() throws {
       // given
       let data =
-        try Data.fromJSON(fileName: "GET_Dogs_ValidResponse")
+        try Data.fromJSON(fileName: "GET_Dogs_Response")
       
       let decoder = JSONDecoder()
       let dogs = try decoder.decode([Dog].self, from: data)
@@ -186,50 +196,50 @@ class DogPatchClientTests: XCTestCase {
   
   func test_getDogs_givenInvalidJSON_callsCompletionWithError()
     throws {
-      // given
-      let data = try Data.fromJSON(
-        fileName: "GET_Dogs_MissingValuesResponse")
-      
-      var expectedError: NSError!
-      let decoder = JSONDecoder()
-      do {
-        _ = try decoder.decode([Dog].self, from: data)
-      } catch {
-        expectedError = error as NSError
-      }
-      
-      // when
-      let result = whenGetDogs(data: data)
-      
-      // then
-      XCTAssertTrue(result.calledCompletion)
-      XCTAssertNil(result.dogs)
-      
-      let actualError = try XCTUnwrap(result.error as NSError?)
-      XCTAssertEqual(actualError.domain, expectedError.domain)
-      XCTAssertEqual(actualError.code, expectedError.code)
+    // given
+    let data = try Data.fromJSON(
+      fileName: "GET_Dogs_MissingValuesResponse")
+    
+    var expectedError: NSError!
+    let decoder = JSONDecoder()
+    do {
+      _ = try decoder.decode([Dog].self, from: data)
+    } catch {
+      expectedError = error as NSError
+    }
+    
+    // when
+    let result = whenGetDogs(data: data)
+    
+    // then
+    XCTAssertTrue(result.calledCompletion)
+    XCTAssertNil(result.dogs)
+    
+    let actualError = try XCTUnwrap(result.error as NSError?)
+    XCTAssertEqual(actualError.domain, expectedError.domain)
+    XCTAssertEqual(actualError.code, expectedError.code)
   }
   
   func test_getDogs_givenHTTPStatusError_dispatchesToResponseQueue() {
-      verifyGetDogsDispatchedToMain(statusCode: 500)
+    verifyGetDogsDispatchedToMain(statusCode: 500)
   }
   
   func test_getDogs_givenError_dispatchesToResponseQueue() {
     // given
     let error = NSError(domain: "com.DogPatchTests", code: 42)
-    
+
     // then
     verifyGetDogsDispatchedToMain(error: error)
   }
   
   func test_getDogs_givenGoodResponse_dispatchesToResponseQueue()
     throws {
-      // given
-      let data = try Data.fromJSON(
-        fileName: "GET_Dogs_ValidResponse")
-      
-      // then
-      verifyGetDogsDispatchedToMain(data: data)
+    // given
+    let data = try Data.fromJSON(
+      fileName: "GET_Dogs_Response")
+    
+    // then
+    verifyGetDogsDispatchedToMain(data: data)
   }
   
   func test_getDogs_givenInvalidResponse_dispatchesToResponseQueue()
@@ -240,51 +250,5 @@ class DogPatchClientTests: XCTestCase {
       
       // then
       verifyGetDogsDispatchedToMain(data: data)
-  }
-}
-
-class MockURLSession: URLSession {
-  
-  var queue: DispatchQueue? = nil
-  
-  func givenDispatchQueue() {
-    queue = DispatchQueue(label: "com.DogPatchTests.MockSession")
-  }
-  
-  override func dataTask(
-    with url: URL,
-    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
-      -> URLSessionDataTask {
-        return MockURLSessionDataTask(completionHandler: completionHandler,
-                                      url: url,
-                                      queue: queue)
-  }
-}
-
-class MockURLSessionDataTask: URLSessionDataTask {
-  
-  var completionHandler: (Data?, URLResponse?, Error?) -> Void
-  var url: URL
-  
-  init(completionHandler:
-    @escaping (Data?, URLResponse?, Error?) -> Void,
-       url: URL,
-       queue: DispatchQueue?) {
-    if let queue = queue {
-      self.completionHandler = { data, response, error in
-        queue.async() {
-          completionHandler(data, response, error)
-        }
-      }
-    } else {
-      self.completionHandler = completionHandler
-    }
-    self.url = url
-    super.init()
-  }
-  
-  var calledResume = false
-  override func resume() {
-    calledResume = true
   }
 }

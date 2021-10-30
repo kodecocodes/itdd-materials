@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-///
+/// 
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,37 +26,51 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import UIKit
+@testable import DogPatch
+import Foundation
 
-extension UIViewController: StoryboardCreatable {
+class MockURLSession: URLSessionProtocol {
   
-  @objc class var storyboard: UIStoryboard {
-    let name = Self.storyboardName
-    let bundle = Self.storyboardBundle
-    return UIStoryboard(name: name, bundle: bundle)
+  var queue: DispatchQueue? = nil
+  
+  func givenDispatchQueue() {
+    queue = DispatchQueue(label: "com.DogPatchTests.MockSession")
   }
-  
-  @objc class var storyboardBundle: Bundle? {
-    return Bundle(for: self)
+    
+  func makeDataTask(
+    with url: URL,
+    completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+      -> URLSessionTaskProtocol {
+        return MockURLSessionTask(
+          completionHandler: completionHandler,
+          url: url,
+          queue: queue)
   }
-  
-  @objc class var storyboardName: String {
-    return "Main"
-  }
-  
-  @objc class var storyboardIdentifier: String {
-    return "\(self)"
-  }
-  
-  @objc final class func instanceFromStoryboard() -> Self {
-    let storyboardViewController = storyboard.instantiateViewController(withIdentifier: storyboardIdentifier)
-    guard let viewController = storyboardViewController as? Self else {
-      fatalError(
-        "View controller on storyboard named \(storyboardName) " +
-          "was expected to be an instance of type \(type(of: self)), " +
-          "but it's actually an instance of \(type(of: storyboardViewController)). " +
-        "Fix the type in the storyboard and/or overrride `storyboardIdentifier` with the right value")
+}
+
+class MockURLSessionTask: URLSessionTaskProtocol {
+    
+  var completionHandler: (Data?, URLResponse?, Error?) -> Void
+  var url: URL
+    
+  init(completionHandler:
+    @escaping (Data?, URLResponse?, Error?) -> Void,
+       url: URL,
+       queue: DispatchQueue?) {
+    if let queue = queue {
+      self.completionHandler = { data, response, error in
+        queue.async() {
+          completionHandler(data, response, error)
+        }
+      }
+    } else {
+      self.completionHandler = completionHandler
     }
-    return viewController
+    self.url = url
+  }
+  
+  var calledResume = false
+  func resume() {
+    calledResume = true
   }
 }

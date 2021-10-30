@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -96,7 +100,7 @@ class ListingsViewControllerTests: XCTestCase {
     }
   }
   
-  // MARK: - Instance Properties - Tests
+  // MARK: - Outlets - Tests
   func test_tableView_onSet_registersErrorTableViewCell() {
     // when
     let cell = sut.tableView.dequeueReusableCell(
@@ -106,6 +110,7 @@ class ListingsViewControllerTests: XCTestCase {
     XCTAssertTrue(cell is ErrorTableViewCell)
   }
   
+  // MARK: - Instance Properties - Tests
   func test_viewModels_setToEmptyArray() {
     XCTAssertEqual(sut.viewModels.count, 0)
   }
@@ -161,7 +166,31 @@ class ListingsViewControllerTests: XCTestCase {
   }
   
   // MARK: - UITableViewDataSource Tests
-  func test_tableView_numberOfRowsInSection_returns1() {
+  func test_tableView_numberOfRowsInSection_givenIsRefreshing_returns0() {
+    // given
+    let expected = 0
+    sut.tableView.refreshControl!.beginRefreshing()
+    
+    // when
+    let actual = sut.tableView(sut.tableView, numberOfRowsInSection: 0)
+    
+    // then
+    XCTAssertEqual(actual, expected)
+  }
+
+  func test_tableView_numberOfRowsInSection_givenHasViewModels_returnsViewModelsCount() {
+    // given
+    let expected = 3
+    givenViewModels(count: expected)
+    
+    // when
+    let actual = sut.tableView(sut.tableView, numberOfRowsInSection: 0)
+    
+    // then
+    XCTAssertEqual(actual, expected)
+  }
+
+  func test_tableView_numberOfRowsInSection_givenNoViewModels_returns1() {
     // given
     let expected = 1
     

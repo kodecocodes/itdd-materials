@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,22 +30,14 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-@testable import DogPatch
-import Foundation
+import UIKit
 
-class MockDogPatchService: DogPatchService {
-      
-  var baseURL = URL(string: "https://example.com/api/")!
-  var getDogsCallCount = 0
-  var getDogsCompletion: (([Dog]?, Error?) -> Void)!
-  lazy var getDogsDataTask = MockURLSessionTask(
-    completionHandler: { _, _, _ in },
-    url: URL(string: "dogs", relativeTo: baseURL)!,
-    queue: nil)
+protocol StoryboardCreatable: AnyObject {
+  static var storyboard: UIStoryboard { get }
+  static var storyboardBundle: Bundle? { get }
+  static var storyboardIdentifier: String { get }
+  static var storyboardName: String { get }
   
-  func getDogs(completion: @escaping ([Dog]?, Error?) -> Void) -> URLSessionTaskProtocol {
-      getDogsCallCount += 1
-      getDogsCompletion = completion
-      return getDogsDataTask
-  }
+  static func instanceFromStoryboard() -> Self
 }
+
