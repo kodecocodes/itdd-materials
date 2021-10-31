@@ -49,47 +49,6 @@ extension AppState {
   }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
-struct StepCountView: View {
-  @State var stepCountLabel = "Press Start"
-  @State var steps = "Steps"
-<<<<<<< HEAD
-<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
-=======
-
-  @ObservedObject var appModel = AppModel.instance
->>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountView.swift
-=======
->>>>>>> d968637... reset for not swiftui
-
-  var body: some View {
-    VStack {
-      Spacer()
-        .frame(height: 120)
-      Text(stepCountLabel)
-        .font(Font.system(size: 37))
-      Text(steps)
-        .font(Font.system(size: 17))
-      Spacer()
-      ChaseView()
-        .frame(height: 128)
-      Spacer()
-        .frame(height: 77)
-<<<<<<< HEAD
-<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
-      Button("Start", action: startStopPause)
-=======
-      Button(buttonTitle(), action: startStopPause)
->>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountView.swift
-=======
-      Button("Start", action: startStopPause)
->>>>>>> d968637... reset for not swiftui
-      Spacer()
-        .frame(height: 50)
-=======
-=======
->>>>>>> a7826463e62c464d4e5314aa51bfbb7637729dbb
 class StepCountController: UIViewController {
   @IBOutlet weak var stepCountLabel: UILabel!
   @IBOutlet var startButton: UIButton!
@@ -99,32 +58,12 @@ class StepCountController: UIViewController {
     // this is a cheat to simplify chapter 3, a proper way of getting an instance will be handled in chapter 4
     super.init(nibName: nil, bundle: nil)
     startButton = UIButton()
->>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
-    }
+  }
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
 
-<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
-  func startStopPause() {
-<<<<<<< HEAD
-<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
-  }
-}
-
-=======
-    appModel.start()
-  }
-
-  func buttonTitle() -> String {
-    appModel.appState.nextStateButtonLabel
-  }
-}
-
->>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountView.swift
-=======
-=======
   override func viewDidLoad() {
     super.viewDidLoad()
     updateButton()
@@ -133,31 +72,10 @@ class StepCountController: UIViewController {
   @IBAction func startStopPause(_ sender: Any?) {
     AppModel.instance.start()
     updateButton()
->>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
   }
 
   private func updateButton() {
     let title = AppModel.instance.appState.nextStateButtonLabel
     startButton.setTitle(title, for: .normal)
-<<<<<<< HEAD
-}
-<<<<<<< HEAD
-
-<<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
->>>>>>> d968637... reset for not swiftui
-struct StepCountView_Previews: PreviewProvider {
-  static var previews: some View {
-    StepCountView()
-=======
-  @IBAction func startStopPause(_ sender: Any?) {
-    AppModel.instance.start()
-    
-    updateButton()
->>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/UI Layer/StepCountController.swift
   }
-=======
->>>>>>> a782646... update challenge
-=======
-  }
->>>>>>> a7826463e62c464d4e5314aa51bfbb7637729dbb
 }
