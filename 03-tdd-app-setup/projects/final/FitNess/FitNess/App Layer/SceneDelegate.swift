@@ -30,13 +30,8 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import UIKit
 
-@main
-struct AppMain: App {
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
-    }
-  }
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  var window: UIWindow?
 }

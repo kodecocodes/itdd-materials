@@ -30,13 +30,51 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import XCTest
+@testable import FitNess
 
-@main
-struct AppMain: App {
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
-    }
+class StepCountControllerTests: XCTestCase {
+  //swiftlint:disable implicitly_unwrapped_optional
+  var sut: StepCountController!
+
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = StepCountController()
+  }
+
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
+  }
+
+  // MARK: - Initial State
+
+  func testController_whenCreated_buttonLabelIsStart() {
+    // given
+    sut.viewDidLoad()
+
+    // then
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
+  }
+
+  // MARK: - In Progress
+
+  func testController_whenStartTapped_appIsInProgress() {
+    // when
+    sut.startStopPause(nil)
+
+    // then
+    let state = AppModel.instance.appState
+    XCTAssertEqual(state, AppState.inProgress)
+  }
+
+  func testController_whenStartTapped_buttonLabelIsPause() {
+    // when
+    sut.startStopPause(nil)
+
+    // then
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
   }
 }

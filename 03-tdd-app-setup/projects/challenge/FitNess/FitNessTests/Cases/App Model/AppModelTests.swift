@@ -1,5 +1,5 @@
 /// Copyright (c) 2021 Razeware LLC
-///
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
@@ -22,10 +22,6 @@
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
 ///
-/// This project and source code may use libraries or frameworks that are
-/// released under various Open-Source licenses. Use of those libraries and
-/// frameworks are governed by their own individual licenses.
-///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,7 +34,7 @@ import XCTest
 @testable import FitNess
 
 class AppModelTests: XCTestCase {
-  // swiftlint:disable implicitly_unwrapped_optional
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AppModel!
 
   override func setUpWithError() throws {
@@ -57,11 +53,11 @@ class AppModelTests: XCTestCase {
   }
 
   func testAppModel_whenStarted_isInInProgressState() {
-    // 2 when started
+    // when started
     sut.start()
 
-    // 3 then it is in inProgress
+    // then it is in inProgress
     let observedState = sut.appState
-    XCTAssertEqual(observedState, AppState.inProgress)
+    XCTAssertEqual(observedState, .inProgress)
   }
 }

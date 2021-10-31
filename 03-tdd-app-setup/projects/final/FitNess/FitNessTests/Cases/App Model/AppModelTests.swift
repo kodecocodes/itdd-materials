@@ -34,7 +34,7 @@ import XCTest
 import FitNess
 
 class AppModelTests: XCTestCase {
-  // swiftlint:disable implicitly_unwrapped_optional
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AppModel!
 
   override func setUpWithError() throws {
@@ -58,6 +58,6 @@ class AppModelTests: XCTestCase {
 
     // then it is in inProgress
     let observedState = sut.appState
-    XCTAssertEqual(observedState, AppState.inProgress)
+    XCTAssertEqual(observedState, .inProgress)
   }
 }

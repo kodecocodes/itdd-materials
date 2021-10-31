@@ -30,56 +30,56 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import XCTest
+@testable import FitNess
 
-extension AppState {
-  var nextStateButtonLabel: String {
-    switch self {
-    case .notStarted:
-      return "Start"
-    case .inProgress:
-      return "Pause"
-    case .paused:
-      return "Resume"
-    case .caught:
-      return "Try Again"
-    case .completed:
-      return "Start Over"
-    }
-  }
-}
+class StepCountControllerTests: XCTestCase {
+  //swiftlint:disable implicitly_unwrapped_optional
+  var sut: StepCountController!
 
-struct StepCountView: View {
-  @State var stepCountLabel = "Press Start"
-  @State var steps = "Steps"
-
-  var body: some View {
-    VStack {
-      Spacer()
-        .frame(height: 120)
-      Text(stepCountLabel)
-        .font(Font.system(size: 37))
-      Text(steps)
-        .font(Font.system(size: 17))
-      Spacer()
-      ChaseView()
-        .frame(height: 128)
-      Spacer()
-        .frame(height: 77)
-      Button("Start", action: startStopPause)
-      Spacer()
-        .frame(height: 50)
-    }
-    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-    .background(Color("backgroundColor"))
+  override func setUpWithError() throws {
+    try super.setUpWithError()
+    sut = StepCountController()
   }
 
-  func startStopPause() {
+  override func tearDownWithError() throws {
+    sut = nil
+    try super.tearDownWithError()
   }
-}
 
-struct StepCountView_Previews: PreviewProvider {
-  static var previews: some View {
-    StepCountView()
+  // MARK: - When
+  private func whenStartStopPauseCalled() {
+    sut.startStopPause(nil)
+  }
+
+  // MARK: - Initial State
+
+  func testController_whenCreated_buttonLabelIsStart() {
+    // given
+    sut.viewDidLoad()
+
+    // then
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
+  }
+
+  // MARK: - In Progress
+
+  func testController_whenStartTapped_appIsInProgress() {
+    // when
+    whenStartStopPauseCalled()
+
+    // then
+    let state = AppModel.instance.appState
+    XCTAssertEqual(state, AppState.inProgress)
+  }
+
+  func testController_whenStartTapped_buttonLabelIsPause() {
+    // when
+    whenStartStopPauseCalled()
+
+    // then
+    let text = sut.startButton.title(for: .normal)
+    XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
   }
 }
