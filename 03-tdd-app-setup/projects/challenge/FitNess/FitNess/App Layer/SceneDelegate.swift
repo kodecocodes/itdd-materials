@@ -32,6 +32,7 @@
 
 import UIKit
 
+<<<<<<< HEAD
 <<<<<<< HEAD:03-tdd-app-setup/projects/challenge/FitNess/FitNess/AppDelegate.swift
 <<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/App Layer/AppMain.swift
 <<<<<<< HEAD
@@ -61,3 +62,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 >>>>>>> 68f17d3... Revert "reset for not swiftui":03-tdd-app-setup/projects/challenge/FitNess/FitNess/AppDelegate.swift
 }
+=======
+<<<<<<< HEAD:06-dependency-injection-and-mocks/projects/final/FitNess/FitNess/App Layer/AppDelegate.swift
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate { }
+=======
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  var window: UIWindow?
+}
+>>>>>>> a7826463e62c464d4e5314aa51bfbb7637729dbb:03-tdd-app-setup/projects/challenge/FitNess/FitNess/App Layer/SceneDelegate.swift
+>>>>>>> a7826463e62c464d4e5314aa51bfbb7637729dbb

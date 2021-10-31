@@ -49,6 +49,7 @@ extension AppState {
   }
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD:03-tdd-app-setup/projects/starter/FitNess/FitNess/UI Layer/StepCountView.swift
 struct StepCountView: View {
   @State var stepCountLabel = "Press Start"
@@ -87,6 +88,8 @@ struct StepCountView: View {
       Spacer()
         .frame(height: 50)
 =======
+=======
+>>>>>>> a7826463e62c464d4e5314aa51bfbb7637729dbb
 class StepCountController: UIViewController {
   @IBOutlet weak var stepCountLabel: UILabel!
   @IBOutlet var startButton: UIButton!
@@ -136,6 +139,7 @@ class StepCountController: UIViewController {
   private func updateButton() {
     let title = AppModel.instance.appState.nextStateButtonLabel
     startButton.setTitle(title, for: .normal)
+<<<<<<< HEAD
 }
 <<<<<<< HEAD
 
@@ -153,4 +157,7 @@ struct StepCountView_Previews: PreviewProvider {
   }
 =======
 >>>>>>> a782646... update challenge
+=======
+  }
+>>>>>>> a7826463e62c464d4e5314aa51bfbb7637729dbb
 }
