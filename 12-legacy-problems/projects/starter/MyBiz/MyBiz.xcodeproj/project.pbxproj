@@ -64,6 +64,7 @@
 		4C68965C27335B1E00337089 /* OrgTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C68962727335B1D00337089 /* OrgTableViewController.swift */; };
 		4C68965E27335B5E00337089 /* configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C68965D27335B5E00337089 /* configuration.json */; };
 		4C68966027335BB400337089 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C68965F27335BB300337089 /* Main.storyboard */; };
+		4C6896622733676400337089 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6896612733676300337089 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		4C68962727335B1D00337089 /* OrgTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrgTableViewController.swift; sourceTree = "<group>"; };
 		4C68965D27335B5E00337089 /* configuration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = configuration.json; sourceTree = "<group>"; };
 		4C68965F27335BB300337089 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4C6896612733676300337089 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				4C68961E27335B1C00337089 /* AppDelegate.swift */,
+				4C6896612733676300337089 /* SceneDelegate.swift */,
 				4C68962027335B1D00337089 /* Configuration.swift */,
 				4C68962427335B1D00337089 /* LoginViewController.swift */,
 				4C6895FB27335B1B00337089 /* TitleView.swift */,
@@ -374,6 +377,7 @@
 				4C68964327335B1D00337089 /* DateSelectingViewController.swift in Sources */,
 				4C68964C27335B1D00337089 /* CalendarCell.swift in Sources */,
 				4C68963D27335B1D00337089 /* InternalQueryFunctions.swift in Sources */,
+				4C6896622733676400337089 /* SceneDelegate.swift in Sources */,
 				4C68962E27335B1D00337089 /* Product.swift in Sources */,
 				4C68965227335B1E00337089 /* CreatePurachaseOrderTableViewController.swift in Sources */,
 				4C68964027335B1D00337089 /* JTAppleCalendarLayout.swift in Sources */,
