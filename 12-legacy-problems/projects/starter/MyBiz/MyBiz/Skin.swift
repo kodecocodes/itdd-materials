@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,42 +34,46 @@ import Foundation
 import UIKit
 
 struct Skin {
-  
   let backgroundColor: UIColor
   let controlBackground: UIColor?
   let controlBorder: UIColor?
   let controlTextColor: UIColor?
   let tableCellTextColor: UIColor?
   let stepperColor: UIColor?
-  
-  static let login = Skin(backgroundColor: UIColor(named: "canary")!,
-                          controlBackground: UIColor(named: "pink"),
-                          controlBorder: UIColor(named: "controlBorderGray"),
-                          controlTextColor: UIColor(named: "yellow"),
-                          tableCellTextColor: nil,
-                          stepperColor: nil)
-  static let loginAlert = Skin(backgroundColor: UIColor(named: "pink")!,
-                               controlBackground: nil,
-                               controlBorder: nil,
-                               controlTextColor: UIColor(named: "yellow"),
-                               tableCellTextColor: nil,
-                               stepperColor: nil)
-  static let announcements = Skin(backgroundColor: UIColor(named: "purple")!,
-                                  controlBackground: nil,
-                                  controlBorder: nil,
-                                  controlTextColor: .darkText,
-                                  tableCellTextColor: .bizLightGray,
-                                  stepperColor: nil)
-  static let purchaseOrder = Skin(backgroundColor: .bizCanary,
-                                  controlBackground: nil,
-                                  controlBorder: nil,
-                                  controlTextColor: .darkText,
-                                  tableCellTextColor: .darkGray,
-                                  stepperColor: .bizPurple)
-  static let orgChart = Skin(backgroundColor: .bizYellow,
-                             controlBackground: nil,
-                             controlBorder: nil,
-                             controlTextColor: .darkText,
-                             tableCellTextColor: .darkText,
-                             stepperColor: nil)
+
+  static let login = Skin(
+    backgroundColor: UIColor(named: "canary")!,
+    controlBackground: UIColor(named: "pink"),
+    controlBorder: UIColor(named: "controlBorderGray"),
+    controlTextColor: UIColor(named: "yellow"),
+    tableCellTextColor: nil,
+    stepperColor: nil)
+  static let loginAlert = Skin(
+    backgroundColor: UIColor(named: "pink")!,
+    controlBackground: nil,
+    controlBorder: nil,
+    controlTextColor: UIColor(named: "yellow"),
+    tableCellTextColor: nil,
+    stepperColor: nil)
+  static let announcements = Skin(
+    backgroundColor: UIColor(named: "purple")!,
+    controlBackground: nil,
+    controlBorder: nil,
+    controlTextColor: .darkText,
+    tableCellTextColor: .bizLightGray,
+    stepperColor: nil)
+  static let purchaseOrder = Skin(
+    backgroundColor: .bizCanary,
+    controlBackground: nil,
+    controlBorder: nil,
+    controlTextColor: .darkText,
+    tableCellTextColor: .darkGray,
+    stepperColor: .bizPurple)
+  static let orgChart = Skin(
+    backgroundColor: .bizYellow,
+    controlBackground: nil,
+    controlBorder: nil,
+    controlTextColor: .darkText,
+    tableCellTextColor: .darkText,
+    stepperColor: nil)
 }
