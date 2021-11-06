@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,47 +30,74 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
 import Vapor
-import FluentSQLite
-import Authentication
+import Fluent
 
-final class Token: Codable {
+enum SessionSource: Int, Content {
+  case signup
+  case login
+}
+
+final class Token: Model {
+  static let schema = "tokens"
+  
+  @ID(key: "id")
   var id: UUID?
-  var token: String
-  var userID: User.ID
-
-  init(token: String, userID: User.ID) {
-    self.token = token
-    self.userID = userID
+  
+  @Parent(key: "user_id")
+  var user: User
+  
+  @Field(key: "value")
+  var value: String
+  
+  @Field(key: "source")
+  var source: SessionSource
+  
+  @Field(key: "expires_at")
+  var expiresAt: Date?
+  
+  @Timestamp(key: "created_at", on: .create)
+  var createdAt: Date?
+  
+  init() {}
+  
+  init(id: UUID? = nil, userId: User.IDValue, token: String,
+       source: SessionSource, expiresAt: Date?) {
+    self.id = id
+    self.$user.id = userId
+    self.value = token
+    self.source = source
+    self.expiresAt = expiresAt
   }
 }
 
-extension Token: SQLiteUUIDModel {}
-
-extension Token: Migration {
-  static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-    return Database.create(self, on: connection) { builder in
-      try addProperties(to: builder)
-      builder.reference(from: \.userID, to: \User.id)
+extension Token: ModelTokenAuthenticatable {
+  static let valueKey = \Token.$value
+  static let userKey = \Token.$user
+  
+  var isValid: Bool {
+    guard let expiryDate = expiresAt else {
+      return true
     }
+    
+    return expiryDate > Date()
   }
 }
 
-extension Token: Content {}
-
-extension Token {
-  static func generate(for user: User) throws -> Token {
-    let random = try CryptoRandom().generateData(count: 16)
-    return try Token(token: random.base64EncodedString(), userID: user.requireID())
+struct CreateTokens: Migration {
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(Token.schema)
+      .field("id", .uuid, .identifier(auto: true))
+      .field("user_id", .uuid, .references("users", "id"))
+      .field("value", .string, .required)
+      .unique(on: "value")
+      .field("source", .int, .required)
+      .field("created_at", .datetime, .required)
+      .field("expires_at", .datetime)
+      .create()
   }
-}
 
-extension Token: Authentication.Token {
-  static let userIDKey: UserIDKey = \Token.userID
-  typealias UserType = User
-}
-
-extension Token: BearerAuthenticatable {
-  static let tokenKey: TokenKey = \Token.token
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(Token.schema).delete()
+  }
 }
