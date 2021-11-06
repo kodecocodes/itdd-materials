@@ -33,11 +33,15 @@
 import Foundation
 
 class Token: Codable {
+  struct UserInfo: Codable {
+    let id: UUID
+    let username: String
+  }
   let token: String
-  let userID: UUID
+  let user: UserInfo
 
   init(token: String, userID: UUID) {
     self.token = token
-    self.userID = userID
+    self.user = UserInfo(id: userID, username: "")
   }
 }

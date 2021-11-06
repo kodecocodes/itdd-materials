@@ -100,9 +100,9 @@ class API {
 
   func handleToken(token: Token) {
     self.token = token
-    Logger.logDebug("user \(token.userID)")
+    Logger.logDebug("user \(token.user.id)")
     DispatchQueue.main.async {
-      self.delegate?.loginSucceeded(userId: token.userID.uuidString)
+      self.delegate?.loginSucceeded(userId: token.user.id.uuidString)
     }
   }
 

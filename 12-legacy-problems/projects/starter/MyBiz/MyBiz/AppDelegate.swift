@@ -34,7 +34,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
+  private var window: UIWindow? {
+    (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first
+  }
+
+  var rootController: UIViewController? {
+    get { window?.rootViewController }
+    set { window?.rootViewController = newValue }
+  }
 
   static var configuration: Configuration!
   var api: API!
@@ -51,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func showLogin() {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let loginController = storyboard.instantiateViewController(withIdentifier: "login") as? LoginViewController
-    window?.rootViewController = loginController
+    rootController = loginController
   }
 }
 

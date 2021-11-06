@@ -42,6 +42,6 @@ extension UIViewController {
     alertController.modalTransitionStyle = .crossDissolve
     alertController.type = type
     alertController.skin = skin
-    UIApplication.shared.delegate?.window??.rootViewController?.present(alertController, animated: true)
+    UIApplication.appDelegate.rootController?.present(alertController, animated: true)
   }
 }

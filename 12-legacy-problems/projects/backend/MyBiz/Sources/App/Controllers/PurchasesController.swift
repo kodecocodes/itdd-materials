@@ -54,17 +54,8 @@ final class PurchasesController: RouteCollection {
   }
 
   private func create(req: Request) throws -> EventLoopFuture<PurchaseOrder> {
-    print("here")
     let user = try req.auth.require(User.self)
-    print(user)
-    do {
-    let _ = try req.content.decode(POCreateData.self)
-    } catch {
-      print(error)
-    }
-    print ("pd")
     let data = try req.content.decode(POCreateData.self)
-    print("data")
     let po = PurchaseOrder(poNumber: data.poNumber,
                            comment: data.comment,
                            purchaser: user.id!,
@@ -74,28 +65,3 @@ final class PurchasesController: RouteCollection {
     return po.save(on: req.db).map { po }
   }
 }
-
-
-//final class PurchasesController: RouteCollection {
-//  
-//  func boot(router: Router) throws {
-//    let routes = router.grouped("api", "purchases")
-//    
-//    let tokenAuthMiddleware = User.tokenAuthMiddleware()
-//    let guardAuthMiddleware = User.guardAuthMiddleware()
-//    let authGroup = routes.grouped(tokenAuthMiddleware, guardAuthMiddleware)
-//    authGroup.get(use: getAllHandler)
-//    authGroup.post(POCreateData.self, use: createHandler)
-//  }
-//  
-//  func getAllHandler(_ req: Request) throws -> Future<[PurchaseOrder]> {
-//    return PurchaseOrder.query(on: req).all()
-//  }
-//
-//  func createHandler(_ req: Request, data: POCreateData) throws -> Future<PurchaseOrder> {
-//    let user = try req.requireAuthenticated(User.self)
-//    let po = PurchaseOrder(id: nil, poNumber: data.poNumber, comment: data.comment, purchaser: user.id!.uuidString, purchaseDate: Date(), dueDate: data.dueDate, purchases: data.purchases)
-//    return po.save(on: req)
-//  }
-//}
-//
