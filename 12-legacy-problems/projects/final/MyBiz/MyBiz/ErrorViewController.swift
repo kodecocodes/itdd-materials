@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,26 +33,25 @@
 import UIKit
 
 class ErrorViewController: UIViewController {
-  
   enum AlertType {
     case login
     case general
   }
-  
+
   @IBOutlet weak var okButton: UIButton!
   @IBOutlet weak var secondaryButton: UIButton!
   @IBOutlet weak var alertView: UIView!
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var subtitleLabel: UILabel!
-  
+
   var type: AlertType = .general
   var alertTitle: String = ""
-  var subtitle: String? = nil
-  var skin: Skin? = nil
-  
+  var subtitle: String?
+  var skin: Skin?
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     alertView.layer.cornerRadius = 12
     alertView.layer.masksToBounds = true
 
@@ -58,12 +61,12 @@ class ErrorViewController: UIViewController {
     case .login:
       setupLogin()
     }
-    
+
     updateTitles()
     updateSkin()
   }
-  
-  fileprivate func updateTitles() {
+
+  private func updateTitles() {
     titleLabel.text = alertTitle
     if let subtitle = subtitle {
       subtitleLabel.text = subtitle
@@ -71,28 +74,28 @@ class ErrorViewController: UIViewController {
       subtitleLabel.isHidden = true
     }
   }
-  
-  fileprivate func updateSkin() {
+
+  private func updateSkin() {
     guard let skin = skin else { return }
-    Styler.shared.style(background: alertView,
-                        buttons: [okButton, secondaryButton],
-                        with: skin)
+    Styler.shared.style(
+      background: alertView,
+      buttons: [okButton, secondaryButton],
+      with: skin)
   }
-  
+
   func set(title: String, subtitle: String?) {
     self.alertTitle = title
     self.subtitle = subtitle
   }
-  
+
   private func setupLogin() {
     secondaryButton.setTitle("Try Again", for: .normal)
   }
-  
-  
+
   @IBAction func okAction(_ sender: Any) {
     self.dismiss(animated: true)
   }
-  
+
   @IBAction func secondaryAction(_ sender: Any) {
     switch type {
     case .login:
