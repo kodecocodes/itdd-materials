@@ -36,9 +36,7 @@ import Fluent
 final class EventsController: RouteCollection {
   func boot(routes: RoutesBuilder) throws {
     let routes = routes.grouped("api", "events")
-
-    let tokenProtected = routes.grouped(Token.authenticator(), Token.guardMiddleware())
-    tokenProtected.get(use: getAllHandler)
+    routes.get(use: getAllHandler)
   }
 
   func getAllHandler(_ req: Request) throws -> EventLoopFuture<[Event]> {

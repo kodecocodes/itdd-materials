@@ -33,9 +33,9 @@
 import Foundation
 
 enum EventType: String, Codable {
-  case meeting
-  case appointment
-  case holiday
+  case meeting = "Meeting"
+  case appointment = "Appointment"
+  case holiday = "Holiday"
   case domesticHoliday = "DayOff"
 
   var symbol: String {

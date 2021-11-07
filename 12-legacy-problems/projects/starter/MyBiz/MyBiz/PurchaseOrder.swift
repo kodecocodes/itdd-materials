@@ -34,14 +34,14 @@ import Foundation
 
 struct PurchaseOrder: Codable {
   struct Purchase: Codable {
-    let productId: String
+    let productId: UUID
     let quantity: Double
   }
 
-  let id: Int?
+  let id: UUID?
   let poNumber: String
   let comment: String?
-  let purchaser: String?
+  let purchaser: UUID?
   let purchaseDate: Date?
   let dueDate: Date?
   let purchases: [Purchase]

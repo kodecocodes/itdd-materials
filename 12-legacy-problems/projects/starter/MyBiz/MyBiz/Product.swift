@@ -33,7 +33,7 @@
 import Foundation
 
 struct Product: Codable {
-  let productId: String
+  let productId: UUID
   let productName: String
   let unitPrice: Double
 

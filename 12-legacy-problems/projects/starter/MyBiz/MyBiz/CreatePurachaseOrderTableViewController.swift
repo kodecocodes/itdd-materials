@@ -44,7 +44,7 @@ class CreatePurachaseOrderTableViewController: UITableViewController {
         id: nil,
         poNumber: poNumber,
         comment: comment,
-        purchaser: UIApplication.appDelegate.userId!,
+        purchaser: UUID(uuidString: UIApplication.appDelegate.userId!)!,
         purchaseDate: nil,
         dueDate: dueDate,
         purchases: purchases)
