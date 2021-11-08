@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,8 +33,7 @@
 import Foundation
 import UIKit
 
-protocol APIDelegate: class {
-  
+protocol APIDelegate: AnyObject {
   func loginFailed(error: Error)
   func loginSucceeded(userId: String)
   func announcementsFailed(error: Error)
@@ -48,17 +51,16 @@ protocol APIDelegate: class {
 }
 
 class API {
-  
   let server = AppDelegate.configuration.server
   let session: URLSession
-  
+
   weak var delegate: APIDelegate?
   var token: Token?
-  
+
   init() {
     session = URLSession(configuration: .default)
   }
-  
+
   func login(username: String, password: String) {
     let eventsEndpoint = server + "api/users/login"
     let eventsURL = URL(string: eventsEndpoint)!
@@ -76,7 +78,7 @@ class API {
         }
         return
       }
-      let decoder: JSONDecoder = JSONDecoder()
+      let decoder = JSONDecoder()
       if let token = try? decoder.decode(Token.self, from: data) {
         self.handleToken(token: token)
       } else {
@@ -92,24 +94,25 @@ class API {
         }
       }
     }
-    
+
     task.resume()
   }
 
   func handleToken(token: Token) {
     self.token = token
-    Logger.logDebug("user \(token.userID)")
+    Logger.logDebug("user \(token.user.id)")
     DispatchQueue.main.async {
-      self.delegate?.loginSucceeded(userId: token.userID.uuidString)
+      self.delegate?.loginSucceeded(userId: token.user.id.uuidString)
     }
   }
-  
+
   func logout() {
     token = nil
     delegate = nil
     UIApplication.appDelegate.showLogin()
   }
 
+  //swiftlint:disable identifier_name
   func submitPO(po: PurchaseOrder) throws {
     let url = URL(string: server + "api/" + "purchases")!
     var request = URLRequest(url: url)
@@ -124,16 +127,17 @@ class API {
     coder.dateEncodingStrategy = .iso8601
     let data = try coder.encode(po)
     request.httpBody = data
-    let task = loadTask(request: request,
-                        success: self.poSuccess,
-                        failure: self.delegate?.purchasesFailed(error:))
+    let task = loadTask(
+      request: request,
+      success: self.poSuccess,
+      failure: self.delegate?.purchasesFailed(error:))
     task.resume()
   }
 
   private func poSuccess(po: PurchaseOrder) {
     getPurchases()
   }
-  
+
   private func request(_ endpoint: String) -> URLRequest {
     let url = URL(string: server + "api/" + endpoint)!
     var request = URLRequest(url: url)
@@ -143,10 +147,12 @@ class API {
     }
     return request
   }
-  
-  func loadTask<T: Decodable>(request: URLRequest,
-                              success: ((T) -> ())?,
-                              failure: ((Error) -> ())?) -> URLSessionTask {
+
+  func loadTask<T: Decodable>(
+    request: URLRequest,
+    success: ((T) -> Void)?,
+    failure: ((Error) -> Void)?
+  ) -> URLSessionTask {
     return session.dataTask(with: request) { data, _, error in
       guard let data = data else {
         if error != nil {
@@ -156,7 +162,7 @@ class API {
         }
         return
       }
-      let decoder: JSONDecoder = JSONDecoder()
+      let decoder = JSONDecoder()
       decoder.dateDecodingStrategy = .iso8601
       if let items = try? decoder.decode(T.self, from: data) {
         DispatchQueue.main.async {
@@ -176,52 +182,58 @@ class API {
       }
     }
   }
-  
+
   func getAnnouncements() {
     let req = request("announcements")
-    let task = loadTask(request: req,
-                        success: self.delegate?.announcementsLoaded(announcements:),
-                        failure: self.delegate?.announcementsFailed(error:))
+    let task = loadTask(
+      request: req,
+      success: self.delegate?.announcementsLoaded(announcements:),
+      failure: self.delegate?.announcementsFailed(error:))
     task.resume()
   }
-  
+
   func getOrgChart() {
     let req = request("employees")
-    let task = loadTask(request: req,
-                        success: self.delegate?.orgLoaded(org:),
-                        failure: self.delegate?.orgFailed(error:))
+    let task = loadTask(
+      request: req,
+      success: self.delegate?.orgLoaded(org:),
+      failure: self.delegate?.orgFailed(error:))
     task.resume()
   }
-  
+
   func getEvents() {
     let req = request("events")
-    let task = loadTask(request: req,
-                        success: self.delegate?.eventsLoaded(events:),
-                        failure: self.delegate?.eventsFailed(error:))
+    let task = loadTask(
+      request: req,
+      success: self.delegate?.eventsLoaded(events:),
+      failure: self.delegate?.eventsFailed(error:))
     task.resume()
   }
-  
+
   func getProducts() {
     let req = request("products")
-    let task = loadTask(request: req,
-                        success: self.delegate?.productsLoaded(products:),
-                        failure: self.delegate?.productsFailed(error:))
+    let task = loadTask(
+      request: req,
+      success: self.delegate?.productsLoaded(products:),
+      failure: self.delegate?.productsFailed(error:))
     task.resume()
   }
-  
+
   func getPurchases() {
     let req = request("purchases")
-    let task = loadTask(request: req,
-                        success: self.delegate?.purchasesLoaded(purchases:),
-                        failure: self.delegate?.purchasesFailed(error:))
+    let task = loadTask(
+      request: req,
+      success: self.delegate?.purchasesLoaded(purchases:),
+      failure: self.delegate?.purchasesFailed(error:))
     task.resume()
   }
-  
+
   func getUserInfo(userID: String) {
     let req = request("users/\(userID)")
-    let task = loadTask(request: req,
-                        success: self.delegate?.userLoaded(user:),
-                        failure: self.delegate?.userFailed(error:))
+    let task = loadTask(
+      request: req,
+      success: self.delegate?.userLoaded(user:),
+      failure: self.delegate?.userFailed(error:))
     task.resume()
   }
 }

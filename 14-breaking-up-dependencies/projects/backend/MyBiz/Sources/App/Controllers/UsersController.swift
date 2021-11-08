@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,38 +33,66 @@
 import Vapor
 import Crypto
 
-struct UsersController: RouteCollection {
-  func boot(router: Router) throws {
-    let usersRoute = router.grouped("api", "users")
-    
-    let basicAuthMiddleware = User.basicAuthMiddleware(using: BCryptDigest())
-    let basicAuthGroup = usersRoute.grouped(basicAuthMiddleware)
-    basicAuthGroup.post("login", use: loginHandler)
+struct UserSignup: Content {
+  let username: String
+  let password: String
+  let name: String
+}
 
-    let tokenAuthMiddleware = User.tokenAuthMiddleware()
-    let guardAuthMiddleware = User.guardAuthMiddleware()
-    let tokenAuthGroup = usersRoute.grouped(tokenAuthMiddleware, guardAuthMiddleware)
-    tokenAuthGroup.post(User.self, use: createHandler)
-    tokenAuthGroup.get(use: getAllHandler)
-    tokenAuthGroup.get(User.parameter, use: getHandler)
+struct NewSession: Content {
+  let token: String
+  let user: User.Public
+}
+
+extension UserSignup: Validatable {
+  static func validations(_ validations: inout Validations) {
+    validations.add("username", as: String.self, is: !.empty)
+    validations.add("name", as: String.self, is: !.empty)
+    validations.add("password", as: String.self, is: .count(6...))
   }
-  
-  func createHandler(_ req: Request, user: User) throws -> Future<User.Public> {
-    user.password = try BCrypt.hash(user.password)
-    return user.save(on: req).convertToPublic()
+}
+
+struct UserController: RouteCollection {
+  func boot(routes: RoutesBuilder) throws {
+    let usersRoute = routes.grouped("api", "users")
+    usersRoute.post("signup", use: create)
+
+    let tokenProtected = usersRoute.grouped(Token.authenticator())
+    tokenProtected.get("me", use: getMyOwnUser)
+
+    let passwordProtected = usersRoute.grouped(User.authenticator())
+    passwordProtected.post("login", use: login)
   }
-  
-  func getAllHandler(_ req: Request) throws -> Future<[User.Public]> {
-    return User.query(on: req).decode(data: User.Public.self).all()
+
+  fileprivate func create(req: Request) throws -> EventLoopFuture<NewSession> {
+    try UserSignup.validate(content: req)
+    let userSignup = try req.content.decode(UserSignup.self)
+    let user = try User.create(from: userSignup)
+    var token: Token!
+
+    guard let newToken = try? user.createToken(source: .signup) else {
+      return req.eventLoop.future(error: Abort(.internalServerError))
+    }
+    token = newToken
+
+    return user.save(on: req.db).flatMap {
+      return token.save(on: req.db)
+        .flatMapThrowing {
+          NewSession(token: token.value, user: try user.asPublic())
+        }
+    }
   }
-  
-  func getHandler(_ req: Request) throws -> Future<User.Public> {
-    return try req.parameters.next(User.self).convertToPublic()
+
+  fileprivate func login(req: Request) throws -> EventLoopFuture<NewSession> {
+    let user = try req.auth.require(User.self)
+    let token = try user.createToken(source: .login)
+
+    return token.save(on: req.db).flatMapThrowing {
+      NewSession(token: token.value, user: try user.asPublic())
+    }
   }
-  
-  func loginHandler(_ req: Request) throws -> Future<Token> {
-    let user = try req.requireAuthenticated(User.self)
-    let token = try Token.generate(for: user)
-    return token.save(on: req)
+
+  func getMyOwnUser(req: Request) throws -> User.Public {
+    try req.auth.require(User.self).asPublic()
   }
 }
