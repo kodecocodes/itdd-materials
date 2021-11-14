@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,44 +31,81 @@
 /// THE SOFTWARE.
 
 import Vapor
-import FluentSQLite
+import Fluent
 
-struct PurchaseOrder: Codable {
+final class PurchaseOrder: Model, Content {
+  static let schema = "purchases"
+
   struct Purchase: Codable {
-    let productId: String
+    let productId: UUID
     let quantity: Double
   }
 
-  var id: Int?
+  @ID(key: .id)
+  var id: UUID?
+
+  @Field(key: "poNumber")
   var poNumber: String
+  @Field(key: "comment")
   var comment: String?
-  var purchaser: String
+  @Field(key: "purchaser")
+  var purchaser: UUID
+  @Field(key: "purchaseDate")
   var purchaseDate: Date
+  @Field(key: "dueDate")
   var dueDate: Date?
+  @Field(key: "purchases")
   var purchases: [Purchase]
+
+  init() {}
+
+  init(id: UUID? = nil, poNumber: String, comment: String?, purchaser: UUID, purchaseDate: Date, dueDate: Date?, purchases: [Purchase]) {
+    self.id = id
+    self.poNumber = poNumber
+    self.comment = comment
+    self.purchaser = purchaser
+    self.purchaseDate = purchaseDate
+    self.dueDate = dueDate
+    self.purchases = purchases
+  }
 }
 
-extension PurchaseOrder: SQLiteModel {}
-extension PurchaseOrder: Migration {}
-extension PurchaseOrder: Content {}
-extension PurchaseOrder: Parameter {}
+struct CreatePurchases: Migration {
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(PurchaseOrder.schema)
+      .id()
+      .field("poNumber", .string, .required)
+      .field("comment", .string)
+      .field("purchaser", .uuid, .required)
+      .field("purchaseDate", .datetime, .required)
+      .field("dueDate", .datetime)
+      .field("purchases", .array, .required)
+      .create()
+  }
+
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(Announcement.schema).delete()
+  }
+}
 
 struct SeedPurchases: Migration {
-  typealias Database = SQLiteDatabase
-  
-  static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-    return PurchaseOrder(id: 1, poNumber: "88616",
-                         comment: "For Assembly", purchaser: "BlackWidow",
-                         purchaseDate: Date(), dueDate: nil,
-                         purchases: [PurchaseOrder.Purchase(productId: "8301", quantity: 1), PurchaseOrder.Purchase(productId: "1208", quantity: 1)]).create(on: connection)
-      .and(PurchaseOrder(id: 2, poNumber: "88617",
-                         comment: nil, purchaser: "BlackWidow",
-                         purchaseDate: Date(), dueDate: Date(timeIntervalSinceNow: .days(7)),
-                         purchases: [PurchaseOrder.Purchase(productId: "210", quantity: 400)]).create(on: connection))
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    PurchaseOrder(poNumber: "88616",
+                  comment: "For Assembly",
+                  purchaser: BlackWidow,
+                  purchaseDate: Date(),
+                  dueDate: nil,
+                  purchases: [PurchaseOrder.Purchase(productId: Moljnir, quantity: 1), PurchaseOrder.Purchase(productId: Shield, quantity: 1)]).create(on: database)
+      .and(PurchaseOrder(poNumber: "88617",
+                         comment: nil,
+                         purchaser: BlackWidow,
+                         purchaseDate: Date(),
+                         dueDate: Date(timeIntervalSinceNow: .days(7)),
+                         purchases: [PurchaseOrder.Purchase(productId: Arrows, quantity: 400)]).create(on: database))
       .transform(to: ())
   }
-  
-  static func revert(on connection: SQLiteConnection) -> Future<Void> {
-    return .done(on: connection)
+
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.eventLoop.makeSucceededVoidFuture()
   }
 }
