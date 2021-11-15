@@ -101,8 +101,8 @@ class LoginViewControllerTests: XCTestCase {
 
     // then
     wait(for: [exp], timeout: 5)
-    let presentedController = UIApplication.appDelegate.rootController?
-      .presentedViewController as? ErrorViewController
+    let root = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController
+    let presentedController = root?.presentedViewController as? ErrorViewController
     XCTAssertNotNil(
       presentedController,
       "should be showing an error controller")
