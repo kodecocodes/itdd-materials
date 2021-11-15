@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,10 +37,11 @@ public class Styler {
 
   public var configuration: UIConfiguration?
 
-  public func style(background: UIView? = nil,
-             buttons: [UIButton]? = nil,
-             with skin: Skin
-             ) {
+  public func style(
+    background: UIView? = nil,
+    buttons: [UIButton]? = nil,
+    with skin: Skin
+  ) {
     background.flatMap { style(background: $0, skin: skin) }
     buttons?.forEach { style(button: $0, skin: skin) }
   }
@@ -47,7 +52,6 @@ public class Styler {
 
   public func style(button: UIButton, skin: Skin) {
     if let borderColor = skin.controlBorder {
-      button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
       button.layer.cornerRadius = CGFloat(configuration?.button.cornerRadius ?? 0)
       button.layer.borderWidth = CGFloat(configuration?.button.borderWidth ?? 0)
       button.layer.borderColor = borderColor.cgColor

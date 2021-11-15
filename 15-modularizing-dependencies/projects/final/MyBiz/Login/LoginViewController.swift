@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,26 +34,27 @@ import UIKit
 import UIHelpers
 
 public class LoginViewController: UIViewController {
-  
   @IBOutlet weak var emailField: UITextField!
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var signInButton: UIButton!
-  
+
   public var api: LoginAPI!
   let skin: Skin = .login
-  
+
   public override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     Styler.shared.style(background: view, buttons: [signInButton], with: skin)
   }
-  
+
   @IBAction func signIn(_ sender: Any) {
     guard let username = emailField.text,
       let password = passwordField.text else { return }
     guard username.isEmail && password.isValidPassword else {
       // a little client-side validation ;)
-      showAlert(title: "Invalid Username or Password", subtitle: "Check the username or password")
+      showAlert(
+        title: "Invalid Username or Password",
+        subtitle: "Check the username or password")
       return
     }
     api.login(username: username, password: password) { result in
@@ -63,14 +68,15 @@ public class LoginViewController: UIViewController {
 extension LoginViewController {
   func loginFailed(error: Error) {
     let retryAction = ErrorViewController.SecondaryAction(
-                        title: "Try Again") { [weak self] in
+      title: "Try Again") { [weak self] in
       if let self = self {
         self.signIn(self)
       }
     }
-    showAlert(title: "Login Failed",
-              subtitle: error.localizedDescription,
-              action: retryAction,
-              skin: .loginAlert)
+    showAlert(
+      title: "Login Failed",
+      subtitle: error.localizedDescription,
+      action: retryAction,
+      skin: .loginAlert)
   }
 }

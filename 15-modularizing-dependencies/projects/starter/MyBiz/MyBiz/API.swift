@@ -31,7 +31,6 @@
 /// THE SOFTWARE.
 
 import Foundation
-import UIKit
 
 let userLoggedInNotification =
   Notification.Name("user logged in")
