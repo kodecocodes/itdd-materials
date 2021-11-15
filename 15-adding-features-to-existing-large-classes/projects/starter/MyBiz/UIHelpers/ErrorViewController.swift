@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,12 +33,11 @@
 import UIKit
 
 public class ErrorViewController: UIViewController {
-
   public struct SecondaryAction {
     let title: String
-    let action: () -> ()
+    let action: () -> Void
 
-    public init(title: String, action: @escaping () -> ()) {
+    public init(title: String, action: @escaping () -> Void) {
       self.title = title
       self.action = action
     }
@@ -45,15 +48,15 @@ public class ErrorViewController: UIViewController {
   @IBOutlet weak var alertView: UIView!
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var subtitleLabel: UILabel!
-  
-  public var secondaryAction: SecondaryAction? = nil
-  public var alertTitle: String = ""
-  public var subtitle: String? = nil
-  var skin: Skin? = nil
+
+  var secondaryAction: SecondaryAction?
+  var alertTitle: String = ""
+  var subtitle: String?
+  var skin: Skin?
 
   public override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     alertView.layer.cornerRadius = 12
     alertView.layer.masksToBounds = true
 
@@ -61,8 +64,8 @@ public class ErrorViewController: UIViewController {
     updateTitles()
     updateSkin()
   }
-  
-  fileprivate func updateTitles() {
+
+  private func updateTitles() {
     titleLabel.text = alertTitle
     if let subtitle = subtitle {
       subtitleLabel.text = subtitle
@@ -70,12 +73,13 @@ public class ErrorViewController: UIViewController {
       subtitleLabel.isHidden = true
     }
   }
-  
-  fileprivate func updateSkin() {
+
+  private func updateSkin() {
     guard let skin = skin else { return }
-    Styler.shared.style(background: alertView,
-                        buttons: [okButton, secondaryButton],
-                        with: skin)
+    Styler.shared.style(
+      background: alertView,
+      buttons: [okButton, secondaryButton],
+      with: skin)
   }
 
   private func updateAction() {
@@ -85,16 +89,16 @@ public class ErrorViewController: UIViewController {
     }
     secondaryButton.setTitle(action.title, for: .normal)
   }
-  
+
   func set(title: String, subtitle: String?) {
     self.alertTitle = title
     self.subtitle = subtitle
   }
-  
+
   @IBAction func okAction(_ sender: Any) {
     self.dismiss(animated: true)
   }
-  
+
   @IBAction func secondaryAction(_ sender: Any) {
     if let action = secondaryAction {
       dismiss(animated: true)

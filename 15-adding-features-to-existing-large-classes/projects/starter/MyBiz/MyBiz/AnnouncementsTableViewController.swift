@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,34 +29,32 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
-
+/// 
 import UIKit
 import UIHelpers
 
 class AnnouncementsTableViewController: UITableViewController {
-  
   var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
   var announcements: [Announcement] = []
-  
+
   let skin: Skin = .announcements
-  
+
   override func viewDidLoad() {
-    super.viewDidLoad()    
+    super.viewDidLoad()
     Styler.shared.style(background: view, skin: skin)
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     api.delegate = self
     api.getAnnouncements()
   }
-  
+
   // MARK: - Table view data source
-  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return announcements.count
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     let announcement = announcements[indexPath.row]
@@ -79,11 +81,11 @@ extension AnnouncementsTableViewController: APIDelegate {
   func orgFailed(error: Error) {}
   func userLoaded(user: UserInfo) {}
   func userFailed(error: Error) {}
-  
+
   func announcementsFailed(error: Error) {
     showAlert(title: "Could not load announcements", subtitle: error.localizedDescription)
   }
-  
+
   func announcementsLoaded(announcements: [Announcement]) {
     self.announcements = announcements
     tableView.reloadData()
