@@ -386,6 +386,14 @@
 			path = MyBiz;
 			sourceTree = "<group>";
 		};
+		4C46706A2741EDA100F7FCFD /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				4C6896942741BCFA00337089 /* ValidatorsTests.swift */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
 		4C6895FC27335B1B00337089 /* JTAppleCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,7 +488,7 @@
 		4C6896AA2741D29F00337089 /* LoginTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C6896942741BCFA00337089 /* ValidatorsTests.swift */,
+				4C46706A2741EDA100F7FCFD /* Cases */,
 			);
 			path = LoginTests;
 			sourceTree = "<group>";

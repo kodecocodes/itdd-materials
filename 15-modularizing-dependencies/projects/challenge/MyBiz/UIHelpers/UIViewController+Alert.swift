@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,22 +30,29 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import Foundation
 import UIKit
 
 extension UIViewController {
-  public func showAlert(title: String,
-                 subtitle: String?,
-                 action: ErrorViewController.SecondaryAction? = nil,
-                 skin: Skin? = nil) {
+  public func showAlert(
+    title: String,
+    subtitle: String?,
+    action: ErrorViewController.SecondaryAction? = nil,
+    skin: Skin? = nil
+  ) {
     let thisBundle = Bundle(for: ErrorViewController.self)
-    let storyboard =  UIStoryboard(name: "UIHelpers", bundle: thisBundle)
+    let storyboard = UIStoryboard(
+      name: "UIHelpers",
+      bundle: thisBundle)
     let alertController = storyboard.instantiateViewController(withIdentifier: "error")
       as! ErrorViewController
+
     alertController.set(title: title, subtitle: subtitle)
     alertController.modalPresentationStyle = .overCurrentContext
     alertController.modalTransitionStyle = .crossDissolve
     alertController.secondaryAction = action
     alertController.skin = skin
-    UIApplication.shared.delegate?.window??.rootViewController?.present(alertController, animated: true)
+    let root = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController
+    root?.present(alertController, animated: true)
   }
 }

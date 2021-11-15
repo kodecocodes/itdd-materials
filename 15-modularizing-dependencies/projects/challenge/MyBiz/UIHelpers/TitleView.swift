@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,45 +30,53 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+import Foundation
 import UIKit
 
 class TitleView: UIView {
-  
   var title: String = "Welcome to MyBiz!" {
     didSet {
       setNeedsDisplay()
     }
   }
-  
+
   override func draw(_ rect: CGRect) {
     super.draw(rect)
     let side = min((rect.height - 20) / 2.0, 100.0)
     let y = (rect.height - side * 1.5) / 2.0
     let redRect = CGRect(x: 12, y: y, width: side, height: side)
-    let blueRect = CGRect(x: redRect.minX + side * 0.25, y: redRect.minY + side * 0.25, width:side, height: side).integral
-    let yellowRect = CGRect(x: blueRect.minX + side * 0.25, y: blueRect.minY + side * 0.25, width:side, height: side).integral
-    
+    let blueRect = CGRect(
+      x: redRect.minX + side * 0.25,
+      y: redRect.minY + side * 0.25,
+      width: side,
+      height: side).integral
+    let yellowRect = CGRect(
+      x: blueRect.minX + side * 0.25,
+      y: blueRect.minY + side * 0.25,
+      width: side,
+      height: side).integral
+
     UIColor.white.setStroke()
     let lineWidth: CGFloat = 2
-    
+
     let yellow = UIBezierPath(rect: yellowRect)
     yellow.lineWidth = lineWidth
     UIColor.bizYellow.setFill()
     yellow.fill()
     yellow.stroke()
-    
+
     let blue = UIBezierPath(rect: blueRect)
     blue.lineWidth = lineWidth
     UIColor.bizPurple.setFill()
     blue.fill()
     blue.stroke()
-    
+
     let red = UIBezierPath(rect: redRect)
     red.lineWidth = lineWidth
     UIColor.bizPink.setFill()
     red.fill()
     red.stroke()
-    
+
     let textX = yellowRect.maxX + 8
     let textHeight: CGFloat = 32
     let textY = (rect.height - textHeight) / 2.0
@@ -72,7 +84,5 @@ class TitleView: UIView {
     let titleRect = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
     let font = UIFont.preferredFont(forTextStyle: .title1)
     (title as NSString).draw(in: titleRect, withAttributes: [NSAttributedString.Key.font: font])
-    
   }
-  
 }
