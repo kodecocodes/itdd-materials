@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,102 +32,92 @@
 
 import Foundation
 import Vapor
-import FluentSQLite
-import Authentication
+import Fluent
 
-final class User: Codable {
+final class User: Model {
+  static let schema = "users"
+
+  struct Public: Content {
+    let username: String
+    let id: UUID
+  }
+
+  @ID(key: .id)
   var id: UUID?
+
+  @Field(key: "name")
   var name: String
+  @Field(key: "username")
   var username: String
-  var password: String
-  
-  init(name: String, username: String, password: String) {
+  @Field(key: "passwordHash")
+  var passwordHash: String
+
+  init() {}
+
+  init(id: UUID? = nil, name: String, username: String, passwordHash: String) {
+    self.id = id
     self.name = name
     self.username = username
-    self.password = password
-  }
-  
-  final class Public: Codable {
-    var id: UUID?
-    var name: String
-    var username: String
-    
-    init(id: UUID?, name: String, username: String) {
-      self.id = id
-      self.name = name
-      self.username = username
-    }
+    self.passwordHash = passwordHash
   }
 }
-
-extension User: SQLiteUUIDModel {}
-extension User: Content {}
-
-extension User: Migration {
-  static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-    return Database.create(self, on: connection) { builder in
-      try addProperties(to: builder)
-      builder.unique(on: \.username)
-    }
-  }
-}
-
-extension User: Parameter {}
-extension User.Public: Content {}
 
 extension User {
-  func convertToPublic() -> User.Public {
-    return User.Public(id: id, name: name, username: username)
+  static func create(from userSignup: UserSignup) throws -> User {
+    User(name: userSignup.name, username: userSignup.username, passwordHash: try Bcrypt.hash(userSignup.password))
+  }
+
+  func createToken(source: SessionSource) throws -> Token {
+    let calendar = Calendar(identifier: .gregorian)
+    let expiryDate = calendar.date(byAdding: .year, value: 1, to: Date())
+    return try Token(userId: requireID(),
+      token: [UInt8].random(count: 16).base64, source: source, expiresAt: expiryDate)
+  }
+
+  func asPublic() throws -> Public {
+    Public(username: username,
+           id: try requireID())
   }
 }
 
-extension Future where T: User {
-  func convertToPublic() -> Future<User.Public> {
-    return self.map(to: User.Public.self) { user in
-      return user.convertToPublic()
-    }
+extension User: ModelAuthenticatable {
+  static let usernameKey = \User.$username
+  static let passwordHashKey = \User.$passwordHash
+
+  func verify(password: String) throws -> Bool {
+    try Bcrypt.verify(password, created: self.passwordHash)
   }
 }
 
-extension User: BasicAuthenticatable {
-  static let usernameKey: UsernameKey = \User.username
-  static let passwordKey: PasswordKey = \User.password
-}
-
-extension User: TokenAuthenticatable {
-  typealias TokenType = Token
-}
-
-struct AdminUser: Migration {
-  typealias Database = SQLiteDatabase
-  
-  static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-    let password = try? BCrypt.hash("password")
-    guard let hashedPassword = password else {
-      fatalError("Failed to create admin user")
-    }
-    let user = User(name: "Admin", username: "admin", password: hashedPassword)
-    return user.save(on: connection).transform(to: ())
+struct CreateUsers: Migration {
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(User.schema)
+      .field("id", .uuid, .identifier(auto: true))
+      .field("username", .string, .required)
+      .unique(on: "username")
+      .field("name", .string, .required)
+      .field("passwordHash", .string, .required)
+      .create()
   }
-  
-  static func revert(on connection: SQLiteConnection) -> Future<Void> {
-    return .done(on: connection)
+
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(User.schema).delete()
   }
 }
 
 struct SeedUsers: Migration {
-  typealias Database = SQLiteDatabase
-  
-  static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-    let password = try? BCrypt.hash("hailHydra")
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    let password = try? Bcrypt.hash("hailHydra")
     guard let hashedPassword = password else {
       fatalError("Failed to create admin user")
     }
-    let user = User(name: "Agent", username: "agent@shield.org", password: hashedPassword)
-    return user.save(on: connection).transform(to: ())
+    let user = User(name: "Agent", username: "agent@shield.org", passwordHash: hashedPassword)
+    return user.create(on: database)
+      .transform(to: ())
   }
-  
-  static func revert(on connection: SQLiteConnection) -> Future<Void> {
-    return .done(on: connection)
+
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.eventLoop.makeSucceededVoidFuture()
   }
+
 }

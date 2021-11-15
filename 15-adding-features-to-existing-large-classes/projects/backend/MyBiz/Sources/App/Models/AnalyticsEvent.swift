@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,24 +31,66 @@
 /// THE SOFTWARE.
 
 import Vapor
-import FluentSQLite
+import Fluent
 
-struct AnalyticsEvent {
-  var id: Int?
+final class AnalyticsEvent: Model, Content {
+  static let schema = "analytics"
+  
+  @ID(key: .id)
+  var id: UUID?
+
+  @Field(key: "name")
   var name: String
-  var user: String
+  @Field(key: "user")
+  var user: UUID
+  @Field(key: "eventDate")
   var eventDate: Date
+  @Field(key: "recordedDate")
   var recordedDate: Date
+  @Field(key: "type")
   var type: String
+  @Field(key: "duration")
   var duration: TimeInterval?
+  @Field(key: "device")
   var device: String?
+  @Field(key: "os")
   var os: String?
+  @Field(key: "appVersion")
   var appVersion: String?
+
+  init() {}
+
+  init(id: UUID? = nil, name: String, user: UUID, eventDate: Date, recordedDate: Date, type: String, duration: TimeInterval? = nil, device: String? = nil, os: String? = nil, appVersion: String? = nil) {
+    self.id = id
+    self.name = name
+    self.user = user
+    self.eventDate = eventDate
+    self.recordedDate = recordedDate
+    self.type = type
+    self.duration = duration
+    self.device = device
+    self.os = os
+    self.appVersion = appVersion
+  }
 }
 
-extension AnalyticsEvent: Codable {}
+struct CreateAnalytics: Migration {
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(AnalyticsEvent.schema)
+      .id()
+      .field("name", .string, .required)
+      .field("user", .uuid, .required)
+      .field("eventDate", .datetime, .required)
+      .field("recordedDate", .datetime, .required)
+      .field("type", .string, .required)
+      .field("duration", .double)
+      .field("device", .string)
+      .field("os", .string)
+      .field("appVersion", .string)
+      .create()
+  }
 
-extension AnalyticsEvent: SQLiteModel {}
-extension AnalyticsEvent: Migration {}
-extension AnalyticsEvent: Content {}
-
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(AnalyticsEvent.schema).delete()
+  }
+}

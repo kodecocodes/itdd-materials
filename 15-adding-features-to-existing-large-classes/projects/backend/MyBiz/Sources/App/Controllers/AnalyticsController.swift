@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,29 +33,6 @@
 import Vapor
 import Fluent
 
-final class AnalyticsController: RouteCollection {
-
-  func boot(router: Router) throws {
-    let routes = router.grouped("api", "analytics")
-    routes.get(use: getAllHandler) // unauthenticated for debug purposes
-
-    let tokenAuthMiddleware = User.tokenAuthMiddleware()
-    let guardAuthMiddleware = User.guardAuthMiddleware()
-    let authGroup = routes.grouped(tokenAuthMiddleware, guardAuthMiddleware)
-    authGroup.post(AECreateData.self, use: createHandler)
-  }
-
-  func getAllHandler(_ req: Request) throws -> Future<[AnalyticsEvent]> {
-    return AnalyticsEvent.query(on: req).all()
-  }
-
-  func createHandler(_ req: Request, data: AECreateData) throws -> Future<AnalyticsEvent> {
-    let user = try req.requireAuthenticated(User.self)
-    let ae = AnalyticsEvent(id: nil, name: data.name, user: user.id!.uuidString, eventDate: Date(), recordedDate: data.recordedDate, type: data.type, duration: data.duration, device: data.device, os: data.os, appVersion: data.appVersion)
-    return ae.save(on: req)
-  }
-}
-
 struct AECreateData: Content {
   var name: String
   var recordedDate: Date
@@ -60,4 +41,34 @@ struct AECreateData: Content {
   var device: String?
   var os: String?
   var appVersion: String?
+}
+
+final class AnalyticsController: RouteCollection {
+  func boot(routes: RoutesBuilder) throws {
+    let routes = routes.grouped("api", "analytics")
+    routes.get(use: getAllHandler) // unauthenticated for debug purposes
+
+    let tokenProtected = routes.grouped(Token.authenticator(), Token.guardMiddleware())
+    tokenProtected.post(use: create)
+  }
+
+  func getAllHandler(_ req: Request) throws -> EventLoopFuture<[AnalyticsEvent]> {
+    return AnalyticsEvent.query(on: req.db).all()
+  }
+
+  private func create(req: Request) throws -> EventLoopFuture<AnalyticsEvent> {
+    let user = try req.auth.require(User.self)
+    let data = try req.content.decode(AECreateData.self)
+    let ae = AnalyticsEvent(id: nil,
+                            name: data.name,
+                            user: user.id!,
+                            eventDate: Date(),
+                            recordedDate: data.recordedDate,
+                            type: data.type,
+                            duration: data.duration,
+                            device: data.device,
+                            os: data.os,
+                            appVersion: data.appVersion)
+    return ae.save(on: req.db).map { ae }
+  }
 }

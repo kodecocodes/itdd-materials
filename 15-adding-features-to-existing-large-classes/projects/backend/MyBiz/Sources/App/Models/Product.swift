@@ -27,36 +27,61 @@
 /// THE SOFTWARE.
 
 import Vapor
-import FluentSQLite
+import Fluent
 
-struct Product: Codable {
-  var id: String?
+final class Product: Model, Content {
+  static let schema = "products"
+
+  @ID(key: .id)
+  var id: UUID?
+
+  @Field(key: "name")
   var name: String
+  @Field(key: "unitPrice")
   var unitPrice: Double
+
+  init() {}
+
+  init(id: UUID? = nil, name: String, unitPrice: Double) {
+    self.id = id
+    self.name = name
+    self.unitPrice = unitPrice
+  }
 }
 
-extension Product: SQLiteStringModel {}
-extension Product: Migration {}
-extension Product: Content {}
+struct CreateProducts: Migration {
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(Product.schema)
+      .id()
+      .field("name", .string, .required)
+      .field("unitPrice", .double, .required)
+      .create()
+  }
 
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(Product.schema).delete()
+  }
+}
+
+let Moljnir = UUID(uuidString: "4270CFAB-2959-4308-A732-623A6D6F748F")!
+let Shield = UUID(uuidString: "7F6F4B73-D231-438F-93DF-8816FE07E443")!
+let Arrows = UUID(uuidString: "267F7506-3291-4261-A91C-26FDDE85E04E")!
 struct SeedProducts: Migration {
-  typealias Database = SQLiteDatabase
-  
-  static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-    return Product(id: "210", name: "Exploding Arrows", unitPrice: 38.5).create(on: connection)
-      .and(Product(id: "211", name: "Electrical Arrows", unitPrice: 119.28).create(on: connection))
-      .and(Product(id: "212", name: "Acid Arrow", unitPrice: 9.5).create(on: connection))
-      .and(Product(id: "8301", name: "Moljnir", unitPrice: 72000).create(on: connection))
-      .and(Product(id: "1208", name: "Shield", unitPrice: 1_200_837).create(on: connection))
-      .and(Product(id: "712", name: "Web Slinger", unitPrice: 750).create(on: connection))
-      .and(Product(id: "2219", name: "Nanotech Armor", unitPrice: 650_888).create(on: connection))
-      .and(Product(id: "945", name: "Metal Claws", unitPrice: 27_800).create(on: connection))
-      .and(Product(id: "7", name: "Fortune Cookie 🥠", unitPrice: 0.5).create(on: connection))
-      .and(Product(id: "42100", name: "Blank Cassette", unitPrice: 45.66).create(on: connection))
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    Product(name: "Exploding Arrows", unitPrice: 38.5).create(on: database)
+      .and(Product(id: Arrows, name: "Electrical Arrows", unitPrice: 119.28).create(on: database))
+      .and(Product(name: "Acid Arrow", unitPrice: 9.5).create(on: database))
+      .and(Product(id: Moljnir, name: "Moljnir", unitPrice: 72000).create(on: database))
+      .and(Product(id: Shield, name: "Shield", unitPrice: 1_200_837).create(on: database))
+      .and(Product(name: "Web Slinger", unitPrice: 750).create(on: database))
+      .and(Product(name: "Nanotech Armor", unitPrice: 650_888).create(on: database))
+      .and(Product(name: "Metal Claws", unitPrice: 27_800).create(on: database))
+      .and(Product(name: "Fortune Cookie 🥠", unitPrice: 0.5).create(on: database))
+      .and(Product(name: "Blank Cassette", unitPrice: 45.66).create(on: database))
       .transform(to: ())
   }
-  
-  static func revert(on connection: SQLiteConnection) -> Future<Void> {
-    return .done(on: connection)
+
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.eventLoop.makeSucceededVoidFuture()
   }
 }
