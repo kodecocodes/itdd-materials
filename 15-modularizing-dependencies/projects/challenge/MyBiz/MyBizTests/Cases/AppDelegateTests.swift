@@ -40,7 +40,6 @@ class AppDelegateTests: XCTestCase {
   override func setUpWithError() throws {
     try super.setUpWithError()
     sut = AppDelegate()
-//    sut.window = UIApplication.shared.windows.first
     _ = sut.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
   }
 
