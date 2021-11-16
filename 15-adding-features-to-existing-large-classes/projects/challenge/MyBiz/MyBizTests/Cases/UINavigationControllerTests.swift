@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,20 +34,19 @@ import XCTest
 @testable import MyBiz
 
 class UINavigationControllerTests: XCTestCase {
-
   var sut: UINavigationController!
   var mockAnalytics: MockAnalyticsAPI!
 
-  override func setUp() {
-    super.setUp()
+  override func setUpWithError() throws {
+    try super.setUpWithError()
     sut = UINavigationController()
     mockAnalytics = MockAnalyticsAPI()
   }
 
-  override func tearDown() {
+  override func tearDownWithError() throws {
     sut = nil
     mockAnalytics = nil
-    super.tearDown()
+    try super.tearDownWithError()
   }
 
   func testControlller_whenNoViewControllers_doesNotStoreAnalytics() {
@@ -67,6 +70,6 @@ class UINavigationControllerTests: XCTestCase {
   }
 }
 
-fileprivate class TestController: UIViewController, ReportSending {
+private class TestController: UIViewController, ReportSending {
   var analytics: AnalyticsAPI?
 }

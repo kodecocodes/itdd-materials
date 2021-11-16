@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,10 +34,9 @@ import UIKit
 import UIHelpers
 
 class PurchasesTableViewController: UITableViewController {
-  
   var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
   var analytics: AnalyticsAPI?
-  
+
   var purchases: [PurchaseOrder] = []
   var products: [Product] = []
 
@@ -44,7 +47,7 @@ class PurchasesTableViewController: UITableViewController {
 
     Styler.shared.style(background: view, skin: skin)
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     api.delegate = self
@@ -52,30 +55,29 @@ class PurchasesTableViewController: UITableViewController {
     api.getPurchases()
     analytics?.sendReport(report: Report.make(event: .purchasesShown, type: .screenView))
   }
-  
+
   // MARK: - Table view data source
-  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return purchases.count
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PurchasesTableViewCell
-    
+
     let item = purchases[indexPath.row]
-    
+
     let dateFormatter = DateFormatter()
     dateFormatter.timeStyle = .none
     dateFormatter.dateStyle = .short
-    
+
     let date = dateFormatter.string(from: item.purchaseDate!)
     let title = item.poNumber
-    
+
     let cost: String
     if products.isEmpty {
       cost = "???"
     } else {
-      let total = item.purchases.reduce(0) { sum, purchase -> Double in
+      let total = item.purchases.reduce(0) { _, purchase -> Double in
         if let product = products.first(where: { $0.productId == purchase.productId }) {
           return purchase.quantity * product.unitPrice
         }
@@ -85,12 +87,11 @@ class PurchasesTableViewController: UITableViewController {
       numberFormatter.numberStyle = .currency
       cost = numberFormatter.string(for: total)!
     }
-    
-    
+
     cell.dateLabel.text = date
     cell.titleLabel.text = title
     cell.costLabel.text = cost
-    
+
     return cell
   }
 }
@@ -111,16 +112,16 @@ extension PurchasesTableViewController: APIDelegate {
     self.products = products
     tableView.reloadData()
   }
-  
+
   func productsFailed(error: Error) {
     showAlert(title: "Could not load products", subtitle: error.localizedDescription)
   }
-  
+
   func purchasesLoaded(purchases: [PurchaseOrder]) {
     self.purchases = purchases
     tableView.reloadData()
   }
-  
+
   func purchasesFailed(error: Error) {
     showAlert(title: "Could not load purchase", subtitle: error.localizedDescription)
   }

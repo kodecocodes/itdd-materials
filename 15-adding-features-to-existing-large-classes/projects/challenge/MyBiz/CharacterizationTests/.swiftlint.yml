@@ -1,0 +1,4 @@
+disabled_rules: # rule identifiers turned on by default to exclude from running
+  - implicitly_unwrapped_optional
+  - force_try
+  - force_unwrapping
