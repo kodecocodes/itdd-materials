@@ -34,52 +34,28 @@ import Foundation
 import UIKit
 
 struct Report: Codable {
-  let event: String
-  let timestamp: Date
+  var name: String
+  var recordedDate: Date
+  var type: String
+  var duration: TimeInterval?
+  var device: String
+  //swiftlint:disable identifier_name
+  var os: String
+  var appVersion: String
 }
 
-class Analytics {
-  static let shared = Analytics()
-
-  enum Event: String {
-    case loginShown
-    case loginButtonClicked
-    case announcementsShown
-    case settingShown
-    case orgChartShown
-    case purchasesShown
-    case calendarShown
-    case fullDayShown
-  }
-
-  var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
-
-  func logEvent(_ event: Event) {
-  }
+enum AnalyticsEvent: String {
+  case loginShown
+  case loginButtonClicked
+  case announcementsShown
+  case settingShown
+  case orgChartShown
+  case purchasesShown
+  case calendarShown
+  case fullDayShown
 }
 
-//enum AnalyticsEvent: String {
-//  case loginShown
-//  case loginButtonClicked
-//  case announcementsShown
-//  case settingShown
-//  case orgChartShown
-//  case purchasesShown
-//  case calendarShown
-//  case fullDayShown
-//}
-//
-//enum AnalyticsType: String {
-//  case screenView
-//  case buttonTap
-//}
-//
-//struct Report: Codable {
-//  var name: String
-//  var recordedDate: Date
-//  var type: String
-//  var duration: TimeInterval?
-//  var device: String
-//  var os: String
-//  var appVersion: String
-//}
+enum AnalyticsType: String {
+  case screenView
+  case buttonTap
+}

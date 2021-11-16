@@ -20,7 +20,7 @@
 		4C46707E2741F9A800F7FCFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185CB20423C78CE8009F7571 /* Assets.xcassets */; };
 		4C68962827335B1D00337089 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F227335B1B00337089 /* CalendarViewController.swift */; };
 		4C68962A27335B1D00337089 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F427335B1B00337089 /* API.swift */; };
-		4C68962C27335B1D00337089 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F627335B1B00337089 /* Analytics.swift */; };
+		4C68962C27335B1D00337089 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F627335B1B00337089 /* Report.swift */; };
 		4C68962D27335B1D00337089 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F727335B1B00337089 /* APIError.swift */; };
 		4C68962E27335B1D00337089 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F827335B1B00337089 /* Product.swift */; };
 		4C68962F27335B1D00337089 /* PurchasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F927335B1B00337089 /* PurchasesTableViewCell.swift */; };
@@ -189,7 +189,7 @@
 		4C6895F327335B1B00337089 /* Skin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skin.swift; sourceTree = "<group>"; };
 		4C6895F427335B1B00337089 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4C6895F527335B1B00337089 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		4C6895F627335B1B00337089 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		4C6895F627335B1B00337089 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		4C6895F727335B1B00337089 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4C6895F827335B1B00337089 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4C6895F927335B1B00337089 /* PurchasesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchasesTableViewCell.swift; sourceTree = "<group>"; };
@@ -361,7 +361,6 @@
 				4C68962027335B1D00337089 /* Configuration.swift */,
 				4C689686273855DA00337089 /* Calendar */,
 				4C68961A27335B1C00337089 /* AnnouncementsTableViewController.swift */,
-				4C6895F627335B1B00337089 /* Analytics.swift */,
 				4C68961827335B1C00337089 /* DayDetailTableViewController.swift */,
 				4C68961527335B1C00337089 /* DateExtensions.swift */,
 				4C68961127335B1B00337089 /* OrgTableViewCell.swift */,
@@ -383,6 +382,7 @@
 				4C68961C27335B1C00337089 /* Event.swift */,
 				4C6895F827335B1B00337089 /* Product.swift */,
 				4C68961927335B1C00337089 /* PurchaseOrder.swift */,
+				4C6895F627335B1B00337089 /* Report.swift */,
 				4C68965F27335BB300337089 /* Main.storyboard */,
 				185CB20423C78CE8009F7571 /* Assets.xcassets */,
 				4C68965D27335B5E00337089 /* configuration.json */,
@@ -886,7 +886,7 @@
 				4C68965127335B1E00337089 /* Event.swift in Sources */,
 				4C68962A27335B1D00337089 /* API.swift in Sources */,
 				4C68965327335B1E00337089 /* AppDelegate.swift in Sources */,
-				4C68962C27335B1D00337089 /* Analytics.swift in Sources */,
+				4C68962C27335B1D00337089 /* Report.swift in Sources */,
 				4C68964427335B1D00337089 /* SettingsTableViewController.swift in Sources */,
 				4C68962827335B1D00337089 /* CalendarViewController.swift in Sources */,
 				4C68965A27335B1E00337089 /* AddProductTableViewCell.swift in Sources */,
