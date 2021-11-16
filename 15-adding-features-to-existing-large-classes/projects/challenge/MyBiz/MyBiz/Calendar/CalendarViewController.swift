@@ -61,6 +61,7 @@ class CalendarViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     loadEvents()
+    analytics?.sendReport(report: Report.make(event: .calendarShown, type: .screenView))
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
