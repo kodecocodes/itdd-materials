@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18D775BC22AD944300AE281E"
+               BlueprintIdentifier = "185CB1F723C78CE6009F7571"
                BuildableName = "FitNess.app"
                BlueprintName = "FitNess"
                ReferencedContainer = "container:FitNess.xcodeproj">
@@ -34,7 +34,7 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4C2DEDA12656D9480094B3E7"
+               BlueprintIdentifier = "4CCF44012705277700DD29AB"
                BuildableName = "FitNessTests.xctest"
                BlueprintName = "FitNessTests"
                ReferencedContainer = "container:FitNess.xcodeproj">
@@ -56,7 +56,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18D775BC22AD944300AE281E"
+            BlueprintIdentifier = "185CB1F723C78CE6009F7571"
             BuildableName = "FitNess.app"
             BlueprintName = "FitNess"
             ReferencedContainer = "container:FitNess.xcodeproj">
@@ -73,7 +73,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18D775BC22AD944300AE281E"
+            BlueprintIdentifier = "185CB1F723C78CE6009F7571"
             BuildableName = "FitNess.app"
             BlueprintName = "FitNess"
             ReferencedContainer = "container:FitNess.xcodeproj">

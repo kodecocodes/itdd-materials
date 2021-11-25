@@ -34,7 +34,7 @@ import XCTest
 @testable import FitNess
 
 class AppModelTests: XCTestCase {
-  // swiftlint:disable implicitly_unwrapped_optional
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AppModel!
 
   override func setUpWithError() throws {
@@ -54,30 +54,17 @@ class AppModelTests: XCTestCase {
 
   func givenInProgress() {
     givenGoalSet()
-    try? sut.start()
+    //swiftlint:disable force_try
+    try! sut.start()
   }
 
   // MARK: - Lifecycle
-
   func testAppModel_whenInitialized_isInNotStartedState() {
     let initialState = sut.appState
     XCTAssertEqual(initialState, AppState.notStarted)
   }
 
   // MARK: - Start
-
-  func testAppModel_whenStarted_isInInProgressState() {
-    // given
-    givenGoalSet()
-
-    // when started
-    try? sut.start()
-
-    // then it is in inProgress
-    let observedState = sut.appState
-    XCTAssertEqual(observedState, AppState.inProgress)
-  }
-
   func testModelWithNoGoal_whenStarted_throwsError() {
     XCTAssertThrowsError(try sut.start())
   }
@@ -90,8 +77,19 @@ class AppModelTests: XCTestCase {
     XCTAssertNoThrow(try sut.start())
   }
 
-  // MARK: - Restart
+  func testAppModel_whenStarted_isInInProgressState() {
+    // given
+    givenGoalSet()
 
+    // when started
+    try? sut.start()
+
+    // then it is in inProgress
+    let observedState = sut.appState
+    XCTAssertEqual(observedState, .inProgress)
+  }
+
+  // MARK: - Restart
   func testAppModel_whenReset_isInNotStartedState() {
     // given
     givenInProgress()

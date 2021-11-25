@@ -34,7 +34,7 @@ import XCTest
 @testable import FitNess
 
 class DataModelTests: XCTestCase {
-  // swiftlint:disable implicitly_unwrapped_optional
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: DataModel!
 
   override func setUpWithError() throws {

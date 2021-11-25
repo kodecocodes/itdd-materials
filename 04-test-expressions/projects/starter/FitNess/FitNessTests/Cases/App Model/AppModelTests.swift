@@ -34,7 +34,7 @@ import XCTest
 @testable import FitNess
 
 class AppModelTests: XCTestCase {
-  // swiftlint:disable implicitly_unwrapped_optional
+  //swiftlint:disable implicitly_unwrapped_optional
   var sut: AppModel!
 
   override func setUpWithError() throws {
@@ -50,20 +50,18 @@ class AppModelTests: XCTestCase {
   // MARK: - Given
 
   // MARK: - Lifecycle
-
   func testAppModel_whenInitialized_isInNotStartedState() {
     let initialState = sut.appState
     XCTAssertEqual(initialState, AppState.notStarted)
   }
 
   // MARK: - Start
-
   func testAppModel_whenStarted_isInInProgressState() {
     // when started
     sut.start()
 
     // then it is in inProgress
     let observedState = sut.appState
-    XCTAssertEqual(observedState, AppState.inProgress)
+    XCTAssertEqual(observedState, .inProgress)
   }
 }
