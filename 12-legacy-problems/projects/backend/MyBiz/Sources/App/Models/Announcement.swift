@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,31 +31,46 @@
 /// THE SOFTWARE.
 
 import Vapor
-import FluentSQLite
+import Fluent
 
-struct Announcement: Codable {
-  var id: Int?
+final class Announcement: Model, Content {
+  static let schema = "announcements"
+  
+  @ID(key: .id)
+  var id: UUID?
+  
+  @Field(key: "message")
   var message: String
   
-  init(message: String) {
+  init() {}
+  
+  init(id: UUID? = nil, message: String) {
+    self.id = id
     self.message = message
   }
 }
 
-extension Announcement: SQLiteModel {}
-extension Announcement: Migration {}
-extension Announcement: Content {}
-
-struct SeedAnnouncements: Migration {
-  typealias Database = SQLiteDatabase
-  
-  static func prepare(on connection: SQLiteConnection) -> Future<Void> {
-    return Announcement(message: "A thing happened").create(on: connection)
-      .and(Announcement(message: "More stuff to come soon!").create(on: connection))
-      .transform(to: ())
+struct CreateAnnouncements: Migration {
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(Announcement.schema)
+      .id()
+      .field("message", .string, .required)
+      .create()
   }
   
-  static func revert(on connection: SQLiteConnection) -> Future<Void> {
-    return .done(on: connection)
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.schema(Announcement.schema).delete()
+  }
+}
+
+struct SeedAnnouncements: Migration {
+  func prepare(on database: Database) -> EventLoopFuture<Void> {
+    Announcement(message: "A thing happened").create(on: database)
+      .and(Announcement(message: "More stuff to come soon!").create(on: database))
+      .transform(to: ())
+  }
+
+  func revert(on database: Database) -> EventLoopFuture<Void> {
+    database.eventLoop.makeSucceededVoidFuture()
   }
 }

@@ -1,4 +1,4 @@
-/// Copyright (c) 2019 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,6 +18,10 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,7 +33,6 @@
 import UIKit
 
 class CreatePurachaseOrderTableViewController: UITableViewController {
-
   struct POInProgress {
     var poNumber: String = "0000001"
     var comment: String?
@@ -37,13 +40,14 @@ class CreatePurachaseOrderTableViewController: UITableViewController {
     var purchases: [PurchaseOrder.Purchase] = []
 
     var purchaseOrder: PurchaseOrder? {
-      return PurchaseOrder(id: nil,
-                           poNumber: poNumber,
-                           comment: comment,
-                           purchaser: UIApplication.appDelegate.userId!,
-                           purchaseDate: nil,
-                           dueDate: dueDate,
-                           purchases: purchases)
+      return PurchaseOrder(
+        id: nil,
+        poNumber: poNumber,
+        comment: comment,
+        purchaser: UUID(uuidString: UIApplication.appDelegate.userId!)!,
+        purchaseDate: nil,
+        dueDate: dueDate,
+        purchases: purchases)
     }
   }
 
@@ -82,30 +86,48 @@ class CreatePurachaseOrderTableViewController: UITableViewController {
 
   @IBOutlet var productHeaderView: UIView!
 
-  lazy var rows = [RowInfo(label: "PO Number",
-                           type: .textInput,
-                           value: { self.poInProgress.poNumber }, selection: .none),
-                   RowInfo(label: "Purchase Date", type: .stringValue, value: {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateStyle = .short
-                    dateFormatter.timeStyle = .none
-                    return dateFormatter.string(from: Date())
-                   }, selection: .none),
-                   RowInfo(label: "Comment",
-                           type: .textInput,
-                           value: { self.poInProgress.comment ?? "" }, selection: .none),
-                   RowInfo(label: "Due Date", type: .stringValue, value: { () -> String in
-                    guard let date = self.poInProgress.dueDate else { return "-" }
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateStyle = .short
-                    dateFormatter.timeStyle = .none
-                    return dateFormatter.string(from: date)
-                   }, selection: .datePicker),
-                   RowInfo(label: "Total", type: .stringValue, value: {
-                    let priceFormatter = NumberFormatter()
-                    priceFormatter.numberStyle = .currency
-                    return priceFormatter.string(for: self.totalAmount)!
-                   }, selection: .none)]
+  lazy var rows = [
+    RowInfo(
+      label: "PO Number",
+      type: .textInput,
+      value: { self.poInProgress.poNumber },
+      selection: .none),
+    RowInfo(
+      label: "Purchase Date",
+      type: .stringValue,
+      value: {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: Date())
+      },
+      selection: .none),
+    RowInfo(
+      label: "Comment",
+      type: .textInput,
+      value: { self.poInProgress.comment ?? "" },
+      selection: .none),
+    RowInfo(
+      label: "Due Date",
+      type: .stringValue,
+      value: { () -> String in
+        guard let date = self.poInProgress.dueDate else { return "-" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: date)
+      },
+      selection: .datePicker),
+    RowInfo(
+      label: "Total",
+      type: .stringValue,
+      value: {
+        let priceFormatter = NumberFormatter()
+        priceFormatter.numberStyle = .currency
+        return priceFormatter.string(for: self.totalAmount)!
+      },
+      selection: .none)
+  ]
 
   var api: API { return (UIApplication.shared.delegate as! AppDelegate).api }
   var products: [Product] = []
@@ -138,7 +160,7 @@ class CreatePurachaseOrderTableViewController: UITableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
     if let addToOrder = segue.destination as? AddToOrderTableViewController {
-      var items = [Product : Double]()
+      var items: [Product: Double] = [:]
       poInProgress.purchases.forEach { purchase in
         if let product = products.first(where: { product -> Bool in
           product.productId == purchase.productId
@@ -160,7 +182,7 @@ class CreatePurachaseOrderTableViewController: UITableViewController {
       datePickingVC.date = date
       datePickingVC.doneCallback = { updatedDate in
         self.poInProgress.dueDate = updatedDate
-      self.tableView.reloadSections(IndexSet([0]), with: .automatic)
+        self.tableView.reloadSections(IndexSet([0]), with: .automatic)
       }
     }
   }
@@ -171,6 +193,7 @@ class CreatePurachaseOrderTableViewController: UITableViewController {
 
   @IBAction func done(_ sender: Any) {
     do {
+      //swiftlint:disable identifier_name
       if let po = poInProgress.purchaseOrder {
         try validatePO()
         api.delegate = self
@@ -289,7 +312,6 @@ class CreatePurachaseOrderTableViewController: UITableViewController {
 }
 
 // MARK: - Textfield Delegate
-
 extension CreatePurachaseOrderTableViewController: UITextFieldDelegate {
 }
 
@@ -306,7 +328,7 @@ extension CreatePurachaseOrderTableViewController: APIDelegate {
   func orgLoaded(org: [Employee]) {}
   func userLoaded(user: UserInfo) {}
   func userFailed(error: Error) {}
-  
+
   func purchasesLoaded(purchases: [PurchaseOrder]) {
     dismiss(animated: true)
   }

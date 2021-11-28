@@ -1,15 +1,15 @@
-/// Copyright (c) 2019 Razeware LLC
-///
+/// Copyright (c) 2021 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,6 +17,10 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
+/// 
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,15 +33,13 @@
 import Foundation
 
 class CalendarModel {
-
   let api: API
   var birthdayCallback: ((Result<[Event], Error>) -> Void)?
-  var eventsCallback: ((Result<[Event], Error>) -> Void)?
 
   init(api: API) {
     self.api = api
   }
-  
+
   func convertBirthdays(_ employees: [Employee]) -> [Event] {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = Employee.birthdayFormat
@@ -46,8 +48,11 @@ class CalendarModel {
         let day = dateFormatter.date(from: dayString),
         let nextBirthday = day.next() {
         let title = $0.displayName + " Birthday"
-        return Event(name: title, date: nextBirthday,
-                     type: .Birthday, duration: 0)
+        return Event(
+          name: title,
+          date: nextBirthday,
+          type: .birthday,
+          duration: 0)
       }
       return nil
     }
@@ -58,6 +63,8 @@ class CalendarModel {
     api.delegate = self
     api.getOrgChart()
   }
+
+  var eventsCallback: ((Result<[Event], Error>) -> Void)?
 
   func getEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
     eventsCallback = completion
@@ -81,7 +88,7 @@ extension CalendarModel: APIDelegate {
     eventsCallback?(.success(events))
     eventsCallback = nil
   }
-  
+
   func eventsFailed(error: Error) {}
   func loginFailed(error: Error) {}
   func loginSucceeded(userId: String) {}
