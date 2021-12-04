@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ayx-LI-2gA">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="o35-q9-tTD">
+            <objects>
+                <viewController storyboardIdentifier="login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ayx-LI-2gA" customClass="LoginViewController" customModule="Login" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="75h-Mt-XQs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="agent@shield.org" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCr-fd-cla">
+                                <rect key="frame" x="48.5" y="146" width="278" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="278" id="u0u-go-rRI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hailHydra" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rO0-Y1-ssZ">
+                                <rect key="frame" x="48.5" y="220" width="278" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartQuotesType="no" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acQ-2R-b8e">
+                                <rect key="frame" x="164" y="300" width="47" height="30"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signIn:" destination="Ayx-LI-2gA" eventType="touchUpInside" id="Mzf-Lj-WuH"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjs-U6-t5Y" customClass="TitleView" customModule="MyBiz" customModuleProvider="target">
+                                <rect key="frame" x="16" y="0.0" width="343" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="2eS-zk-b2O"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lEV-7p-kgw"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rO0-Y1-ssZ" firstAttribute="centerX" secondItem="dCr-fd-cla" secondAttribute="centerX" id="Itq-3V-NH9"/>
+                            <constraint firstItem="dCr-fd-cla" firstAttribute="top" secondItem="lEV-7p-kgw" secondAttribute="top" constant="146" id="Mnn-Ic-krN"/>
+                            <constraint firstItem="dCr-fd-cla" firstAttribute="centerX" secondItem="lEV-7p-kgw" secondAttribute="centerX" id="Q7b-zu-GNe"/>
+                            <constraint firstItem="lEV-7p-kgw" firstAttribute="trailing" secondItem="Cjs-U6-t5Y" secondAttribute="trailing" constant="16" id="S7L-Kl-3cQ"/>
+                            <constraint firstItem="rO0-Y1-ssZ" firstAttribute="width" secondItem="dCr-fd-cla" secondAttribute="width" id="TUT-WY-VF0"/>
+                            <constraint firstItem="Cjs-U6-t5Y" firstAttribute="top" secondItem="lEV-7p-kgw" secondAttribute="top" id="ckv-sE-K3t"/>
+                            <constraint firstItem="Cjs-U6-t5Y" firstAttribute="leading" secondItem="lEV-7p-kgw" secondAttribute="leading" constant="16" id="gPt-Ah-clB"/>
+                            <constraint firstItem="acQ-2R-b8e" firstAttribute="top" secondItem="rO0-Y1-ssZ" secondAttribute="bottom" constant="46" id="nCf-Pq-4OX"/>
+                            <constraint firstItem="acQ-2R-b8e" firstAttribute="centerX" secondItem="rO0-Y1-ssZ" secondAttribute="centerX" id="pKk-ok-yJu"/>
+                            <constraint firstItem="rO0-Y1-ssZ" firstAttribute="top" secondItem="dCr-fd-cla" secondAttribute="bottom" constant="40" id="vww-LA-I5W"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailField" destination="dCr-fd-cla" id="9h2-Je-SbZ"/>
+                        <outlet property="passwordField" destination="rO0-Y1-ssZ" id="fIi-UW-WpQ"/>
+                        <outlet property="signInButton" destination="acQ-2R-b8e" id="pfB-Zj-3Ml"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gla-Lr-CTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1226.4000000000001" y="-344.07796101949026"/>
+        </scene>
+    </scenes>
+</document>
