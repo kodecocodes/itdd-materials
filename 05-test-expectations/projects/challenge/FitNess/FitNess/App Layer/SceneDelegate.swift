@@ -30,18 +30,8 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import UIKit
 
-<<<<<<< HEAD:05-test-expectations/projects/challenge/FitNess/FitNess/App Layer/SceneDelegate.swift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
-=======
-@main
-struct AppMain: App {
-  var body: some Scene {
-    WindowGroup {
-      ContentView()
-    }
-  }
->>>>>>> d968637... reset for not swiftui:03-tdd-app-setup/projects/final/FitNess/FitNess/App Layer/AppMain.swift
 }
